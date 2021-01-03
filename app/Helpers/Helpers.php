@@ -6,6 +6,7 @@ use App\Tahun;
 use App\Eselon;
 use App\Jabatan;
 use App\Pangkat;
+use App\Pegawai;
 use App\Periode;
 use App\UnitKerja;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,7 @@ function periode()
 
 function tahun()
 {
-    return Tahun::get();
+    return Tahun::where('periode_id', periodeAktif()->id)->get();
 }
 
 function eselon()
@@ -60,4 +61,14 @@ function jabDinas()
         }
         return $item;
     })->where('status', '!=', 'ada');
+}
+
+function countSKPD()
+{
+    return count(Skpd::get());
+}
+
+function countASN()
+{
+    return count(Pegawai::get());
 }

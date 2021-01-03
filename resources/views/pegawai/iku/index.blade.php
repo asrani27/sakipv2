@@ -1,3 +1,96 @@
+@extends('admin.flatty')
+@push('css')
+
+@endpush
+
+@section('content') 
+<div class="col-xs-12">
+  <div class='page-header page-header-with-buttons'>
+    <h1 class='pull-left'>
+        <i class='fa fa-user'></i>
+        <span>IKU (Indikator Kinerja Utama)</span>
+    </h1>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="box bordered-box green-border" style="margin-bottom:0;">
+        
+        <div class="box-header">
+          <div class="title">
+            <a href="/pegawai/iku/add" class="btn btn-primary btn-sm"> 
+              <i class='fa fa-plus'></i>Tambah IKU</a> 
+          </div>
+        </div>
+        <div class="box-content box-no-padding">
+            <div class="">
+                <div class="scrollable-area">
+                    <table class="table table-bordered table-hover table-striped responsive-table" style="margin-bottom:0;">
+                        <thead>
+                        <tr class="blue-background" style="color: white; font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                          <th>No</th>
+                          <th>Periode</th>
+                          <th>Kinerja Utama</th>
+                          <th>Indikator Kinerja Utama</th>
+                          <th>Penjelasan</th>
+                          <th>Sumber Data</th>
+                          <th>Penanggung jawab</th>
+                          <th>Verifikasi</th>
+                          <th></th>
+                        </tr>
+                        </thead>
+                        @php
+                          $no =1;
+                        @endphp
+                        <tbody>
+                          
+                          @foreach ($data as $item)        
+                          <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                              <td>{{$no++}}</td>
+                              <td>{{$item->periode->mulai}}-{{$item->periode->sampai}} </td>
+                              <td>{{$item->kinerja_utama}}</td>
+                              <td>{{$item->indikator_kinerja_utama}}</td>
+                              <td>{{$item->penjelasan}}</td>
+                              <td>{{$item->sumber_data}}</td>
+                              <td>{{$item->penanggung_jawab}}</td>
+                              <td>
+                                @if ($item->verifikasi == 0)
+                                  <span class="label label-info">MENUNGGU</span>
+                                @else
+                                  <span class="label label-success">diSetujui</span>  
+                                @endif
+                              </td>
+                              <td>
+                                      <a href="/pegawai/iku/edit/{{$item->id}}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
+                                      <a href="/pegawai/iku/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Yakin Ingin Menghapus Data ini?');"><i class="fa fa-trash"></i></a>     
+                              </td>
+                          </tr>
+                          
+                          @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+              {{-- {{$data->links()}} --}}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection
+
+@push('js')
+
+@endpush
+{{-- 
 @extends('admin.app')
 @push('css')
   <!-- DataTables -->
@@ -80,4 +173,4 @@
       });
     });
 </script>
-@endpush
+@endpush --}}

@@ -14,7 +14,7 @@ class PkController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->jabatan = Auth::user()->pegawai->jabatan;
+            $this->jabatan = Auth::user()->pegawai->unitkerja;
             return $next($request);
         });
     }

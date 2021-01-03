@@ -19,7 +19,7 @@
   
   <hr class='hr-drouble'>
   <div class='row'>
-      <div class='col-sm-12 col-md-6'>
+      <div class='col-sm-12 col-md-12'>
           <div class='box'>
               <div class='box-header'>
                   <div class='title'>
@@ -34,45 +34,27 @@
               <div class='row'>
                   <div class='col-sm-6'>
                       <div class='box-content box-statistic'>
-                          <h3 class='title text-error'>191</h3>
+                          <h3 class='title text-error'>{{countSKPD()}}</h3>
                           <small>SKPD</small>
                           <div class='text-error fa fa-inbox align-right'></div>
-                      </div>
-                      <div class='box-content box-statistic'>
-                          <h3 class='title text-warning'>311</h3>
-                          <small>ASN</small>
-                          <div class='text-warning fa fa-check-square-o align-right'></div>
-                      </div>
-                      <div class='box-content box-statistic'>
-                          <h3 class='title text-info'>3</h3>
-                          <small>Pending</small>
-                          <div class='text-info fa fa-clock-o align-right'></div>
                       </div>
                   </div>
                   <div class='col-sm-6'>
                       <div class='box-content box-statistic'>
-                          <h3 class='title text-primary'>3</h3>
-                          <small>Shipped</small>
-                          <div class='text-primary fa fa-truck align-right'></div>
-                      </div>
-                      <div class='box-content box-statistic'>
-                          <h3 class='title text-success'>981</h3>
-                          <small>Completed</small>
-                          <div class='text-success fa fa-flag align-right'></div>
-                      </div>
-                      <div class='box-content box-statistic'>
-                          <h3 class='title text-muted'>0</h3>
-                          <small>Canceled</small>
-                          <div class='text-muted fa fa-times align-right'></div>
+                          <h3 class='title text-primary'>{{countASN()}}</h3>
+                          <small>ASN</small>
+                          <div class='text-primary fa fa-users align-right'></div>
                       </div>
                   </div>
               </div>
           </div>
       </div>
-      <div class='col-sm-6 col-md-6'>
-        
-      </div>
       
   </div>
 </div>
 @endsection
+
+@push('js')
+    
+
+@endpush

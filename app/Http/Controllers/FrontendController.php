@@ -10,6 +10,7 @@ use App\User;
 use App\Tahun;
 use App\Jabatan;
 use App\Periode;
+use App\UnitKerja;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -127,7 +128,7 @@ class FrontendController extends Controller
 
     public function ikuGetJab($id)
     {
-        $data = Jabatan::where('skpd_id', $id)->get();
+        $data = UnitKerja::where('skpd_id', $id)->get();
         return json_encode($data);
     }
 }

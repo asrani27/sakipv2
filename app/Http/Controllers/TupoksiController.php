@@ -23,10 +23,10 @@ class TupoksiController extends Controller
     public function index()
     {
         if (Auth::user()->hasRole('pegawai')) {
-            if (Auth::user()->pegawai->jabatan == null) {
-                $data = Auth::user()->pegawai->jabatan;
+            if (Auth::user()->pegawai->unitkerja == null) {
+                $data = Auth::user()->pegawai->unitkerja;
             } else {
-                $data = Auth::user()->pegawai->jabatan;
+                $data = Auth::user()->pegawai->unitkerja;
             }
             return view('pegawai.tupoksi.index', compact('data'));
         } else {
