@@ -80,8 +80,8 @@ class SkpdController extends Controller
 
     public function resetpass($id)
     {
-        $data = User::find($id);
-        $data->password = '123456';
+        $data = Skpd::find($id)->user;
+        $data->password = bcrypt('123456');
         $data->save();
         toastr()->success('Password Baru : 123456');
         return back();

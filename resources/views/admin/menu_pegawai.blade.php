@@ -1,57 +1,50 @@
-<nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
-        <a href="/home" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-home"></i>
-            <p>
-            Dashboard
-            </p>
+<ul class='nav nav-stacked'>
+    <li class='{{ Request::is('home') ? 'active' : '' }}'>
+        <a href='/home'>
+            <i class='fa fa-tachometer'></i>
+            <span>Dashboard</span>
         </a>
-        </li>
-        <li class="nav-item">
-        <a href="/pegawai/tupoksi" class="nav-link {{ Request::is('pegawai/tupoksi') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-map"></i>
-            <p>Tupoksi
-            </p>
+    </li>
+    <li class='{{ Request::is('pegawai/tupoksi') ? 'active' : '' }}'>
+        <a href='/pegawai/tupoksi'>
+            <i class='fa fa-tasks'></i>
+            <span>Tupoksi</span>
         </a>
-        </li>
-        </li>
-        <li class="nav-item">
-        <a href="/pegawai/iku" class="nav-link {{ Request::is('pegawai/iku') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-tasks"></i>
-            <p>IKU
-            </p>
+    </li>
+    <li class='{{ Request::is('pegawai/iku') ? 'active' : '' }}'>
+        <a href='/pegawai/iku'>
+            <i class='fa fa-tasks'></i>
+            <span>IKU</span>
         </a>
-        </li>
-        <li class="nav-item">
-        <a href="/pegawai/pk" class="nav-link {{ Request::is('pegawai/pk') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-handshake"></i>
-            <p>Perjanjian Kinerja
-            </p>
+    </li>
+    <li class='{{ Request::is('pegawai/pk') ? 'active' : '' }}'>
+        <a href='/pegawai/pk'>
+            <i class='fa fa-file-text'></i>
+            <span>Perjanjian Kinerja</span>
         </a>
-        </li>
-        <li class="nav-item">
-        <a href="/pegawai/kinerja-triwulan" class="nav-link {{ Request::is('pegawai/kinerja-triwulan') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-exchange-alt"></i>
-            <p>Kinerja Triwulan
-            </p>
+    </li>
+    
+    <li class='{{ Request::is('pegawai/kinerja-triwulan') ? 'active' : '' }}'>
+        <a href='/pegawai/mutasi'>
+            <i class='fa fa-file-text'></i>
+            <span>Kinerja Triwulan</span>
         </a>
-        </li>
-        <li class="nav-item">
-        <a href="/pegawai/kinerja-tahunan" class="nav-link {{ Request::is('pegawai/kinerja-tahunan') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-exchange-alt"></i>
-            <p>Kinerja Tahunan
-            </p>
+    </li>
+    
+    <li class='{{ Request::is('pegawai/rencana-aksi') ? 'active' : '' }}'>
+        <a href='/pegawai/rencana-aksi'>
+            <i class='fa fa-file-text'></i>
+            <span>Rencana Aksi</span>
         </a>
-        </li>
-        
-        <li class="nav-item">
-        <a href="/logout" class="nav-link">
-            <i class="nav-icon fas fa-sign-out-alt"></i>
-            <p>
-            Logout
-            </p>
+    </li>
+
+    <li class='{{ Request::is('logout') ? 'active' : '' }}'>
+        <a href='/logout'>
+            <i class='fa fa-sign-out'></i>
+            <span>Logout</span>
         </a>
-        </li>
-    </ul>
-    </nav>
+    </li>
+    
+
+</ul>
+</nav>

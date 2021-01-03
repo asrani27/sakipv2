@@ -34,4 +34,9 @@ class Pegawai extends Model
     {
         return $this->belongsTo(Jabatan::class);
     }
+    
+    public function unitkerja()
+    {
+        return $this->belongsTo(UnitKerja::class, 'unit_kerja_id', 'id');
+    }
 }

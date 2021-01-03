@@ -8,6 +8,12 @@ Route::post('/admin_skpd/jabatan/add/sub', 'JabatanController@storeSub');
 Route::post('/admin_skpd/jabatan/edit', 'JabatanController@update');
 Route::get('/admin_skpd/jabatan/delete/{id}', 'JabatanController@delete');
 
+Route::get('/admin_skpd/unit-kerja', 'UnitKerjaController@index');
+Route::post('/admin_skpd/unit-kerja/add', 'UnitKerjaController@store');
+Route::post('/admin_skpd/unit-kerja/add/sub', 'UnitKerjaController@storeSub');
+Route::post('/admin_skpd/unit-kerja/edit', 'UnitKerjaController@update');
+Route::post('/admin_skpd/unit-kerja/delete', 'UnitKerjaController@destroy');
+
 Route::get('/admin_skpd/tupoksi', 'TupoksiController@index');
 Route::get('/admin_skpd/tugas/add/{id}', 'TupoksiController@addTugas');
 Route::post('/admin_skpd/tugas/add/{id}', 'TupoksiController@storeTugas');
@@ -26,6 +32,7 @@ Route::get('/admin_skpd/pegawai/add', 'PegawaiController@add');
 Route::post('/admin_skpd/pegawai/add', 'PegawaiController@store');
 Route::get('/admin_skpd/pegawai/edit/{id}', 'PegawaiController@edit');
 Route::post('/admin_skpd/pegawai/edit/{id}', 'PegawaiController@update');
+Route::get('/admin_skpd/pegawai/delete/{id}', 'PegawaiController@delete');
 Route::get('/admin_skpd/pegawai/createuser/{id}', 'PegawaiController@createUser');
 
 Route::get('/admin_skpd/mutasi', 'MutasiController@index');

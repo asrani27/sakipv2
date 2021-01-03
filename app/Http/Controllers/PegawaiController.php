@@ -14,10 +14,10 @@ class PegawaiController extends Controller
     {
         if (Auth::user()->hasRole('admin')) {
             $skpd_id = Auth::user()->skpd->id;
-            $data = Pegawai::where('skpd_id', $skpd_id)->get();
+            $data = Pegawai::where('skpd_id', $skpd_id)->paginate(10);
             return view('skpd.pegawai.index', compact('data'));
         } else {
-            $data = Pegawai::get();
+            $data = Pegawai::paginate(10);
             return view('admin.pegawai.index', compact('data'));
         }
     }
@@ -35,6 +35,7 @@ class PegawaiController extends Controller
     {
         $data = Pegawai::find($id);
         if (Auth::user()->hasRole('admin')) {
+            //dd('dsiisin');
             return view('skpd.pegawai.edit', compact('data'));
         } else {
             return view('admin.pegawai.edit', compact('data'));
@@ -74,9 +75,16 @@ class PegawaiController extends Controller
 
     public function delete($id)
     {
-        Pegawai::find($id)->delete();
-        toastr()->success('Pegawai Berhasil DiHapus');
-        return back();
+        try{
+            Pegawai::find($id)->delete();
+            toastr()->success('Pegawai Berhasil DiHapus');
+            return back();
+        }
+        catch (\Exception $e)
+        {
+            toastr()->error('Tidak Bisa Di Hapus');
+            return back();
+        }
     }
 
     public function createUser($id)

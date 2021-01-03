@@ -1,3 +1,47 @@
+<ul class='nav nav-stacked'>
+    <li class='{{ Request::is('home') ? 'active' : '' }}'>
+        <a href='/home'>
+            <i class='fa fa-tachometer'></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <li class='{{ Request::is('/admin_skpd/unit-kerja') ? 'active' : '' }}'>
+        <a href='/admin_skpd/unit-kerja'>
+            <i class='fa fa-map'></i>
+            <span>Peta Jabatan</span>
+        </a>
+    </li>
+    <li class='{{ Request::is('admin_skpd/tupoksi') ? 'active' : '' }}'>
+        <a href='/admin_skpd/tupoksi'>
+            <i class='fa fa-tasks'></i>
+            <span>Tupoksi</span>
+        </a>
+    </li>
+    <li class='{{ Request::is('admin_skpd/pegawai') ? 'active' : '' }}'>
+        <a href='/admin_skpd/pegawai'>
+            <i class='fa fa-users'></i>
+            <span>Pegawai</span>
+        </a>
+    </li>
+    <li class='{{ Request::is('admin_skpd/mutasi') ? 'active' : '' }}'>
+        <a href='/admin_skpd/mutasi'>
+            <i class='fa fa-exchange'></i>
+            <span>Mutasi</span>
+        </a>
+    </li>
+    
+    <li class='{{ Request::is('logout') ? 'active' : '' }}'>
+        <a href='/logout'>
+            <i class='fa fa-sign-out'></i>
+            <span>Logout</span>
+        </a>
+    </li>
+    
+
+</ul>
+</nav>
+
+{{-- 
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
@@ -47,4 +91,4 @@
         </a>
         </li>
     </ul>
-    </nav>
+    </nav> --}}

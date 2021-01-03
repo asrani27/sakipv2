@@ -15,6 +15,11 @@ class Skpd extends Model
         return $this->hasMany(Jabatan::class);
     }
 
+    public function unitkerja()
+    {
+        return $this->hasMany(UnitKerja::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

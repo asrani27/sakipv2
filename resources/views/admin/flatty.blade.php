@@ -208,7 +208,16 @@
                 </form>
             </div>
 
-            @include('admin.menu')
+            
+        <!-- Sidebar Menu -->
+        @if (Auth::user()->hasRole('superadmin'))
+        @include('admin.menu')  
+        @elseif(Auth::user()->hasRole('admin'))
+        @include('admin.menu_skpd')
+        @elseif(Auth::user()->hasRole('pegawai'))
+        @include('admin.menu_pegawai')
+        @endif
+        <!-- /.sidebar-menu -->
 
         </div>
     </nav>

@@ -25,8 +25,15 @@ class UnitKerjaController extends Controller
 
     public function store(Request $req)
     {
-        UnitKerja::create($req->all());
-        toastr()->success('Unit Kerja Berhasil Disimpan');
+        if(Auth::user()->hasRole('admin')){
+            $attr = $req->all();
+            $attr['skpd_id'] = Auth::user()->skpd->id;
+            UnitKerja::create($attr);
+            toastr()->success('Data Berhasil Disimpan');
+        }else{
+            UnitKerja::create($req->all());
+            toastr()->success('Unit Kerja Berhasil Disimpan');
+        }
         return back();
     }
 
@@ -47,10 +54,17 @@ class UnitKerjaController extends Controller
 
     public function storeSub(Request $req)
     {
-        $attr = $req->all();
-        $attr['skpd_id'] = UnitKerja::find($req->unit_kerja_id)->skpd_id;
-        UnitKerja::create($attr);
-        toastr()->success('Sub UnitKerja Berhasil Disimpan');
+        if(Auth::user()->hasRole('admin')){
+            $attr = $req->all();
+            $attr['skpd_id'] = Auth::user()->skpd->id;
+            UnitKerja::create($attr);
+            toastr()->success('Sub Unit Berhasil Disimpan');
+        }else{
+            $attr = $req->all();
+            $attr['skpd_id'] = UnitKerja::find($req->unit_kerja_id)->skpd_id;
+            UnitKerja::create($attr);
+            toastr()->success('Sub UnitKerja Berhasil Disimpan');
+        }
         return back();
     }
 
@@ -69,7 +83,7 @@ class UnitKerjaController extends Controller
     {
         try {
             UnitKerja::find($req->unit_kerja_id)->delete();
-            toastr()->info('UnitKerja Berhasil Di Hapus');
+            toastr()->success('UnitKerja Berhasil Di Hapus');
             return back();
         } catch (\Exception $e) {
             toastr()->error('Tidak bisa di hapus karena memiliki sub UnitKerja');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jabatan;
 use App\Tupoksi;
+use App\UnitKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,7 @@ class TupoksiController extends Controller
             }
             return view('pegawai.tupoksi.index', compact('data'));
         } else {
-            $data = Jabatan::where('skpd_id', Auth::user()->skpd->id)->get();
+            $data = UnitKerja::where('skpd_id', Auth::user()->skpd->id)->get();
             return view('skpd.tupoksi.index', compact('data'));
         }
     }
@@ -42,7 +43,7 @@ class TupoksiController extends Controller
         } else {
             $attr['skpd_id'] = $this->user->skpd->id;
         }
-        $attr['jabatan_id'] = $id;
+        $attr['unit_kerja_id'] = $id;
         $attr['jenis'] = 1;
         Tupoksi::create($attr);
         toastr()->success('Tugas Berhasil Disimpan');
@@ -51,7 +52,7 @@ class TupoksiController extends Controller
 
     public function addTugas($id)
     {
-        $jabatan = Jabatan::find($id);
+        $jabatan = UnitKerja::find($id);
         $data = $jabatan->tugas;
         if (Auth::user()->hasRole('pegawai')) {
             return view('pegawai.tupoksi.add', compact('data', 'jabatan'));
@@ -62,7 +63,7 @@ class TupoksiController extends Controller
 
     public function addFungsi($id)
     {
-        $jabatan = Jabatan::find($id);
+        $jabatan = UnitKerja::find($id);
         $data = $jabatan->fungsi;
         if (Auth::user()->hasRole('pegawai')) {
             return view('pegawai.tupoksi.addf', compact('data', 'jabatan'));
@@ -79,7 +80,7 @@ class TupoksiController extends Controller
         } else {
             $attr['skpd_id'] = $this->user->skpd->id;
         }
-        $attr['jabatan_id'] = $id;
+        $attr['unit_kerja_id'] = $id;
         $attr['jenis'] = 2;
         Tupoksi::create($attr);
         return back();
@@ -95,7 +96,7 @@ class TupoksiController extends Controller
     public function editTugas($id)
     {
         $tugas = Tupoksi::find($id);
-        $jabatan = Jabatan::find($tugas->jabatan_id);
+        $jabatan = UnitKerja::find($tugas->unit_kerja_id);
         $data = $jabatan->tugas;
         if (Auth::user()->hasRole('pegawai')) {
             return view('pegawai.tupoksi.edit', compact('data', 'tugas', 'jabatan'));
@@ -108,7 +109,7 @@ class TupoksiController extends Controller
     {
         $attr = $req->all();
         $t = Tupoksi::find($id)->update($attr);
-        $d = Tupoksi::find($id)->jabatan_id;
+        $d = Tupoksi::find($id)->unit_kerja_id;
         toastr()->success('Tugas Berhasil DiUpdate');
         if (Auth::user()->hasRole('pegawai')) {
             return redirect('/pegawai/tugas/add/' . $d);
@@ -127,7 +128,7 @@ class TupoksiController extends Controller
     public function editFungsi($id)
     {
         $fungsi = Tupoksi::find($id);
-        $jabatan = Jabatan::find($fungsi->jabatan_id);
+        $jabatan = UnitKerja::find($fungsi->unit_kerja_id);
         $data = $jabatan->fungsi;
         if (Auth::user()->hasRole('pegawai')) {
             return view('pegawai.tupoksi.editf', compact('data', 'fungsi', 'jabatan'));
@@ -140,7 +141,7 @@ class TupoksiController extends Controller
     {
         $attr = $req->all();
         $t = Tupoksi::find($id)->update($attr);
-        $d = Tupoksi::find($id)->jabatan_id;
+        $d = Tupoksi::find($id)->unit_kerja_id;
         if (Auth::user()->hasRole('pegawai')) {
             return redirect('/pegawai/fungsi/add/' . $d);
         } else {
