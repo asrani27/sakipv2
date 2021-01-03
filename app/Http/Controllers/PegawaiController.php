@@ -92,7 +92,6 @@ class PegawaiController extends Controller
                 $attr['username'] = $data->nip;
                 $attr['password'] = bcrypt('654321');
                 $attr['name'] = $data->nama;
-
                 //Create User
                 $user = User::create($attr);
 
