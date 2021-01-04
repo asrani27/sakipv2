@@ -97,16 +97,16 @@ class FrontendController extends Controller
     public function searchIku()
     {
         $periode = Periode::find(request()->get('periode_id'));
-        $jabatan = Jabatan::find(request()->get('jabatan_id'));
-        $data = Iku::where('periode_id', request()->get('periode_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
+        $jabatan = UnitKerja::find(request()->get('jabatan_id'));
+        $data = Iku::where('periode_id', request()->get('periode_id'))->where('unit_kerja_id', request()->get('jabatan_id'))->get();
         return view('iku', compact('data', 'periode', 'jabatan'));
     }
 
     public function searchPk()
     {
         $tahun = Tahun::find(request()->get('tahun_id'));
-        $jabatan = Jabatan::find(request()->get('jabatan_id'));
-        $data = Pk::where('tahun_id', request()->get('tahun_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
+        $jabatan = UnitKerja::find(request()->get('jabatan_id'));
+        $data = Pk::where('tahun_id', request()->get('tahun_id'))->where('unit_kerja_id', request()->get('jabatan_id'))->get();
         return view('perjanjiankinerja', compact('data', 'tahun', 'jabatan'));
     }
 
