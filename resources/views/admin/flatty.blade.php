@@ -216,6 +216,8 @@
         @include('admin.menu_skpd')
         @elseif(Auth::user()->hasRole('pegawai'))
         @include('admin.menu_pegawai')
+        @elseif(Auth::user()->hasRole('walikota'))
+        @include('admin.menu_walikota')
         @endif
         <!-- /.sidebar-menu -->
 

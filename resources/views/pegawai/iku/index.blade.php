@@ -28,14 +28,14 @@
                     <table class="table table-bordered table-hover table-striped responsive-table" style="margin-bottom:0;">
                         <thead>
                         <tr class="blue-background" style="color: white; font-size:10px; font-family:Arial, Helvetica, sans-serif">
-                          <th>No</th>
-                          <th>Periode</th>
-                          <th>Kinerja Utama</th>
-                          <th>Indikator Kinerja Utama</th>
-                          <th>Penjelasan</th>
-                          <th>Sumber Data</th>
-                          <th>Penanggung jawab</th>
-                          <th>Verifikasi</th>
+                          <th>NO</th>
+                          <th>PERIODE</th>
+                          <th>KINERJA UTAMA</th>
+                          <th>INDIKATOR KINERJA</th>
+                          <th>PENJELASAN</th>
+                          <th>SUMBER DATA</th>
+                          <th>PENANGGUNG JAWAB</th>
+                          <th>VERIFIKASI</th>
                           <th></th>
                         </tr>
                         </thead>
@@ -45,7 +45,7 @@
                         <tbody>
                           
                           @foreach ($data as $item)        
-                          <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                          <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                               <td>{{$no++}}</td>
                               <td>{{$item->periode->mulai}}-{{$item->periode->sampai}} </td>
                               <td>{{$item->kinerja_utama}}</td>
@@ -57,7 +57,7 @@
                                 @if ($item->verifikasi == 0)
                                   <span class="label label-info">MENUNGGU</span>
                                 @else
-                                  <span class="label label-success">diSetujui</span>  
+                                  <span class="label label-success">DISETUJUI</span>  
                                 @endif
                               </td>
                               <td>

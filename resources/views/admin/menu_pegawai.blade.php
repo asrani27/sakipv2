@@ -24,17 +24,17 @@
         </a>
     </li>
     
-    <li class='{{ Request::is('pegawai/kinerja-triwulan') ? 'active' : '' }}'>
-        <a href='/pegawai/mutasi'>
-            <i class='fa fa-file-text'></i>
-            <span>Kinerja Triwulan</span>
-        </a>
-    </li>
-    
     <li class='{{ Request::is('pegawai/rencana-aksi') ? 'active' : '' }}'>
         <a href='/pegawai/rencana-aksi'>
             <i class='fa fa-file-text'></i>
             <span>Rencana Aksi</span>
+        </a>
+    </li>
+
+    <li class='{{ Request::is('pegawai/kinerja-triwulan') ? 'active' : '' }}'>
+        <a href='/pegawai/mutasi'>
+            <i class='fa fa-file-text'></i>
+            <span>Kinerja Triwulan</span>
         </a>
     </li>
 

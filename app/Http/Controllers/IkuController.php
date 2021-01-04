@@ -19,7 +19,7 @@ class IkuController extends Controller
     }
     public function index()
     {
-        $data = Iku::where('jabatan_id', $this->jabatan->id)->where('periode_id', periodeAktif()->id)->get();
+        $data = Iku::where('unit_kerja_id', $this->jabatan->id)->where('periode_id', periodeAktif()->id)->get();
         return view('pegawai.iku.index', compact('data'));
     }
 
@@ -55,5 +55,15 @@ class IkuController extends Controller
         Iku::find($id)->delete();
         toastr()->success('IKU Berhasil DiHapus');
         return back();
+    }
+
+    public function verifIKU($id)
+    {   
+        $u = Iku::find($id);
+        $u->verifikasi = 1;
+        $u->save();
+        toastr()->success('IKU Disetujui');
+        return back(); 
+
     }
 }

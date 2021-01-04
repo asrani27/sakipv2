@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Skpd::class);
     }
+    
+    public function pk()
+    {
+        return $this->pegawai->unitkerja->pk;
+    }
 }

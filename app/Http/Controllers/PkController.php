@@ -21,7 +21,7 @@ class PkController extends Controller
 
     public function index()
     {
-        $data = Pk::where('jabatan_id', $this->jabatan->id)->get();
+        $data = Pk::where('unit_kerja_id', $this->jabatan->id)->get();
         return view('pegawai.pk.index', compact('data'));
     }
 
@@ -42,6 +42,7 @@ class PkController extends Controller
     {
         $jabatan = $this->jabatan;
         $data = Pk_indikator::find($id);
+        
         return view('pegawai.pk.edit_indikator', compact('jabatan', 'data'));
     }
     public function store(Request $req)

@@ -20,11 +20,11 @@
                 <div class="scrollable-area">
                     <table class="table table-bordered table-hover table-striped" style="margin-bottom:0;">
                         <thead>
-                        <tr class="blue-background" style="color: white">
-                          <th>No</th>
-                          <th>Jabatan</th>
-                          <th>Tugas</th>
-                          <th>Fungsi</th>
+                        <tr class="blue-background" style="color: white; font-size:10px; font-family:Arial, Helvetica, sans-serif"">
+                          <th>NO</th>
+                          <th>JABATAN</th>
+                          <th>TUGAS</th>
+                          <th>FUNGSI</th>
                           <th></th>
                         </tr>
                         </thead>

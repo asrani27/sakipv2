@@ -19,4 +19,9 @@ class Pk extends Model
     {
         return $this->belongsTo(Tahun::class);
     }
+
+    public function rencana_aksi()
+    {
+        return $this->hasOne(RencanaAksi::class, 'pk_id');
+    }
 }

@@ -22,6 +22,8 @@ Route::get('/pegawai/iku/edit/{id}', 'IkuController@edit');
 Route::post('/pegawai/iku/edit/{id}', 'IkuController@update');
 Route::get('/pegawai/iku/delete/{id}', 'IkuController@delete');
 
+Route::get('/pegawai/iku/verif/{id}', 'IkuController@verifIKU');
+
 Route::get('/pegawai/pk', 'PkController@index');
 Route::get('/pegawai/pk/add', 'PkController@add');
 Route::post('/pegawai/pk/add', 'PkController@store');
@@ -35,5 +37,9 @@ Route::post('/pegawai/pk/indikator/{id}', 'PkController@storeIndikator');
 Route::get('/pegawai/pk/indikator/edit/{id}', 'PkController@editIndikator');
 Route::post('/pegawai/pk/indikator/edit/{id}', 'PkController@updateIndikator');
 Route::get('/pegawai/pk/indikator/delete/{id}', 'PkController@deleteIndikator');
+
+Route::get('/pegawai/rencana-aksi', 'RAController@index');
+Route::get('/pegawai/rencana-aksi/add', 'RAController@add');
+Route::post('/pegawai/rencana-aksi/add', 'RAController@store');
 
 Route::get('/pegawai/kinerja-triwulan', 'KinerjaController@kinerjaTriwulan');

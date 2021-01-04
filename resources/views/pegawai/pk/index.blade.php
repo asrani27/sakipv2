@@ -23,16 +23,16 @@
           </div>
         </div>
         <div class="box-content box-no-padding">
-            <div class="">
+            <div class="responsive-table">
                 <div class="scrollable-area">
                     <table class="table table-bordered table-hover table-striped responsive-table" style="margin-bottom:0;">
                         <thead>
                         <tr class="blue-background" style="color: white; font-size:10px; font-family:Arial, Helvetica, sans-serif">
-                          <th>No</th>
-                          <th>Tahun</th>
-                          <th>Kinerja Utama</th>
-                          <th>Indikator Kinerja Utama</th>
-                          <th>Target</th>
+                          <th>NO</th>
+                          <th>TAHUN</th>
+                          <th>KINERJA UTAMA</th>
+                          <th>INDIKATOR KINERJA</th>
+                          <th>TARGET</th>
                           <th></th>
                         </tr>
                         </thead>
@@ -52,8 +52,8 @@
                                   @else
                                      @foreach ($item->indikator as $indikator)
                                          {{$indikator->indikator}}
-                                         <a href="/pegawai/pk/indikator/edit/{{$indikator->id}}"><i class="fas fa-edit"></i></a>
-                                         <a href="/pegawai/pk/indikator/delete/{{$indikator->id}}" onclick="return confirm('Yakin Ingin Menghapus Data ini?');"><i class="fas fa-trash"></i></a><br/>
+                                         <a href="/pegawai/pk/indikator/edit/{{$indikator->id}}"><i class="fa fa-edit"></i></a>
+                                         <a href="/pegawai/pk/indikator/delete/{{$indikator->id}}" onclick="return confirm('Yakin Ingin Menghapus Data ini?');"><i class="fa fa-trash"></i></a><br/>
                                      @endforeach 
                                   @endif    
                               </td>

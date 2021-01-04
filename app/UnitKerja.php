@@ -15,6 +15,11 @@ class UnitKerja extends Model
         return $this->belongsTo(Skpd::class);
     }
 
+    public function pk()
+    {
+        return $this->hasMany(Pk::class);
+    }
+
     public function pegawai()
     {
         return $this->hasOne(Pegawai::class);
@@ -38,5 +43,10 @@ class UnitKerja extends Model
     public function bawahan()
     {
         return $this->hasMany(UnitKerja::class, 'unit_kerja_id');
+    }
+
+    public function verifiku()
+    {
+        return $this->hasMany(Iku::class, 'unit_kerja_id');
     }
 }

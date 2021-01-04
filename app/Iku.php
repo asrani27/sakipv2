@@ -13,4 +13,9 @@ class Iku extends Model
     {
         return $this->belongsTo(Periode::class);
     }
+    
+    public function unitkerja()
+    {
+        return $this->belongsTo(UnitKerja::class, 'unit_kerja_id');
+    }
 }

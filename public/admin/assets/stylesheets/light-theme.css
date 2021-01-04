@@ -3500,7 +3500,7 @@ body.without-footer #footer {
     overflow-y: hidden; }
 .responsive-table table td {
     position: relative;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     overflow: hidden; }
 
 .box-content.box-no-padding .table-striped th:first-child, .box-content.box-no-padding .table-striped td:first-child {
