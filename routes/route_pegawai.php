@@ -40,6 +40,8 @@ Route::get('/pegawai/pk/indikator/delete/{id}', 'PkController@deleteIndikator');
 
 Route::get('/pegawai/rencana-aksi', 'RAController@index');
 Route::get('/pegawai/rencana-aksi/add', 'RAController@add');
+Route::get('/pegawai/rencana-aksi/eselon2/{id}', 'RAController@add2');
+Route::post('/pegawai/rencana-aksi/eselon2/{id}', 'RAController@store2');
 Route::post('/pegawai/rencana-aksi/add', 'RAController@store');
 
 Route::get('/pegawai/kinerja-triwulan', 'KinerjaController@kinerjaTriwulan');

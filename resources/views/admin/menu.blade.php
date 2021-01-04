@@ -65,6 +65,14 @@
                     <span>Pegawai</span>
                 </a>
             </li>
+            <li class='{{ Request::is('data/mutasi') ? 'active' : '' }}'>
+                <a href='/data/mutasi'>
+                    <div class='icon'>
+                        <i class='fa fa-caret-right'></i>
+                    </div>
+                    <span>Mutasi</span>
+                </a>
+            </li>
         </ul>
     </li>
     <li class='{{ Request::is('setting*') ? 'active' : '' }}'>

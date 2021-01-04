@@ -23,12 +23,7 @@
             <span>Pegawai</span>
         </a>
     </li>
-    <li class='{{ Request::is('admin_skpd/mutasi') ? 'active' : '' }}'>
-        <a href='/admin_skpd/mutasi'>
-            <i class='fa fa-exchange'></i>
-            <span>Mutasi</span>
-        </a>
-    </li>
+    
     
     <li class='{{ Request::is('logout') ? 'active' : '' }}'>
         <a href='/logout'>

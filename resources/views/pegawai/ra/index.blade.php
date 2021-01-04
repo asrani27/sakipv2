@@ -18,8 +18,10 @@
         
         <div class="box-header">
           <div class="title">
+            @if (Auth::user()->pegawai->unitkerja->atasan == null)
             <a href="/pegawai/rencana-aksi/add" class="btn btn-primary btn-sm"> 
               <i class='fa fa-plus'></i>Tambah Rencana Aksi</a> 
+            @endif
           </div>
         </div>
         <div class="box-content ">
@@ -96,8 +98,18 @@
                                 <td> 
                                   {{$item->tw4}}
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                  @foreach ($item->sub as $item2)
+                                    {{$item2->pk->kinerja_utama}}
+                                  @endforeach
+                                  <a href="/pegawai/rencana-aksi/eselon2/{{$item->id}}" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Kinerja</a>
+                                  
+                                </td>
+                                <td>
+                                  @foreach ($item->sub as $item2)
+                                      {{-- {{$item2->pk->indikator->indikator}} --}}
+                                  @endforeach
+                                </td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

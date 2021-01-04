@@ -13,4 +13,14 @@ class RencanaAksi extends Model
     {
         return $this->belongsTo(Pk::class, 'pk_id');
     }
+
+    public function sub()
+    {
+        return $this->hasMany(RencanaAksi::class, 'rencana_aksi_id');
+    }
+    
+    public function top()
+    {
+        return $this->belongsTo(RencanaAksi::class, 'rencana_aksi_id');
+    }
 }

@@ -32,7 +32,7 @@
     </li>
 
     <li class='{{ Request::is('pegawai/kinerja-triwulan') ? 'active' : '' }}'>
-        <a href='/pegawai/mutasi'>
+        <a href='/pegawai/kinerja-triwulan'>
             <i class='fa fa-file-text'></i>
             <span>Kinerja Triwulan</span>
         </a>

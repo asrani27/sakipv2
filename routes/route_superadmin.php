@@ -45,6 +45,7 @@ Route::post('/data/unit-kerja/delete', 'UnitKerjaController@destroy');
 
 Route::get('/setting/role', 'RoleController@index');
 Route::get('/setting/user', 'UserController@index');
+Route::get('/setting/tanggalinput', 'TanggalController@index');
 
 Route::get('/data/pegawai', 'PegawaiController@index');
 Route::get('/data/pegawai/add', 'PegawaiController@add');

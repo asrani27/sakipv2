@@ -14,6 +14,9 @@
       <a class='close' data-dismiss='alert' href='#'>&times;</a>
       Selamat Datang, 
       <strong>{{Auth::user()->name}}</strong> 
+      @if (!Auth::user()->hasRole('admin'))
+          (Kepala {{Auth::user()->pegawai->unitkerja->nama}})
+      @endif
       
   </div>
   
