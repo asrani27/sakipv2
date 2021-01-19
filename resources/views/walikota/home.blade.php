@@ -135,6 +135,50 @@
             </div>
         </div>
     </div>
+
+    
+    <div class='group-header'>
+        <div class='row'>
+            <div class='col-sm-6 col-sm-offset-3'>
+                <div class='text-center'>
+                    <h2>Verifikasi Perjanjian Kinerja</h2>
+                    <small class='text-muted'>Di Bawah ini Adalah PK yang Belum Di Verifikasi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <div class='box bordered-box green-border' style='margin-bottom:0;'>
+                <div class='box-header green-background'>
+                    <div class='title'>Satuan Kerja Perangkat Daerah</div>
+                    
+                </div>
+                <div class='box-content box-no-padding'>
+                    <div class='responsive-table'>
+                        <div class='scrollable-area'>
+                            <table class='table table-hover table-striped' style='margin-bottom:0;'>
+                                <thead>
+                                <tr>
+                                    <th>
+                                        No
+                                    </th>
+                                    <th>
+                                        Nama
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>Aksi</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 

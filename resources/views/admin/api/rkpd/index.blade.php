@@ -84,12 +84,12 @@
                                   <td>{{$item->tahun}}</td>
                                   <td>{{$item->skpd->nama}}</td>
                                   <td>
-                                      <a href="/sipd/rkpd-db/tampilkan/{{$item->tahun}}/{{$item->kode_skpd}}" target="_blank" class="btn btn-xs btn-success"><i class="fas fa-refresh"></i> Lihat Data</a></td>
+                                      <a href="/sipd/rkpd-db/tampilkan/{{$item->tahun}}/{{$item->kode_skpd}}" target="_blank" class="btn btn-xs btn-success"><i class="fa fa-refresh"></i> Lihat Data</a></td>
                                   <td>
                                       
-                                      <a href="/sipd/rkpd/tampilkan/{{$item->tahun}}" class="btn btn-xs btn-success"><i class="fas fa-refresh"></i> Tarik Ulang</a>
+                                      <a href="/sipd/rkpd/tampilkan/{{$item->tahun}}" class="btn btn-xs btn-success"><i class="fa fa-refresh"></i> Tarik Ulang</a>
                                       
-                                      <a href="/sipd/rkpd/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Yakin Ingin Menghapus Data ini?');"><i class="fas fa-trash"></i></a>
+                                      <a href="/sipd/rkpd/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Yakin Ingin Menghapus Data ini?');"><i class="fa fa-trash"></i></a>
                                   </td>
                               </tr>
                               @endforeach

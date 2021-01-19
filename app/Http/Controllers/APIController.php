@@ -17,7 +17,7 @@ class APIController extends Controller
 
     public function rkpd()
     {
-        $data = API::where('jenis', 'rkpd')->get();
+        $data = API::where('jenis', 'rkpd')->paginate(10);
         $resp = [];
         return view('admin.api.rkpd.index', compact('data', 'resp'));
     }
