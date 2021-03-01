@@ -137,6 +137,7 @@
     });
 
     $(document).on('click', '.edit-unitkerja', function() {
+        console.log('tset');
         idunitkerja = $(this).data('idunitkerja');
         document.getElementById("idunitkerjaedit").value = idunitkerja;
         namaunitkerja = $(this).data('namaunitkerja');

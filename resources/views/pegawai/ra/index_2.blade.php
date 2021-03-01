@@ -42,19 +42,12 @@
         </div>
         <div class="box-header">
           <div class="title">
-            
-            @if ($data == '0')    
-              @foreach (tahun() as $item)  
-              <a href="/pegawai/rencana-aksi/{{$item->id}}" class="btn btn-sm btn-success">{{$item->tahun}}</a> 
-              @endforeach
-            @else
-              @foreach (tahun() as $item)  
-                <a href="/pegawai/rencana-aksi/{{$item->id}}" class="btn btn-sm {{$item->id == $tahun_id ? 'btn-info': 'btn-success'}}">{{$item->tahun}}</a> 
-              @endforeach
-            @endif
+            @foreach (tahun() as $item)  
+              <a href="/pegawai/rencana-aksi/{{$item->id}}" class="btn btn-sm {{$item->id == $tahun_id ? 'btn-info': 'btn-success'}}">{{$item->tahun}}</a> 
+            @endforeach
           </div>
         </div>
-        
+
         @if ($data == '0')
             
         @else
@@ -129,37 +122,10 @@
 
                                             @if($itemEs2indikatorLine)
                                             <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">{{$item2['indikator_ikues2']}}</td>
-                                            <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">
-                                              @if ($item2['indikator_ikues2'] != null)  
-                                              {{$item2['tw1_ikues2']}}                                        
-                                              <a href="/pegawai/rencana-aksi/tw1/{{$item2['id_indikator_ikues2']}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
-                                              @else               
-                                              @endif
-                                            </td>
-                                            <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">
-                                              @if ($item2['indikator_ikues2'] != null)  
-                                              {{$item2['tw2_ikues2']}}                                        
-                                              <a href="/pegawai/rencana-aksi/tw2/{{$item2['id_indikator_ikues2']}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
-                                              @else               
-                                              @endif
-                                            </td>
-                                            
-                                            <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">
-                                              @if ($item2['indikator_ikues2'] != null)  
-                                              {{$item2['tw3_ikues2']}}                                        
-                                              <a href="/pegawai/rencana-aksi/tw3/{{$item2['id_indikator_ikues2']}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
-                                              @else               
-                                              @endif
-                                            </td>
-                                            
-                                            <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">
-                                              @if ($item2['indikator_ikues2'] != null)  
-                                              {{$item2['tw4_ikues2']}}                                        
-                                              <a href="/pegawai/rencana-aksi/tw4/{{$item2['id_indikator_ikues2']}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
-                                              @else               
-                                              @endif
-                                            </td>
-                                            
+                                            <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">{{$item2['tw1_ikues2']}}</td>
+                                            <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">{{$item2['tw2_ikues2']}}</td>
+                                            <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">{{$item2['tw3_ikues2']}}</td>
+                                            <td rowspan="{{$item2['rowspan_indikator_ikues2']}}">{{$item2['tw4_ikues2']}}</td>
                                             @php
                                                 $itemEs2indikatorLine = false;
                                             @endphp
@@ -177,10 +143,39 @@
                                             <td></td>
                                             
                                             
-                                            <td>{{$item4['tw1_ikues3']}}</td>
-                                            <td>{{$item4['tw2_ikues3']}}</td>
-                                            <td>{{$item4['tw3_ikues3']}}</td>
-                                            <td>{{$item4['tw4_ikues3']}}</td>
+                                            <td>
+                                                @if ($item4['indikator_ikues3'] != null)  
+                                                {{$item4['tw1_ikues3']}}                                        
+                                                <a href="/pegawai/rencana-aksi/tw1/{{$item4['id_indikator_ikues3']}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                                
+                                                @else               
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($item4['indikator_ikues3'] != null)  
+                                                {{$item4['tw2_ikues3']}}                                     
+                                                <a href="/pegawai/rencana-aksi/tw2/{{$item4['id_indikator_ikues3']}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                                
+                                                @else
+                                                                   
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($item4['indikator_ikues3'] != null)   
+                                                {{$item4['tw3_ikues3']}}                                    
+                                                <a href="/pegawai/rencana-aksi/tw3/{{$item4['id_indikator_ikues3']}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                                
+                                                @else
+                                                                                                                          
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($item4['indikator_ikues3'] != null)   
+                                                {{$item4['tw4_ikues3']}}                                       
+                                                <a href="/pegawai/rencana-aksi/tw4/{{$item4['id_indikator_ikues3']}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                                @else
+                                                @endif
+                                            </td>
                                             
                                             <td></td>
                                             <td></td>

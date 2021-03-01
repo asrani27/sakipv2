@@ -15,7 +15,7 @@
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Unit Kerja</label>
                 <div class="col-sm-7">
-                <input type="text" class="form-control" name="nama" id="edit_nama_jabatan" required>
+                <input type="text" class="form-control" name="nama" id="edit_nama_unitkerja" required>
                 <input type="hidden" class="form-control" name="unit_kerja_id" id="idunitkerjaedit" readonly>
                 </div>
               </div>

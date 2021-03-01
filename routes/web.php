@@ -7,6 +7,8 @@ include('route_frontend.php');
 
 Route::group(['middleware' => ['auth', 'role:superadmin|admin|pegawai|walikota']], function () {
     Route::get('/home', 'HomeController@index');
+    Route::get('/ganti-password', 'UserController@gantipass');
+    Route::post('/ganti-password', 'UserController@updategantipass');
 });
 
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {

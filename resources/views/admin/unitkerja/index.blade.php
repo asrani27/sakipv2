@@ -30,7 +30,7 @@
                         @foreach ($data as $item)
                         <li class='folder' id='tree1id3'>
                             {{$item->nama}}
-                            <button href="#" class="btn btn-xs btn-warning edit-jabatan" data-idunitkerja="{{$item->id}}" data-namaunitkerja="{{$item->nama}}"><i class="fa fa-edit"></i></button>
+                            <button href="#" class="btn btn-xs btn-warning edit-unitkerja" data-idunitkerja="{{$item->id}}" data-namaunitkerja="{{$item->nama}}"><i class="fa fa-edit"></i></button>
                             <button href="#" class="btn btn-xs btn-danger delete-unit" data-idunitkerjadelete="{{$item->id}}"><i class="fa fa-trash"></i></button>
                             <button href="#" class="btn btn-xs btn-success add-subunit" data-idunitkerja="{{$item->id}}"><i class="fa fa-plus"></i> Sub Unit</button>
                         
@@ -83,11 +83,12 @@
         $('#modal-default').modal('show');
     });
 
-    $(document).on('click', '.edit-jabatan', function() {
-        idjabatan = $(this).data('idjabatan');
-        document.getElementById("idjabatanedit").value = idjabatan;
-        namajabatan = $(this).data('namajabatan');
-        document.getElementById("edit_nama_jabatan").value = namajabatan;
+    $(document).on('click', '.edit-unitkerja', function() {
+        idunitkerja = $(this).data('idunitkerja');
+        document.getElementById("idunitkerjaedit").value = idunitkerja;
+        namaunitkerja = $(this).data('namaunitkerja');
+        document.getElementById("edit_nama_unitkerja").value = namaunitkerja;
+        
         $('#modal-default-edit').modal('show');
     });
 

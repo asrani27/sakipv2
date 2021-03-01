@@ -132,6 +132,13 @@
             </li>
         </ul>
     </li>
+    
+    <li class='{{ Request::is('ganti-password') ? 'active' : '' }}'>
+        <a href='/ganti-password'>
+            <i class='fa fa-key'></i>
+            <span>Ganti Password</span>
+        </a>
+    </li>
     <li class='{{ Request::is('logout') ? 'active' : '' }}'>
         <a href='/logout'>
             <i class='fa fa-sign-out'></i>

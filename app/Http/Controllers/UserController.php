@@ -12,4 +12,22 @@ class UserController extends Controller
         $data = User::get();
         return view('admin.user.index', compact('data'));
     }
+
+    public function gantipass()
+    {
+        return view('admin.gantipass'); 
+    }
+    
+    public function updategantipass(Request $req)
+    {
+        if($req->password != $req->password2){
+            toastr()->error('Password Tidak sesuai');
+        }else{
+            $data = User::where('username', $req->username)->first();
+            $data->password = bcrypt($req->password);
+            $data->save();
+            toastr()->success('Password Berhasil Diupdate');
+        }
+        return back(); 
+    }
 }

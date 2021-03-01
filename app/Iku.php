@@ -18,4 +18,9 @@ class Iku extends Model
     {
         return $this->belongsTo(UnitKerja::class, 'unit_kerja_id');
     }
+
+    public function indikator()
+    {
+        return $this->hasMany(IndikatorIku::class, 'iku_id', 'id');
+    }
 }

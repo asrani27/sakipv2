@@ -10,9 +10,9 @@ class Pk extends Model
 
     protected $guarded = ['id'];
 
-    public function indikator()
+    public function indikator_iku()
     {
-        return $this->hasMany(Pk_indikator::class, 'pk_id');
+        return $this->belongsTo(IndikatorIku::class, 'indikator_iku_id');
     }
 
     public function tahun()

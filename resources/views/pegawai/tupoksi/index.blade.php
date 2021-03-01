@@ -15,6 +15,31 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="box bordered-box green-border" style="margin-bottom:0;">
+        
+        <div class="alert alert-success alert-dismissable">
+          <h4>
+              <i class="fa fa-user"></i>
+              Biodata
+          </h4>
+          <table>
+            <tr>
+              <td>NIP</td>
+              <td>: {{biodata()['nip']}}</td>
+            </tr>
+            <tr>
+              <td>Nama</td>
+              <td>: {{biodata()['nama']}}</td>
+            </tr>
+            <tr>
+              <td>Jabatan</td>
+              <td>: {{biodata()['jabatan']}}</td>
+            </tr>
+            <tr>
+              <td>SKPD</td>
+              <td>: {{biodata()['skpd']}}</td>
+            </tr>
+          </table>
+        </div>
         <div class="box-content box-no-padding">
             <div class="responsive-table">
                 <div class="scrollable-area">

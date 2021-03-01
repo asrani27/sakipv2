@@ -15,15 +15,47 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="box bordered-box green-border" style="margin-bottom:0;">
-        
-        <div class="box-header">
-          <div class="title">
-            <a href="/pegawai/iku/add" class="btn btn-primary btn-sm"> 
-              <i class='fa fa-plus'></i>Tambah IKU</a> 
+        <div class="alert alert-success alert-dismissable">
+          <h4>
+              <i class="fa fa-user"></i>
+              Biodata
+          </h4>
+          <table>
+            <tr>
+              <td>NIP</td>
+              <td>: {{biodata()['nip']}}</td>
+            </tr>
+            <tr>
+              <td>Nama</td>
+              <td>: {{biodata()['nama']}}</td>
+            </tr>
+            <tr>
+              <td>Jabatan</td>
+              <td>: {{biodata()['jabatan']}}</td>
+            </tr>
+            <tr>
+              <td>SKPD</td>
+              <td>: {{biodata()['skpd']}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="title">
+              <a href="/pegawai/iku/add" class="btn btn-primary btn-sm"> 
+                <i class='fa fa-plus'></i>Tambah IKU</a> 
+            </div>
+          </div>
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+              <form method="GET" action="/pegawai/iku/search">
+                <input class="form-control" name="search" placeholder="Search" type="text">
+              </form>
           </div>
         </div>
         <div class="box-content box-no-padding">
-            <div class="">
+            <div class="responsive-table">
                 <div class="scrollable-area">
                     <table class="table table-bordered table-hover table-striped responsive-table" style="margin-bottom:0;">
                         <thead>
@@ -49,7 +81,14 @@
                               <td>{{$no++}}</td>
                               <td>{{$item->periode->mulai}}-{{$item->periode->sampai}} </td>
                               <td>{{$item->kinerja_utama}}</td>
-                              <td>{{$item->indikator_kinerja_utama}}</td>
+                              <td>
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($item->indikator as $ind)
+                                   {{$no++}}. {{$ind->indikator}} <a href="/pegawai/iku/edit_indikator/{{$ind->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Indikator"><i class="fa fa-edit"></i></a> |  <a href="/pegawai/iku/hapus_indikator/{{$ind->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Hapus Indikator"  onclick="return confirm('Yakin Ingin Menghapus Indikator ini?');"><i class="fa fa-trash"></i></a> <br/> <br/>
+                                @endforeach
+                              </td>
                               <td>{{$item->penjelasan}}</td>
                               <td>{{$item->sumber_data}}</td>
                               <td>{{$item->penanggung_jawab}}</td>
@@ -61,17 +100,20 @@
                                 @endif
                               </td>
                               <td>
-                                      <a href="/pegawai/iku/edit/{{$item->id}}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
-                                      <a href="/pegawai/iku/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Yakin Ingin Menghapus Data ini?');"><i class="fa fa-trash"></i></a>     
+                                      <a href="/pegawai/iku/add_indikator/{{$item->id}}" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Indikator</a>
+                                      <a href="/pegawai/iku/edit/{{$item->id}}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</a>
+                                      <a href="/pegawai/iku/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Yakin Ingin Menghapus Data ini?');"><i class="fa fa-trash"></i> Hapus</a>     
                               </td>
                           </tr>
                           
                           @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
+        </div>
+        <div class="text-center">
+        {{$data->links()}}
         </div>
       </div>
       <div class="row">

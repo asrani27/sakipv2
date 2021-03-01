@@ -28,7 +28,7 @@ function periode()
 
 function tahun()
 {
-    return Tahun::where('periode_id', periodeAktif()->id)->get();
+    return Tahun::where('periode_id', periodeAktif()->id)->orderBy('tahun','ASC')->get();
 }
 
 function eselon()
@@ -63,6 +63,8 @@ function jabDinas()
     })->where('status', '!=', 'ada');
 }
 
+
+
 function countSKPD()
 {
     return count(Skpd::get());
@@ -71,4 +73,19 @@ function countSKPD()
 function countASN()
 {
     return count(Pegawai::get());
+}
+
+function biodata()
+{
+    $user = Auth::user();
+    $data['nip'] = $user->pegawai->nip;
+    $data['nama'] = $user->pegawai->nama;
+    $data['jabatan'] = 'Kepala '.$user->pegawai->unitkerja->nama;
+    $data['skpd'] = $user->pegawai->skpd->nama;
+    return $data;
+}
+
+function IkuAtasan()
+{
+    
 }

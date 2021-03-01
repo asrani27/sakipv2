@@ -9,7 +9,7 @@
     <div class='page-header page-header-with-buttons'>
       <h1 class='pull-left'>
           <i class='fa fa-user'></i>
-          <span>Edit PK</span>
+          <span>Target</span>
       </h1>
     </div>
     
@@ -27,44 +27,32 @@
                   </div>
               </div>
               <div class="box-content">
-                  <form action="/pegawai/pk/edit/{{$data->id}}" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
+                  <form action="/pegawai/pk/target/{{$data->id}}" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
                     @csrf
-                    <div class="form-group">
-                      <label class="control-label col-sm-2 col-xs-12">Periode</label>
-                      <div class="col-xs-5 col-md-10">
-                        <input type="text" value="{{periodeAktif()->mulai}}-{{periodeAktif()->sampai}}" readonly class="form-control">
-                      </div>
-                    </div> 
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Tahun</label>
                       <div class="col-xs-5 col-md-10">
-                        <select name="tahun_id" class="form-control" required>
-                            <option value="">-Pilih-</option>
-                          @foreach (tahun() as $item)
-                              <option value="{{$item->id}}" {{$data->tahun_id == $item->id ? 'selected' : ''}}>{{$item->tahun}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div> 
-                    <div class="form-group">
-                      <label class="control-label col-sm-2 col-xs-12">SKPD</label>
-                      <div class="col-xs-5 col-md-10">
-                        <input type="text" value="{{$jabatan->skpd->nama}}" readonly class="form-control">
-                      </div>
-                    </div> 
-                    <div class="form-group">
-                      <label class="control-label col-sm-2 col-xs-12">Jabatan</label>
-                      <div class="col-xs-5 col-md-10">
-                        <input type="text" value="Kepala {{$jabatan->nama}}" readonly class="form-control">
-                        <input type="hidden" value="{{$jabatan->id}}" name="unit_kerja_id" readonly class="form-control">
+                        <input type="text" class="form-control" name="tahun" readonly value="{{$data->tahun->tahun}}">
                       </div>
                     </div> 
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Kinerja Utama</label>
                       <div class="col-xs-5 col-md-10">
-                        <textarea class="form-control" name="kinerja_utama"> {{$data->kinerja_utama}}</textarea>
+                        <textarea class="form-control" name="kinerja_utama" readonly>{{$data->indikator_iku->iku->kinerja_utama}}</textarea>
                       </div>
                     </div> 
+                    <div class="form-group">
+                      <label class="control-label col-sm-2 col-xs-12">Indikator</label>
+                      <div class="col-xs-5 col-md-10">
+                        <textarea class="form-control" name="indikator" readonly>{{$data->indikator_iku->indikator}}</textarea>
+                      </div>
+                    </div> 
+                    <div class="form-group row">
+                        <label class="control-label col-sm-2 col-xs-12">Target</label>
+                        <div class="col-xs-5 col-md-10">
+                          <input type="text" class="form-control" name="target" required>
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12"></label>

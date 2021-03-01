@@ -6,6 +6,7 @@
 
 @section('content')
 <div class="col-xs-12">
+  
     <div class='page-header page-header-with-buttons'>
       <h1 class='pull-left'>
           <i class='fa fa-user'></i>
@@ -52,17 +53,26 @@
                         <input type="hidden" value="{{$jabatan->id}}" name="unit_kerja_id" readonly class="form-control">
                       </div>
                     </div> 
+                    @if ($jabatan->tingkat == '2')
+                    <div class="form-group">
+                      <label class="control-label col-sm-2 col-xs-12">IKU Atasan</label>
+                      <div class="col-xs-5 col-md-10">
+                        <select name="indikator_iku_id" class="form-control" required>
+                            <option value="">-Pilih-</option>
+                            @foreach ($indikator_iku_atasan as $item)
+                            <option value="{{$item->id}}">{{$item->iku->periode->kode_periode}} - {{$item->indikator}}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                    </div> 
+                        
+                    @endif
+
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Kinerja Utama</label>
                       <div class="col-xs-5 col-md-10">
                         <textarea class="form-control" name="kinerja_utama"></textarea>
                       </div>
-                    </div> 
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2 col-xs-12">Indikator Kinerja Utama</label>
-                        <div class="col-xs-5 col-md-10">
-                            <textarea class="form-control" name="indikator_kinerja_utama"></textarea>
-                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-2 col-xs-12">Penjelasan</label>

@@ -35,7 +35,6 @@ class PegawaiController extends Controller
     {
         $data = Pegawai::find($id);
         if (Auth::user()->hasRole('admin')) {
-            //dd('dsiisin');
             return view('skpd.pegawai.edit', compact('data'));
         } else {
             return view('admin.pegawai.edit', compact('data'));

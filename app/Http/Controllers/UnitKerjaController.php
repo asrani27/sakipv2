@@ -28,10 +28,14 @@ class UnitKerjaController extends Controller
         if(Auth::user()->hasRole('admin')){
             $attr = $req->all();
             $attr['skpd_id'] = Auth::user()->skpd->id;
+            $attr['tingkat'] = 1;
             UnitKerja::create($attr);
             toastr()->success('Data Berhasil Disimpan');
         }else{
-            UnitKerja::create($req->all());
+            
+            $attr = $req->all();
+            $attr['tingkat'] = 1;
+            UnitKerja::create($attr);
             toastr()->success('Unit Kerja Berhasil Disimpan');
         }
         return back();
@@ -54,14 +58,18 @@ class UnitKerjaController extends Controller
 
     public function storeSub(Request $req)
     {
+        $tingkat = Unitkerja::find($req->unit_kerja_id)->tingkat;
+        
         if(Auth::user()->hasRole('admin')){
             $attr = $req->all();
             $attr['skpd_id'] = Auth::user()->skpd->id;
+            $attr['tingkat'] = (int) $tingkat + 1;
             UnitKerja::create($attr);
             toastr()->success('Sub Unit Berhasil Disimpan');
         }else{
             $attr = $req->all();
             $attr['skpd_id'] = UnitKerja::find($req->unit_kerja_id)->skpd_id;
+            $attr['tingkat'] = (int) $tingkat + 1;
             UnitKerja::create($attr);
             toastr()->success('Sub UnitKerja Berhasil Disimpan');
         }

@@ -57,12 +57,6 @@
                       <div class="col-xs-5 col-md-10">
                         <textarea class="form-control" name="kinerja_utama">{{$data->kinerja_utama}}</textarea>
                       </div>
-                    </div> 
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2 col-xs-12">Indikator Kinerja Utama</label>
-                        <div class="col-xs-5 col-md-10">
-                            <textarea class="form-control" name="indikator_kinerja_utama">{{$data->indikator_kinerja_utama}}</textarea>
-                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-sm-2 col-xs-12">Penjelasan</label>

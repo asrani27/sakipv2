@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->pegawai->unitkerja->pk;
     }
+
+    public function tingkat()
+    {
+        return $this->pegawai->unitkerja();
+    }
 }
