@@ -112,7 +112,7 @@ class PegawaiController extends Controller
                 toastr()->success('Username : NIP anda, Password : 654321');
                 return back();
             } else {
-                toastr()->error('Akun Sudah Ada');
+                toastr()->error('Akun Sudah Ada.');
                 return back();
             }
         }
