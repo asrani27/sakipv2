@@ -31,14 +31,14 @@ class EselonController extends Controller
     }
     public function update(Request $req)
     {
-        $validator = Validator::make($req->all(), [
-            'nama' => 'required|unique:eselon|max:255,'.$req->id_eselon,
-        ]);
+        // $validator = Validator::make($req->all(), [
+        //     'nama' => 'required|unique:eselon|max:255,'.$req->id_eselon,
+        // ]);
 
-        if ($validator->fails()) {
-            toastr()->error('Data Eselon Sudah Ada');
-            return back();
-        }
+        // if ($validator->fails()) {
+        //     toastr()->error('Data Eselon Sudah Ada');
+        //     return back();
+        // }
         
         $u = Eselon::find($req->id_eselon);
         $u->nama = $req->nama;
