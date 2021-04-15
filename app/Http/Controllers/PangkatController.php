@@ -32,14 +32,14 @@ class PangkatController extends Controller
     }
     public function update(Request $req)
     {
-        $validator = Validator::make($req->all(), [
-            'nama' => 'required|unique:pangkat|max:255',
-        ]);
+        // $validator = Validator::make($req->all(), [
+        //     'nama' => 'required|unique:pangkat|max:255',
+        // ]);
 
-        if ($validator->fails()) {
-            toastr()->error('Data Pangkat Sudah Ada');
-            return back();
-        }
+        // if ($validator->fails()) {
+        //     toastr()->error('Data Pangkat Sudah Ada');
+        //     return back();
+        // }
         
         $u = Pangkat::find($req->id_pangkat);
         $u->nama = $req->nama;

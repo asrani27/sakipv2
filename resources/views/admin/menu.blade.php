@@ -46,7 +46,7 @@
                     <div class='icon'>
                         <i class='fa fa-caret-right'></i>
                     </div>
-                    <span>Pangkat</span>
+                    <span>Pangkat & Golongan</span>
                 </a>
             </li>
             <li class=' {{ Request::is('data/unit-kerja') ? 'active' : '' }}'>

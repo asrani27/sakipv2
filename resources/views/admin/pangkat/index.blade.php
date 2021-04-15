@@ -32,7 +32,8 @@
                             <thead>
                             <tr class="blue-background" style="color: white">
                               <th>No</th>
-                              <th>Nama</th>
+                              <th>Nama Pangkat</th>
+                              <th>Golongan</th>
                               <th>Aksi</th>
                             </tr>
                             </thead>
@@ -44,8 +45,9 @@
                               <tr>
                                   <td>{{$no++}}</td>
                                   <td>{{$item->nama}}</td>
+                                  <td>{{$item->golongan}}</td>
                                   <td>
-                                    <a href="#" class="btn btn-xs btn-success edit-pangkat" data-id="{{$item->id}}" data-nama="{{$item->nama}}"><i class="fa fa-edit"></i></a>
+                                    <a href="#" class="btn btn-xs btn-success edit-pangkat" data-id="{{$item->id}}" data-nama="{{$item->nama}}" data-golongan="{{$item->golongan}}"><i class="fa fa-edit"></i></a>
                                         
                                     <a href="/data/pangkat/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Yakin Ingin Menghapus Data ini?');"><i class="fa fa-trash"></i></a>
                                 </td>
@@ -77,6 +79,12 @@
               <input type="text" class="form-control" name="nama" required>
               </div>
           </div>
+          <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 col-form-label">Golongan</label>
+              <div class="col-sm-8">
+              <input type="text" class="form-control" name="golongan" required>
+              </div>
+          </div>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
@@ -106,6 +114,12 @@
               <input type="hidden" class="form-control" name="id_pangkat" id="id_pangkat" readonly>
               </div>
           </div>
+          <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 col-form-label">Golongan</label>
+              <div class="col-sm-8">
+              <input type="text" class="form-control" name="nama" id="golongan_p" required>
+              </div>
+          </div>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
@@ -125,8 +139,12 @@
   $(document).on('click', '.edit-pangkat', function() {
       id = $(this).data('id');
       nama = $(this).data('nama');
+      golongan = $(this).data('golongan');
+      
       document.getElementById("id_pangkat").value = id;
       document.getElementById("nama_p").value = nama;
+
+      document.getElementById("golongan_p").value = golongan;
       $('#modal-default2').modal('show');
   });
   </script>
