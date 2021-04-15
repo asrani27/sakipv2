@@ -117,7 +117,7 @@
           <div class="form-group row">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Golongan</label>
               <div class="col-sm-8">
-              <input type="text" class="form-control" name="nama" id="golongan_p" required>
+              <input type="text" class="form-control" name="golongan" id="golongan_p" required>
               </div>
           </div>
       </div>

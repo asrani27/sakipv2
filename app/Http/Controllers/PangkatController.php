@@ -43,6 +43,7 @@ class PangkatController extends Controller
         
         $u = Pangkat::find($req->id_pangkat);
         $u->nama = $req->nama;
+        $u->golongan = $req->golongan;
         $u->save();
 
         toastr()->success('Data Pangkat Telah Di Update');
