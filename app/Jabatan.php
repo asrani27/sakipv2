@@ -39,4 +39,9 @@ class Jabatan extends Model
     {
         return $this->hasMany(Jabatan::class, 'jabatan_id');
     }
+    
+    public function verifiku()
+    {
+        return $this->hasMany(Iku::class, 'jabatan_id');
+    }
 }
