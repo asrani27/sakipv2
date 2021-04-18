@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Iku;
 use App\Skpd;
+use App\Jabatan;
 use App\Pegawai;
 use App\UnitKerja;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class HomeController extends Controller
             return view('admin.home',compact('skpdArr'));
 
         }elseif(Auth::user()->hasRole('walikota')){
-            $data = UnitKerja::where('unit_kerja_id', null)->get();
+            $data = Jabatan::where('jabatan_id', null)->get();
             $result = $data->map(function($item){
                 $item->iku = count($item->verifiku->where('verifikasi', 0));
                 return $item;
@@ -32,7 +33,7 @@ class HomeController extends Controller
             return view('walikota.home',compact('result'));
         }elseif(Auth::user()->hasRole('pegawai')){
             $bawahan = Auth::user()->pegawai->unitkerja->bawahan->pluck('id')->toArray();
-            $iku = Iku::whereIn('unit_kerja_id', $bawahan)->where('verifikasi', 0)->get();
+            $iku = Iku::whereIn('jabatan_id', $bawahan)->where('verifikasi', 0)->get();
             return view('pegawai.home',compact('iku'));
         }
     }
