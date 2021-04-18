@@ -1,29 +1,84 @@
-@extends('admin.app')
+@extends('admin.flatty')
 @push('css')
 
 @endpush
-@section('title')
-<h3>Jabatan {{$data->nama}}</h3>
-@endsection
 
 @section('content') 
-<div class="row">
-  <div class="col-lg-12">
-    <div class="card card-primary card-outline">
-      <div class="card-body">
-        <table id="example1" class="table table-sm table-bordered table-striped">
-        <thead>
-        <tr>
-            <th>Jabatan</th>
-        </tr>
-        </thead>
-        <tbody>  
-            <tr>
-                <td>
+<div class="col-xs-12">
+    <div class='page-header page-header-with-buttons'>
+        <h1 class='pull-left'>
+            <i class='fa fa-sitemap'></i>
+            <span>Peta Jabatan</span>
+        </h1>
+    </div>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <div class='box'>
+                <div class='box-header'>
+                    <div class='title'>
+                        <i class="fa fa-home"></i> <strong>{{Auth::user()->skpd->nama}}</strong>
+                    </div>
+                    <div class='actions'>
+                        <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                        </a>
+                    </div>
+                </div>
+                <div class='box-content'>
+                    <div id="tree1">
+                    
                     @if (count($data->jabatan) == 0)
-                    <a href="#" class="btn btn-xs btn-success add-jabatan" data-idskpd="{{$data->id}}"><i class="fas fa-plus"></i></a>
+                    <a href="#" class="btn btn-xs btn-success add-unit-kerja">Tambah</a>
                     @else
-                    <ul>
+                    <ul id='tree1-treeData'>
+                        @foreach ($data->jabatan->where('jabatan_id', null) as $item)
+                        <li class='folder expanded' id='tree1id3'>
+                            {{$item->nama}}
+                            <button href="#" class="btn btn-xs btn-warning edit-unitkerja" data-idunitkerja="{{$item->id}}" data-namaunitkerja="{{$item->nama}}"><i class="fa fa-edit"></i></button>
+                            <button href="#" class="btn btn-xs btn-danger delete-unit" data-idunitkerjadelete="{{$item->id}}"><i class="fa fa-trash"></i></button>
+                            <button href="#" class="btn btn-xs btn-success add-subunit" data-idunitkerja="{{$item->id}}"><i class="fa fa-plus"></i> Sub</button>
+                        
+                            @if (count($item->bawahan) != 0)
+                            <ul>
+                                @foreach ($item->bawahan as $item2)
+                                    
+                                <li id='tree1id3.1' class="folder expanded">
+                                    {{$item2->nama}}
+                                    <button href="#" class="btn btn-xs btn-warning edit-unitkerja" data-idunitkerja="{{$item2->id}}" data-namaunitkerja="{{$item2->nama}}"><i class="fa fa-edit"></i></button>
+                                    <button href="#" class="btn btn-xs btn-danger delete-unit" data-idunitkerjadelete="{{$item2->id}}"><i class="fa fa-trash"></i></button>
+                                    <button href="#" class="btn btn-xs btn-success add-subunit" data-idunitkerja="{{$item2->id}}"><i class="fa fa-plus"></i> Sub</button>
+                                   
+                                    @if (count($item2->bawahan) != 0)
+                                        <ul>
+                                            @foreach ($item2->bawahan as $item3)
+                                            <li id='tree1id3.1' class="folder expanded">
+                                                {{$item3->nama}}
+                                                <button href="#" class="btn btn-xs btn-warning edit-unitkerja" data-idunitkerja="{{$item3->id}}" data-namaunitkerja="{{$item3->nama}}"><i class="fa fa-edit"></i></button>
+                                                <button href="#" class="btn btn-xs btn-danger delete-unit" data-idunitkerjadelete="{{$item3->id}}"><i class="fa fa-trash"></i></button>
+                                                <button href="#" class="btn btn-xs btn-success add-subunit" data-idunitkerja="{{$item3->id}}"><i class="fa fa-plus"></i> Sub</button>
+                                                    
+                                                @if (count($item3->bawahan) != 0)
+                                                    <ul>
+                                                        @foreach ($item3->bawahan as $item4)
+                                                        <li id='tree1id3.1' class="folder expanded">
+                                                            {{$item4->nama}}
+                                                            <button href="#" class="btn btn-xs btn-warning edit-unitkerja" data-idunitkerja="{{$item4->id}}" data-namaunitkerja="{{$item4->nama}}"><i class="fa fa-edit"></i></button>
+                                                            <button href="#" class="btn btn-xs btn-danger delete-unit" data-idunitkerjadelete="{{$item4->id}}"><i class="fa fa-trash"></i></button>                                                        
+                                                        </li>
+                                                        @endforeach
+                                                    </ul>
+                                                    @endif
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        </li>
+                        @endforeach
+                    </ul>
+                    {{-- <ul>
                         <li>{{$data->jabatan->first()->nama}}
                             <a href="#" class="btn btn-xs btn-success add-subjabatan" data-idjabatan="{{$data->jabatan->first()->id}}"><i class="fas fa-plus"></i></a>
                             <a href="#" class="btn btn-xs btn-warning edit-jabatan" data-idjabatan="{{$data->jabatan->first()->id}}" data-namajabatan="{{$data->jabatan->first()->nama}}"><i class="fas fa-edit"></i></a>
@@ -69,45 +124,121 @@
                                 
                             @endif
                         </li>
-                    </ul>
+                    </ul>  --}}
                     
                     @endif
-                </td>
-                
-            </tr>
-        </tbody>
-        </table>
-      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    
 </div>
 @include('skpd.jabatan.modal_add')
+@include('skpd.jabatan.modal_delete')
 @include('skpd.jabatan.modal_edit')
 @endsection
 
 @push('js')
 
-<!-- DataTables -->
-<script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/admin/assets/javascripts/plugins/fancytree/jquery.fancytree.min.js" type="text/javascript"></script>
 <script>
-    $(document).on('click', '.add-jabatan', function() {
-        idskpd = $(this).data('idskpd');
-        document.getElementById("idskpd").value = idskpd;
+    
+    $(document).on('click', '.add-unit-kerja', function() {
         $('#modal-default').modal('show');
     });
 
-    $(document).on('click', '.edit-jabatan', function() {
-        idjabatan = $(this).data('idjabatan');
-        document.getElementById("idjabatanedit").value = idjabatan;
-        namajabatan = $(this).data('namajabatan');
-        document.getElementById("edit_nama_jabatan").value = namajabatan;
+    $(document).on('click', '.edit-unitkerja', function() {
+        idunitkerja = $(this).data('idunitkerja');
+        namaunitkerja = $(this).data('namaunitkerja');
+        console.log('tset', idunitkerja);
+        
+        document.getElementById("idunitkerjaedit").value = idunitkerja;
+        document.getElementById("edit_nama_jabatan").value = namaunitkerja;
+        
         $('#modal-default-edit').modal('show');
     });
 
-    $(document).on('click', '.add-subjabatan', function() {
-        idjabatan = $(this).data('idjabatan');
-        document.getElementById("idjabatan").value = idjabatan;
+    $(document).on('click', '.add-subunit', function() {
+        idunitkerja = $(this).data('idunitkerja');
+        document.getElementById("idunitkerja").value = idunitkerja;
         $('#modal-default2').modal('show');
     });
-</script>
+    
+    $(document).on('click', '.delete-unit', function() {
+        idunitkerjadelete = $(this).data('idunitkerjadelete');
+        document.getElementById("idunitkerja_delete").value = idunitkerjadelete;
+        $('#modal-default-delete').modal('show');
+    });
+
+    var icons = {
+        map: {
+            doc: "fa fa-file-o",
+            docOpen: "fa fa-file-o",
+            checkbox: "fa fa-square-o",
+            checkboxSelected: "fa fa-check-square-o",
+            checkboxUnknown: "fa fa-square",
+            dragHelper: "fa arrow-right",
+            dropMarker: "fa long-arrow-right",
+            error: "fa fa-warning",
+            expanderClosed: "fa fa-caret-right",
+            expanderLazy: "fa fa-angle-right",
+            expanderOpen: "fa fa-caret-down",
+            folder: "fa fa-institution",
+            folderOpen: "fa fa-sitemap",
+            loading: "fa fa-spinner fa-pulse"
+        }
+    };
+
+    $("#tree1").fancytree({
+        extensions: ["glyph"],
+        selectMode: 3,
+        glyph: icons
+    });
+
+    $("#tree2").fancytree({
+        extensions: ["glyph"],
+        selectMode: 3,
+        glyph: icons,
+        source: [
+            {title: "Node 1", key: "1"},
+            {title: "Folder 2", key: "2", folder: true, children: [
+                {title: "Node 2.1", key: "3"},
+                {title: "Node 2.2", key: "4"}
+            ]}
+        ]
+    });
+
+    $("#tree3").fancytree({
+        extensions: ["dnd", "edit", "glyph", "table"],
+        dnd: {
+            focusOnClick: true,
+            dragStart: function(node, data) { return true; },
+            dragEnter: function(node, data) { return true; },
+            dragDrop: function(node, data) { data.otherNode.copyTo(node, data.hitMode); }
+        },
+        glyph: icons,
+        source: [
+            {title: "Node 1", key: "1"},
+            {title: "Folder 2", key: "2", folder: true, children: [
+                {title: "Node 2.1", key: "3"},
+                {title: "Node 2.2", key: "4"}
+            ]}
+        ],
+        table: {
+            checkboxColumnIdx: 1,
+            nodeColumnIdx: 2
+        },
+
+        activate: function(event, data) {
+        },
+        renderColumns: function(event, data) {
+            var node = data.node,
+                    $tdList = $(node.tr).find(">td");
+            $tdList.eq(0).text(node.getIndexHier());
+            $tdList.eq(3).text(!!node.folder);
+        }
+    });
+    </script>
+    
 @endpush

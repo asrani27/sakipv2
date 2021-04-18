@@ -51,7 +51,7 @@
                               <td>{{$item->nama}}</td>
                               <td>{{$item->eselon == null ? '-' : $item->eselon->nama}}</td>
                               <td>{{$item->pangkat == null ? '-' : $item->pangkat->nama}}</td>
-                              <td>{{$item->unitkerja == null ? '-' : 'Kepala '.$item->unitkerja->nama}}</td>
+                              <td>{{$item->jabatan == null ? '-' : $item->jabatan->nama}}</td>
                               <td>
                                   @if ($item->user == null)
                                       <a href="/admin_skpd/pegawai/createuser/{{$item->id}}" class="btn btn-xs btn-success">Buat User</a>

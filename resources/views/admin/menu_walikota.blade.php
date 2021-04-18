@@ -7,7 +7,7 @@
     </li>
     
     <li class='{{ Request::is('iku_walikota') ? 'active' : '' }}'>
-        <a href='/iku_walikota'>
+        <a href='/walikota/iku'>
             <i class='fa fa-file'></i>
             <span>IKU</span>
         </a>

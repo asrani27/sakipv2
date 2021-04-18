@@ -74,10 +74,10 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2 col-xs-12">Jabatan Tersedia</label>
                     <div class="col-xs-5 col-md-10">
-                      <select name="unit_kerja_id" class="form-control">
-                        <option value="{{$data->unit_kerja_id}}">{{$data->unitkerja->nama}}</option>
+                      <select name="jabatan_id" class="form-control">
+                        <option value="{{$data->jabatan_id}}">{{$data->jabatan->nama}}</option>
                         @foreach (jabDinas() as $item)
-                            <option value="{{$item->id}}" {{ $data->unit_kerja_id == $item->id ? 'selected' : '' }}>Kepala {{$item->nama}}</option>
+                            <option value="{{$item->id}}" {{ $data->jabatan_id == $item->id ? 'selected' : '' }}>{{$item->nama}}</option>
                         @endforeach
                       </select>
                     </div>

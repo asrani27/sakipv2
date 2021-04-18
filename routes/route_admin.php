@@ -6,7 +6,7 @@ Route::get('/admin_skpd/jabatan', 'JabatanController@index');
 Route::post('/admin_skpd/jabatan/add', 'JabatanController@store');
 Route::post('/admin_skpd/jabatan/add/sub', 'JabatanController@storeSub');
 Route::post('/admin_skpd/jabatan/edit', 'JabatanController@update');
-Route::get('/admin_skpd/jabatan/delete/{id}', 'JabatanController@delete');
+Route::post('/admin_skpd/jabatan/delete', 'JabatanController@destroy');
 
 Route::get('/admin_skpd/unit-kerja', 'UnitKerjaController@index');
 Route::post('/admin_skpd/unit-kerja/add', 'UnitKerjaController@store');

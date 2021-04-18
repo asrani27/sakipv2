@@ -16,14 +16,26 @@ class JabatanController extends Controller
             return view('admin.jabatan.index', compact('data'));
         } elseif (Auth::user()->hasRole('admin')) {
             $data = Auth::user()->skpd;
+            
             return view('skpd.jabatan.index', compact('data'));
         }
     }
 
     public function store(Request $req)
     {
-        Jabatan::create($req->all());
-        toastr()->success('Jabatan Berhasil Disimpan');
+        if(Auth::user()->hasRole('admin')){
+            $attr = $req->all();
+            $attr['skpd_id'] = Auth::user()->skpd->id;
+            $attr['tingkat'] = 1;
+            Jabatan::create($attr);
+            toastr()->success('Data Berhasil Disimpan');
+        }else{
+            
+            $attr = $req->all();
+            $attr['tingkat'] = 1;
+            Jabatan::create($attr);
+            toastr()->success('Jabatan Berhasil Disimpan');
+        }
         return back();
     }
 
@@ -44,11 +56,23 @@ class JabatanController extends Controller
 
     public function storeSub(Request $req)
     {
-        $attr = $req->all();
-        $attr['skpd_id'] = Jabatan::find($req->jabatan_id)->skpd_id;
-        Jabatan::create($attr);
-        toastr()->success('Sub Jabatan Berhasil Disimpan');
+        $tingkat = Jabatan::find($req->jabatan_id)->tingkat;
+        
+        if(Auth::user()->hasRole('admin')){
+            $attr = $req->all();
+            $attr['skpd_id'] = Auth::user()->skpd->id;
+            $attr['tingkat'] = (int) $tingkat + 1;
+            Jabatan::create($attr);
+            toastr()->success('Sub Jabatan Berhasil Disimpan');
+        }else{
+            $attr = $req->all();
+            $attr['skpd_id'] = Jabatan::find($req->jabatan_id)->skpd_id;
+            $attr['tingkat'] = (int) $tingkat + 1;
+            Jabatan::create($attr);
+            toastr()->success('Sub Jabatan Berhasil Disimpan');
+        }
         return back();
+
     }
 
     public function delete($id)
@@ -59,6 +83,18 @@ class JabatanController extends Controller
             return back();
         } catch (\Exception $e) {
             toastr()->error('Tidak bisa di hapus karena memiliki sub jabatan');
+            return back();
+        }
+    }
+    
+    public function destroy(Request $req)
+    {
+        try {
+            Jabatan::find($req->jabatan_id)->delete();
+            toastr()->success('Jabatan Berhasil Di Hapus');
+            return back();
+        } catch (\Exception $e) {
+            toastr()->error('Tidak bisa di hapus karena memiliki sub Jabatan');
             return back();
         }
     }

@@ -74,10 +74,10 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2 col-xs-12">Jabatan Tersedia</label>
                     <div class="col-xs-5 col-md-10">
-                      <select name="unit_kerja_id" class="form-control">
+                      <select name="jabatan_id" class="form-control">
                         <option value="">-Pilih-</option>
                         @foreach (jabDinas() as $item)
-                            <option value="{{$item->id}}">Kepala {{$item->nama}}</option>
+                            <option value="{{$item->id}}">{{$item->nama}}</option>
                         @endforeach
                       </select>
                     </div>

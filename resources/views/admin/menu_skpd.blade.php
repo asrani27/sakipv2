@@ -5,8 +5,8 @@
             <span>Dashboard</span>
         </a>
     </li>
-    <li class='{{ Request::is('/admin_skpd/unit-kerja') ? 'active' : '' }}'>
-        <a href='/admin_skpd/unit-kerja'>
+    <li class='{{ Request::is('/admin_skpd/jabatan') ? 'active' : '' }}'>
+        <a href='/admin_skpd/jabatan'>
             <i class='fa fa-map'></i>
             <span>Peta Jabatan</span>
         </a>

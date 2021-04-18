@@ -53,7 +53,7 @@ function dinasSaya()
 
 function jabDinas()
 {
-    return UnitKerja::where('skpd_id', Auth::user()->skpd->id)->get()->map(function ($item) {
+    $data = Jabatan::where('skpd_id', Auth::user()->skpd->id)->get()->map(function ($item) {
         if ($item->pegawai == null) {
             $item->status = 'tidak ada';
         } else {
@@ -61,6 +61,7 @@ function jabDinas()
         }
         return $item;
     })->where('status', '!=', 'ada');
+    return $data;
 }
 
 
