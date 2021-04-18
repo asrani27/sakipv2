@@ -37,14 +37,14 @@
               <div class='row'>
                   <div class='col-sm-6'>
                       <div class='box-content box-statistic'>
-                          <h3 class='title text-error'>{{countSKPD()}}</h3>
+                          <h3 class='title text-error'>{{Auth::user()->skpd->nama}}</h3>
                           <small>SKPD</small>
                           <div class='text-error fa fa-inbox align-right'></div>
                       </div>
                   </div>
                   <div class='col-sm-6'>
                       <div class='box-content box-statistic'>
-                          <h3 class='title text-primary'>{{countASN()}}</h3>
+                          <h3 class='title text-primary'>{{$countPegawai}}</h3>
                           <small>ASN</small>
                           <div class='text-primary fa fa-users align-right'></div>
                       </div>

@@ -34,7 +34,7 @@ Route::get('/data/jabatan', 'JabatanController@index');
 Route::post('/data/jabatan/add', 'JabatanController@store');
 Route::post('/data/jabatan/add/sub', 'JabatanController@storeSub');
 Route::post('/data/jabatan/edit', 'JabatanController@update');
-Route::get('/data/jabatan/delete/{id}', 'JabatanController@delete');
+Route::post('/data/jabatan/delete', 'JabatanController@destroy');
 
 Route::get('/data/unit-kerja', 'UnitKerjaController@index');
 Route::post('/data/unit-kerja/add', 'UnitKerjaController@store');

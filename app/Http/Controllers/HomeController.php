@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Iku;
 use App\Skpd;
+use App\Pegawai;
 use App\UnitKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,12 +14,14 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('admin')){
-            $skpdArr = Skpd::pluck('nama')->toArray();
-            return view('skpd.home',compact('skpdArr'));
+            //$skpdArr = Skpd::pluck('nama')->toArray();
+            $countPegawai = Pegawai::where('skpd_id', Auth::user()->skpd->id)->count();
+            return view('skpd.home',compact('countPegawai'));
             
         }elseif(Auth::user()->hasRole('superadmin')){
             $skpdArr = Skpd::pluck('nama')->toArray();
             return view('admin.home',compact('skpdArr'));
+
         }elseif(Auth::user()->hasRole('walikota')){
             $data = UnitKerja::where('unit_kerja_id', null)->get();
             $result = $data->map(function($item){

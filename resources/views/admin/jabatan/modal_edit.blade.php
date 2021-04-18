@@ -1,10 +1,10 @@
 
-{{-- Edit Jabatan --}}
+
 <div class="modal fade" id="modal-default-edit">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Edit Jabatan</h4>
+          <h4 class="modal-title">Edit Unit Kerja</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -13,10 +13,10 @@
             @csrf
         <div class="modal-body">
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Jabatan</label>
+                <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Unit Kerja</label>
                 <div class="col-sm-7">
-                <input type="text" class="form-control" name="nama" id="edit_nama_jabatan" required>
-                <input type="hidden" class="form-control" name="jabatan_id" id="idjabatanedit" readonly>
+                <input type="text" class="form-control" name="nama" id="edit_nama_unitkerja" required>
+                <input type="hidden" class="form-control" name="jabatan_id" id="idunitkerjaedit" readonly>
                 </div>
               </div>
         </div>

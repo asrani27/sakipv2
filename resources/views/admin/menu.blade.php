@@ -49,12 +49,12 @@
                     <span>Pangkat & Golongan</span>
                 </a>
             </li>
-            <li class=' {{ Request::is('data/unit-kerja') ? 'active' : '' }}'>
-                <a href='/data/unit-kerja'>
+            <li class=' {{ Request::is('data/jabatan') ? 'active' : '' }}'>
+                <a href='/data/jabatan'>
                     <div class='icon'>
                         <i class='fa fa-caret-right'></i>
                     </div>
-                    <span>Unit Kerja</span>
+                    <span>Jabatan</span>
                 </a>
             </li>
             <li class=' {{ Request::is('data/pegawai') ? 'active' : '' }}'>
@@ -65,14 +65,14 @@
                     <span>Pegawai</span>
                 </a>
             </li>
-            <li class='{{ Request::is('data/mutasi') ? 'active' : '' }}'>
+            {{-- <li class='{{ Request::is('data/mutasi') ? 'active' : '' }}'>
                 <a href='/data/mutasi'>
                     <div class='icon'>
                         <i class='fa fa-caret-right'></i>
                     </div>
                     <span>Mutasi</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </li>
     <li class='{{ Request::is('setting*') ? 'active' : '' }}'>

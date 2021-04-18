@@ -12,8 +12,10 @@ class JabatanController extends Controller
     public function index()
     {
         if (Auth::user()->hasRole('superadmin')) {
-            $data = Skpd::all();
-            return view('admin.jabatan.index', compact('data'));
+            $data = Jabatan::where('jabatan_id', null)->get();
+            $skpd = Skpd::get();
+            
+            return view('admin.jabatan.index', compact('data','skpd'));
         } elseif (Auth::user()->hasRole('admin')) {
             $data = Auth::user()->skpd;
             
