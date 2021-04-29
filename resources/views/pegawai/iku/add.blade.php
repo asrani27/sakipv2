@@ -50,7 +50,7 @@
                       <label class="control-label col-sm-2 col-xs-12">Jabatan</label>
                       <div class="col-xs-5 col-md-10">
                         <input type="text" value="Kepala {{$jabatan->nama}}" readonly class="form-control">
-                        <input type="hidden" value="{{$jabatan->id}}" name="unit_kerja_id" readonly class="form-control">
+                        <input type="hidden" value="{{$jabatan->id}}" name="jabatan_id" readonly class="form-control">
                       </div>
                     </div> 
                     @if ($jabatan->tingkat == '2')

@@ -18,6 +18,7 @@ class IkuController extends Controller
             return $next($request);
         });
     }
+    
     public function index()
     {
         $data = Iku::where('jabatan_id', $this->jabatan->id)->where('periode_id', periodeAktif()->id)->paginate(10);
