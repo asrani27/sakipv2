@@ -8,6 +8,8 @@ class KinerjaController extends Controller
 {
     public function kinerjaTriwulan()
     {
-        return view('pegawai.kinerjatriwulan.index');
+        toastr()->info('Dalam Perbaikan');
+        return back();
+        //return view('pegawai.kinerjatriwulan.index');
     }
 }

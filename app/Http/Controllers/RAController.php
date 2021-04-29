@@ -151,6 +151,8 @@ class RAController extends Controller
 
     public function tampilTahun($tahun_id)
     {
+        toastr()->info('Dalam Perbaikan');
+        return back();
         $user = Auth::user()->pegawai->unitkerja;
         $unit_kerja_id = $user->id;
         $tingkat = $user->tingkat;
