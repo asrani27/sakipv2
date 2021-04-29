@@ -30,6 +30,31 @@
             <span>Rencana Aksi</span>
         </a>
     </li>
+    
+    @if (Auth::user()->pegawai->jabatan != null)
+        @if (Auth::user()->pegawai->jabatan->tingkat == 4 AND Auth::user()->pegawai->jabatan->skpd_id = 21)
+            <li class='{{ Request::is('#') ? 'active' : '' }}'>
+                <a href='/pegawai/kinerja-triwulan'>
+                    <i class='fa fa-file-text'></i>
+                    <span>Kegiatan</span>
+                </a>
+            </li>
+        @elseif(Auth::user()->pegawai->jabatan->tingkat == 3)
+            <li class='{{ Request::is('#') ? 'active' : '' }}'>
+                <a href='/pegawai/kinerja-triwulan'>
+                    <i class='fa fa-file-text'></i>
+                    <span>Kegiatan</span>
+                </a>
+            </li>
+        @endif
+    @endif
+
+    <li class='{{ Request::is('#') ? 'active' : '' }}'>
+        <a href='/pegawai/kinerja-triwulan'>
+            <i class='fa fa-file-text'></i>
+            <span>Realisasi</span>
+        </a>
+    </li>
 
     <li class='{{ Request::is('pegawai/kinerja-triwulan') ? 'active' : '' }}'>
         <a href='/pegawai/kinerja-triwulan'>
