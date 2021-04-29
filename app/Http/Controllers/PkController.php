@@ -33,7 +33,7 @@ class PkController extends Controller
 
     public function tahun($tahun)
     {
-        $indikator_iku_id = Iku::where('unit_kerja_id', $this->jabatan->id)->get()->map(function($item, $key){
+        $indikator_iku_id = Iku::where('jabatan_id', $this->jabatan->id)->get()->map(function($item, $key){
             return $item->indikator;
         })->collapse()->pluck('id');
         
@@ -45,7 +45,7 @@ class PkController extends Controller
     public function add()
     {
         $periode = periodeAktif();
-        $data_iku = Iku::where('unit_kerja_id', $this->jabatan->id)->get()->map(function($item, $key){
+        $data_iku = Iku::where('jabatan_id', $this->jabatan->id)->get()->map(function($item, $key){
             return $item->indikator;
         })->collapse(); 
         foreach($periode->tahun as $tahun)
@@ -59,7 +59,7 @@ class PkController extends Controller
                 }else{
                     $attr['tahun_id'] = $tahun->id;
                     $attr['indikator_iku_id'] = $indikator_iku->id;
-                    $attr['unit_kerja_id'] = $this->jabatan->id;
+                    $attr['jabatan_id'] = $this->jabatan->id;
                     Pk::create($attr);
                     toastr()->success('PK Berhasil Dibuat');
                 }

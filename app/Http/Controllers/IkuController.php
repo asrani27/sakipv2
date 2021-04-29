@@ -18,7 +18,7 @@ class IkuController extends Controller
             return $next($request);
         });
     }
-    
+
     public function index()
     {
         $data = Iku::where('jabatan_id', $this->jabatan->id)->where('periode_id', periodeAktif()->id)->paginate(10);
@@ -29,8 +29,8 @@ class IkuController extends Controller
     {
         $jabatan = $this->jabatan;
         if($jabatan->tingkat == '2'){
-            $unit_kerja_id = $jabatan->atasan->id;
-            $indikator_iku_atasan = Iku::where('jabatan_id', $unit_kerja_id)->where('periode_id', periodeAktif()->id)->get()
+            $jabatan_id = $jabatan->atasan->id;
+            $indikator_iku_atasan = Iku::where('jabatan_id', $jabatan_id)->where('periode_id', periodeAktif()->id)->get()
             ->map(function($item){
                 return $item->indikator;
             })->collapse();
@@ -116,7 +116,7 @@ class IkuController extends Controller
     public function search()
     {
         $search = request()->get('search');
-        $data = Iku::where('unit_kerja_id', $this->jabatan->id)->where('periode_id', periodeAktif()->id)->where('kinerja_utama', 'like', '%'.$search.'%')->paginate(10);
+        $data = Iku::where('jabatan_id', $this->jabatan->id)->where('periode_id', periodeAktif()->id)->where('kinerja_utama', 'like', '%'.$search.'%')->paginate(10);
         return view('pegawai.iku.index', compact('data'));
     }
 
