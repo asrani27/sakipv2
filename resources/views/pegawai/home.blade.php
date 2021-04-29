@@ -15,7 +15,7 @@
       Selamat Datang, 
       <strong>{{Auth::user()->name}}</strong> 
       @if (!Auth::user()->hasRole('admin'))
-          (Kepala {{Auth::user()->pegawai->unitkerja->nama}})
+          (Kepala {{Auth::user()->pegawai->jabatan->nama}})
       @endif
       
   </div>
@@ -67,7 +67,7 @@
                                     @foreach ($iku as $item)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$item->unitkerja->nama}}</td>
+                                        <td>{{$item->jabatan->nama}}</td>
                                         <td>{{$item->kinerja_utama}}</td>
                                         <td>{{$item->indikator_kinerja_utama}}</td>
                                         <td>
