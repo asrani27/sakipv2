@@ -15,14 +15,14 @@ class PkController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->jabatan = Auth::user()->pegawai->unitkerja;
+            $this->jabatan = Auth::user()->pegawai->jabatan;
             return $next($request);
         });
     }
 
     public function index()
     {
-        $indikator_iku_id = Iku::where('unit_kerja_id', $this->jabatan->id)->get()->map(function($item, $key){
+        $indikator_iku_id = Iku::where('jabatan_id', $this->jabatan->id)->get()->map(function($item, $key){
             return $item->indikator;
         })->collapse()->pluck('id');
         
