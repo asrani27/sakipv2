@@ -32,7 +32,7 @@ class HomeController extends Controller
             
             return view('walikota.home',compact('result'));
         }elseif(Auth::user()->hasRole('pegawai')){
-            $bawahan = Auth::user()->pegawai->unitkerja->bawahan->pluck('id')->toArray();
+            $bawahan = Auth::user()->pegawai->jabatan->bawahan->pluck('id')->toArray();
             $iku = Iku::whereIn('jabatan_id', $bawahan)->where('verifikasi', 0)->get();
             return view('pegawai.home',compact('iku'));
         }
