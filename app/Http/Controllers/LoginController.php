@@ -12,7 +12,7 @@ class LoginController extends Controller
     {
         if (Auth::attempt(['username' => $req->username, 'password' => $req->password])) {
             if (Auth::user()->hasRole('pegawai')) {
-                $checkJabatan = Auth::user()->pegawai->unitkerja;
+                $checkJabatan = Auth::user()->pegawai->jabatan;
                 if ($checkJabatan == null) {
                     Auth::logout();
                     toastr()->info('Anda Tidak Bisa Login, Karena Tidak memiliki Jabatan Struktural, Hub Admin SKPD Anda');
