@@ -23,4 +23,9 @@ class Iku extends Model
     {
         return $this->hasMany(IndikatorIku::class, 'iku_id', 'id');
     }
+
+    public function pk()
+    {
+        return $this->hasMany(Pk::class, 'iku_id','id');
+    }
 }

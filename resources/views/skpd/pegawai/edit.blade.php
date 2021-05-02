@@ -75,7 +75,12 @@
                     <label class="control-label col-sm-2 col-xs-12">Jabatan Tersedia</label>
                     <div class="col-xs-5 col-md-10">
                       <select name="jabatan_id" class="form-control">
+                        @if ($data->jabatan != null)
                         <option value="{{$data->jabatan_id}}">{{$data->jabatan->nama}}</option>
+                        @else
+                        <option value="">-Pilih-</option>
+
+                        @endif
                         @foreach (jabDinas() as $item)
                             <option value="{{$item->id}}" {{ $data->jabatan_id == $item->id ? 'selected' : '' }}>{{$item->nama}}</option>
                         @endforeach

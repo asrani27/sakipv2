@@ -43,6 +43,26 @@
                         <textarea class="form-control" name="indikator_kinerja_utama" rows="4"></textarea>
                       </div>
                     </div>
+                    
+                    <div class="form-group row">
+                      <label class="control-label col-sm-2 col-xs-12">Penjelasan</label>
+                      <div class="col-xs-5 col-md-10">
+                          <textarea class="form-control" name="penjelasan" rows="4"></textarea>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="control-label col-sm-2 col-xs-12">Sumber Data</label>
+                      <div class="col-xs-12 col-md-10">
+                        <textarea class="form-control" name="sumber_data" rows="4"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-2 col-xs-12">Penanggung Jawab</label>
+                      <div class="col-xs-12 col-md-10">
+                        <textarea class="form-control" name="penanggung_jawab" rows="4"></textarea>
+                      </div>
+                    </div>
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12"></label>
                       <div class="col-xs-5 col-md-10">

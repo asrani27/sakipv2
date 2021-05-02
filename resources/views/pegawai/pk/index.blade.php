@@ -42,15 +42,29 @@
         </div>
         
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-2">
             <div class="title">
                 <a href="/pegawai/pk/add" class="btn btn-primary btn-sm"> 
-                  <i class='fa fa-plus'></i> Buat PK Periode 
-                  {{periodeAktif()->mulai}} - {{periodeAktif()->sampai}} </a> 
+                  <i class='fa fa-plus'></i> Buat PK</a> 
+                  <a href="/pegawai/pk/update" class="btn btn-primary btn-sm"> 
+                    <i class='fa fa-refresh'></i> Update PK</a> 
             </div>
           </div>
+          
+          <form method="GET" action="/pegawai/pk/tampilkan">
           <div class="col-sm-3">
+            <select name="tahun_id" class="form-control">
+              <option value="">-Semua-</option>
+              @foreach ($tahun as $item)
+                  <option value="{{$item->id}}" {{old('tahun_id') == $item->id ? 'selected':''}} {{$tahun_id == $item->id ? 'selected':''}}>Tahun: {{$item->tahun}} Periode: {{$item->periode->mulai}}-{{$item->periode->sampai}}</option>
+              @endforeach
+            </select>
           </div>
+          <div class="col-sm-3">
+            <button type="submit" value="1" name="button" class="btn btn-warning"><i class='fa fa-eye'></i> Tampilkan</button>
+            <button type="submit" formtarget="_blank" value="2" name="button" class="btn btn-info"><i class='fa fa-print'></i> Print</button>
+          </div>
+          </form>
           <div class="col-sm-3">
               <form method="GET" action="/pegawai/pk/search">
                 <input class="form-control" name="search" placeholder="Search" type="text">
@@ -58,13 +72,13 @@
           </div>
         </div>
         
-        <div class="row" style="padding-top:4px;padding-bottom:5px;">
+        {{-- <div class="row" style="padding-top:4px;padding-bottom:5px;">
           <div class="col-sm-12">
             @foreach (tahun() as $item)  
               <a href="/pegawai/pk/tahun/{{$item->id}}" class="btn btn-success btn-sm">{{$item->tahun}}</a> 
             @endforeach
           </div>
-        </div>
+        </div> --}}
         <div class="box-content box-no-padding">
             <div class="responsive-table">
                 <div class="scrollable-area">

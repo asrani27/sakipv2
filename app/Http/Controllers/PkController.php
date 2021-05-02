@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Pk;
 use App\Iku;
+use App\Tahun;
 use App\Pk_indikator;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,24 +27,92 @@ class PkController extends Controller
         $indikator_iku_id = Iku::where('jabatan_id', $this->jabatan->id)->get()->map(function($item, $key){
             return $item->indikator;
         })->collapse()->pluck('id');
-        
-        $data = Pk::whereIn('indikator_iku_id', $indikator_iku_id)->Paginate(10);
-        
-        return view('pegawai.pk.index', compact('data'));
+        $tahun_id = null;
+        $data = Pk::where('jabatan_id', $this->jabatan->id)->paginate(10);
+        $tahun = Tahun::with('periode')->get()->sortBy('tahun');
+        return view('pegawai.pk.index', compact('data','tahun','tahun_id'));
     }
 
-    public function tahun($tahun)
+    public function tampilkan()
     {
-        $indikator_iku_id = Iku::where('jabatan_id', $this->jabatan->id)->get()->map(function($item, $key){
-            return $item->indikator;
-        })->collapse()->pluck('id');
+        $tahun_id    = request()->get('tahun_id');
+        $button      = request()->get('button');
+        $jabatan_id  = $this->jabatan->id;
+        $tahun       = Tahun::with('periode')->get()->sortBy('tahun');
         
-        $data = Pk::whereIn('indikator_iku_id', $indikator_iku_id)->where('tahun_id', $tahun)->Paginate(10);
+        if($button == 1 ){
+            if(is_null($tahun_id)){
+                return redirect('/pegawai/pk');
+
+            }else{
+                $data = Pk::where('tahun_id', $tahun_id)->where('jabatan_id', $jabatan_id)->paginate(10);
+                toastr()->success('PK Ditampilkan');
+                request()->flash();
+                return view('pegawai.pk.index', compact('data','tahun_id', 'tahun'));
+            }
+            
+        }else{
+            if(is_null($tahun_id)){
+                toastr()->info('Pilih Tahun');
+                return back();
+            }else{
+                
+                $jabatan = $this->jabatan;
+                $iku     = Iku::with('pk')->where('jabatan_id', $this->jabatan->id)->get();
+                $pk      = $iku->map(function($item)use($tahun_id){
+                    $item->indikator_kinerja_utama = $item->pk->where('tahun_id', $tahun_id);
+                    return $item;
+                });
+                $tahun   = Tahun::find($tahun_id);
+                
+                $pdf = PDF::loadView('pegawai.pdf.pk', compact('jabatan','pk','tahun'))->setPaper('letter');
+                return $pdf->stream();
+            }
+        }
+
+    }
+
+    public function tahun($tahun_id)
+    {
         
-        return view('pegawai.pk.index', compact('data'));
+        $tahun       = Tahun::with('periode')->get()->sortBy('tahun');
+        $jabatan_id  = $this->jabatan->id;
+        
+        $data = Pk::where('tahun_id', $tahun_id)->where('jabatan_id', $jabatan_id)->paginate(10);
+        request()->flash();
+        return view('pegawai.pk.index', compact('data','tahun','tahun_id'));
     }
 
     public function add()
+    {
+        $periode = periodeAktif();
+        $data_iku = Iku::where('jabatan_id', $this->jabatan->id)->get()->map(function($item, $key){
+            return $item->indikator;
+        })->collapse(); 
+        
+        foreach($periode->tahun as $tahun)
+        {
+            foreach($data_iku as $indikator_iku)
+            {
+                //Create PK all Periode
+                $check = Pk::where('tahun_id',$tahun->id)->where('indikator_iku_id',$indikator_iku->id)->first();
+                if($check != null){
+                    toastr()->error('PK Pada Tahun Dan Jabatan Sudah Ada');
+                }else{
+                    $attr['tahun_id'] = $tahun->id;
+                    $attr['iku_id'] = $indikator_iku->iku->id;
+                    $attr['indikator_iku_id'] = $indikator_iku->id;
+                    $attr['jabatan_id'] = $this->jabatan->id;
+                    
+                    Pk::create($attr);
+                    toastr()->success('PK Berhasil Dibuat');
+                }
+            }
+        }
+        return back();
+    }
+
+    public function update()
     {
         $periode = periodeAktif();
         $data_iku = Iku::where('jabatan_id', $this->jabatan->id)->get()->map(function($item, $key){
@@ -55,17 +125,16 @@ class PkController extends Controller
                 //Create PK all Periode
                 $check = Pk::where('tahun_id',$tahun->id)->where('indikator_iku_id',$indikator_iku->id)->first();
                 if($check != null){
-                    toastr()->error('PK Pada Tahun Dan Jabatan Sudah Ada');
+                    toastr()->success('PK Di Perbaharui');
                 }else{
                     $attr['tahun_id'] = $tahun->id;
                     $attr['indikator_iku_id'] = $indikator_iku->id;
                     $attr['jabatan_id'] = $this->jabatan->id;
                     Pk::create($attr);
-                    toastr()->success('PK Berhasil Dibuat');
                 }
             }
-            
         }
+        toastr()->success('PK Berhasil Di perbaharui');
         return back();
     }
 
@@ -88,8 +157,9 @@ class PkController extends Controller
         $data->save();
 
         toastr()->success('Target PK Berhasil Disimpan');
-        
-        return redirect('/pegawai/pk');
+        $req->flash();
+
+        return redirect('/pegawai/pk/tahun/'.$req->tahun_id);
     }
     
     public function update_target(Request $req, $id)
@@ -99,8 +169,9 @@ class PkController extends Controller
         $data->save();
 
         toastr()->success('Target PK Berhasil Diupdate');
-        
-        return redirect('/pegawai/pk');
+        $req->flash();
+
+        return redirect('/pegawai/pk/tahun/'.$req->tahun_id);
     }
     // public function edit($id)
     // {

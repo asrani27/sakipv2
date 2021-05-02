@@ -33,6 +33,7 @@
                       <label class="control-label col-sm-2 col-xs-12">Tahun</label>
                       <div class="col-xs-5 col-md-10">
                         <input type="text" class="form-control" name="tahun" readonly value="{{$data->tahun->tahun}}">
+                        <input type="hidden" class="form-control" name="tahun_id" readonly value="{{$data->tahun->id}}">
                       </div>
                     </div> 
                     <div class="form-group">

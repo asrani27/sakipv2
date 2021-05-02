@@ -74,24 +74,6 @@
                         <textarea class="form-control" name="kinerja_utama"></textarea>
                       </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2 col-xs-12">Penjelasan</label>
-                        <div class="col-xs-5 col-md-10">
-                            <textarea class="form-control" name="penjelasan"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2 col-xs-12">Sumber Data</label>
-                        <div class="col-xs-5 col-md-10">
-                            <textarea class="form-control" name="sumber_data"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-sm-2 col-xs-12">Penanggung Jawab</label>
-                        <div class="col-xs-5 col-md-10">
-                            <textarea class="form-control" name="penanggung_jawab"></textarea>
-                        </div>
-                    </div>
                     
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12"></label>

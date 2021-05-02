@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Iku;
 use App\IndikatorIku;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class IkuController extends Controller
 
     public function index()
     {
-        $data = Iku::where('jabatan_id', $this->jabatan->id)->where('periode_id', periodeAktif()->id)->paginate(10);
+        $data = Iku::with('indikator')->where('jabatan_id', $this->jabatan->id)->where('periode_id', periodeAktif()->id)->paginate(10);
         return view('pegawai.iku.index', compact('data'));
     }
 
@@ -71,7 +72,9 @@ class IkuController extends Controller
     {
 
         $data = IndikatorIku::find($id);
-        $data->indikator = $req->indikator;
+        $data->indikator        = $req->indikator;
+        $data->sumber_data      = $req->sumber_data;
+        $data->penanggung_jawab = $req->penanggung_jawab;
         $data->save();
         toastr()->success('IKU Indikator Diupdate');
 
@@ -102,8 +105,11 @@ class IkuController extends Controller
 
     public function store_indikator(Request $req, $id)
     {
-        $attr['iku_id'] = $id;
-        $attr['indikator'] = $req->indikator_kinerja_utama;
+        $attr['iku_id']             = $id;
+        $attr['indikator']          = $req->indikator_kinerja_utama;
+        $attr['penjelasan']         = $req->penjelasan;
+        $attr['sumber_data']        = $req->sumber_data;
+        $attr['penanggung_jawab']   = $req->penanggung_jawab;
         
         IndikatorIku::create($attr);
 
@@ -125,5 +131,16 @@ class IkuController extends Controller
         IndikatorIku::find($id)->delete();
         toastr()->success('Indikator Dihapus');
         return back();
+    }
+
+    public function pdf(Request $req)
+    {
+        $jabatan = $this->jabatan;
+        $fungsi  = $jabatan->fungsi;
+        $tugas   = $jabatan->tugas;
+        $iku     = Iku::where('jabatan_id',$jabatan->id)->where('periode_id', $req->periode_id)->get();
+        
+        $pdf = PDF::loadView('pegawai.pdf.iku', compact('jabatan','fungsi','tugas','iku'))->setPaper('legal','landscape');
+        return $pdf->stream();
     }
 }

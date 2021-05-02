@@ -27,17 +27,20 @@ Route::post('/pegawai/iku/add', 'IkuController@store');
 Route::get('/pegawai/iku/edit/{id}', 'IkuController@edit');
 Route::post('/pegawai/iku/edit/{id}', 'IkuController@update');
 Route::get('/pegawai/iku/delete/{id}', 'IkuController@delete');
+Route::post('/pegawai/iku/print', 'IkuController@pdf');
 
 Route::get('/pegawai/iku/verif/{id}', 'IkuController@verifIKU');
 
 Route::get('/pegawai/pk', 'PkController@index');
-Route::get('/pegawai/pk/tahun/{tahun}', 'PkController@tahun');
+Route::get('/pegawai/pk/tahun/{tahun_id}', 'PkController@tahun');
 Route::get('/pegawai/pk/target/{id}', 'PkController@add_target');
 Route::get('/pegawai/pk/target/edit/{id}', 'PkController@edit_target');
 Route::post('/pegawai/pk/target/edit/{id}', 'PkController@update_target');
 Route::post('/pegawai/pk/target/{id}', 'PkController@store_target');
 
 Route::get('/pegawai/pk/add', 'PkController@add');
+Route::get('/pegawai/pk/update', 'PkController@update');
+Route::get('/pegawai/pk/tampilkan', 'PkController@tampilkan');
 
 Route::post('/pegawai/pk/add', 'PkController@store');
 Route::get('/pegawai/pk/edit/{id}', 'PkController@edit');
