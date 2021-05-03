@@ -127,7 +127,9 @@ class PkController extends Controller
                 if($check != null){
                     toastr()->success('PK Di Perbaharui');
                 }else{
+                    
                     $attr['tahun_id'] = $tahun->id;
+                    $attr['iku_id'] = $indikator_iku->iku->id;
                     $attr['indikator_iku_id'] = $indikator_iku->id;
                     $attr['jabatan_id'] = $this->jabatan->id;
                     Pk::create($attr);

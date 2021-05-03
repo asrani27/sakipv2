@@ -75,6 +75,7 @@ class PegawaiController extends Controller
     public function delete($id)
     {
         try{
+            Pegawai::find($id)->user->delete();
             Pegawai::find($id)->delete();
             toastr()->success('Pegawai Berhasil DiHapus');
             return back();
