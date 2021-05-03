@@ -128,7 +128,7 @@ class FrontendController extends Controller
 
     public function ikuGetJab($id)
     {
-        $data = UnitKerja::where('skpd_id', $id)->get();
+        $data = jabatan::where('skpd_id', $id)->get();
         return json_encode($data);
     }
 }
