@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Pk;
 use App\API;
 use App\Iku;
+use App\Iku2;
+use App\Iku3;
+use App\Iku4;
 use App\Skpd;
 use App\User;
 use App\Tahun;
@@ -98,7 +101,16 @@ class FrontendController extends Controller
     {
         $periode = Periode::find(request()->get('periode_id'));
         $jabatan = Jabatan::find(request()->get('jabatan_id'));
-        $data = Iku::where('periode_id', request()->get('periode_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
+        if($jabatan->tingkat == 1){
+            $data = Iku2::where('periode_id', request()->get('periode_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
+
+        }elseif($jabatan->tingkat == 2){
+            $data = Iku3::where('periode_id', request()->get('periode_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
+
+        }elseif($jabatan->tingkat == 3){
+            $data = Iku4::where('periode_id', request()->get('periode_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
+
+        }
         return view('iku', compact('data', 'periode', 'jabatan'));
     }
 
@@ -107,11 +119,18 @@ class FrontendController extends Controller
         $tahun   = Tahun::find(request()->get('tahun_id'));
         $jabatan = Jabatan::find(request()->get('jabatan_id'));
         
-        $iku     = Iku::with('pk')->where('jabatan_id', $jabatan->id)->get();
-        $data      = $iku->map(function($item)use($tahun){
-            $item->indikator_kinerja_utama = $item->pk->where('tahun_id', $tahun->id);
-            return $item;
-        });
+        if($jabatan->tingkat == 1){
+            $data      = Iku2::with('indikator2')->where('tahun_id', $tahun->id)->where('jabatan_id', $jabatan->id)->get();
+        }elseif($jabatan->tingkat == 2){
+            $data      = Iku3::with('indikator3')->where('tahun_id', $tahun->id)->where('jabatan_id', $jabatan->id)->get();
+        }elseif($jabatan->tingkat == 3){
+            $data      = Iku4::with('indikator4')->where('tahun_id', $tahun->id)->where('jabatan_id', $jabatan->id)->get();
+        }
+        // $iku     = Iku::with('pk')->where('jabatan_id', $jabatan->id)->get();
+        // $data      = $iku->map(function($item)use($tahun){
+        //     $item->indikator_kinerja_utama = $item->pk->where('tahun_id', $tahun->id);
+        //     return $item;
+        // });
         
         //$data = Pk::where('tahun_id', request()->get('tahun_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
         

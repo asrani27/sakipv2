@@ -84,15 +84,44 @@
                 </tr>
             </thead>
             <tbody>
+                @if ($jabatan->tingkat ==1)
                 @foreach ($data as $item)
-                <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
-                    <td>{{$item->kinerja_utama}}</td>
-                    <td>{{$item->indikator_kinerja_utama}}</td>
-                    <td>{{$item->penjelasan}}</td>
-                    <td>{{$item->sumber_data}}</td>
-                    <td>{{$item->penanggung_jawab}}</td>
-                </tr>
+                    @foreach ($item->indikator2 as $item2)
+                    <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                        <td>{{$item2->iku2->kinerja_utama}}</td>
+                        <td>{{$item2->indikator}}</td>
+                        <td>{{$item2->penjelasan}}</td>
+                        <td>{{$item2->sumber_data}}</td>
+                        <td>{{$item2->penanggung_jawab}}</td>
+                    </tr>
+                    @endforeach
                 @endforeach
+                @elseif($jabatan->tingkat ==2)
+
+                @foreach ($data as $item)
+                    @foreach ($item->indikator3 as $item2)
+                    <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                        <td>{{$item2->iku3->kinerja_utama}}</td>
+                        <td>{{$item2->indikator}}</td>
+                        <td>{{$item2->penjelasan}}</td>
+                        <td>{{$item2->sumber_data}}</td>
+                        <td>{{$item2->penanggung_jawab}}</td>
+                    </tr>
+                    @endforeach
+                @endforeach
+                @elseif($jabatan->tingkat ==3)
+                @foreach ($data as $item)
+                    @foreach ($item->indikator4 as $item2)
+                    <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                        <td>{{$item2->iku4->kinerja_utama}}</td>
+                        <td>{{$item2->indikator}}</td>
+                        <td>{{$item2->penjelasan}}</td>
+                        <td>{{$item2->sumber_data}}</td>
+                        <td>{{$item2->penanggung_jawab}}</td>
+                    </tr>
+                    @endforeach
+                @endforeach
+                @endif
             </tbody>
         </table>
         </div>
