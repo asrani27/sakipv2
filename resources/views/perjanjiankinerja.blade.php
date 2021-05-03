@@ -63,10 +63,11 @@
             </thead>
             <tbody>
                 @foreach ($data as $item)
+                
                 <tr  style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
                     <td>{{$item->kinerja_utama}}</td>
                     <td>
-                        @if(count($item->indikator) == 0)
+                        @if(count($item->indikator_kinerja_utama) == 0)
                         -
                         @else
                             @foreach ($item->indikator as $indikator)
@@ -91,7 +92,6 @@
         
         <div class="row">
             <div class="col-md-6">
-
                 <table class="table table-bordered table-sm" width="50px">
                     <thead>
                         <tr class="bg-gradient-primary" style="font-size:10px; font-family:Arial, Helvetica, sans-serif">

@@ -61,6 +61,7 @@ Route::post('/pegawai/program/add', 'ProgramController@store');
 Route::get('/pegawai/program/edit/{id}', 'ProgramController@edit');
 Route::post('/pegawai/program/edit/{id}', 'ProgramController@update');
 Route::get('/pegawai/program/delete/{id}', 'ProgramController@delete');
+Route::get('/pegawai/program/tampilkan', 'ProgramController@tampilkan');
 
 Route::get('/pegawai/rencana-aksi', 'RAController@index');
 Route::get('/pegawai/rencana-aksi/tw1/{id}', 'RAController@add_tw1');

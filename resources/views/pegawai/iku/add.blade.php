@@ -31,11 +31,12 @@
                   <form action="/pegawai/iku/add" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
                     @csrf
                     <div class="form-group">
-                      <label class="control-label col-sm-2 col-xs-12">Periode</label>
+                      <label class="control-label col-sm-2 col-xs-12">Tahun</label>
                       <div class="col-xs-5 col-md-10">
-                        <select name="periode_id" class="form-control">
-                          @foreach (periode() as $item)
-                              <option value="{{$item->id}}">{{$item->mulai}} - {{$item->sampai}}</option>
+                        <select name="tahun_id" class="form-control" required>
+                          <option value="">-Pilih-</option>
+                          @foreach ($tahun as $item)
+                              <option value="{{$item->id}}">Tahun: {{$item->tahun}}, Periode:{{$item->periode->mulai}}/{{$item->periode->sampai}}</option>
                           @endforeach
                         </select>
                       </div>
@@ -53,19 +54,31 @@
                         <input type="hidden" value="{{$jabatan->id}}" name="jabatan_id" readonly class="form-control">
                       </div>
                     </div> 
-                    @if ($jabatan->tingkat == '2' || $jabatan->tingkat == '3')
+                    @if ($jabatan->tingkat == '2')
+                    
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">IKU Atasan</label>
                       <div class="col-xs-5 col-md-10">
                         <select name="indikator_iku_id" class="form-control" required>
                             <option value="">-Pilih-</option>
                             @foreach ($indikator_iku_atasan as $item)
-                            <option value="{{$item->id}}">{{$item->iku->periode->mulai}}/{{$item->iku->periode->sampai}} - {{$item->indikator}}</option>
+                            <option value="{{$item->id}}">{{$item->iku2->periode->mulai}}/{{$item->iku2->periode->sampai}} - {{$item->indikator}}</option>
                             @endforeach
                         </select>
                       </div>
                     </div> 
-                        
+                    @elseif($jabatan->tingkat == '3')
+                    <div class="form-group">
+                      <label class="control-label col-sm-2 col-xs-12">IKU Atasan</label>
+                      <div class="col-xs-5 col-md-10">
+                        <select name="indikator_iku_id" class="form-control" required>
+                            <option value="">-Pilih-</option>
+                            @foreach ($indikator_iku_atasan as $item)
+                            <option value="{{$item->id}}">{{$item->iku3->periode->mulai}}/{{$item->iku3->periode->sampai}} - {{$item->indikator}}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                    </div>                         
                     @endif
 
                     <div class="form-group">

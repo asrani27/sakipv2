@@ -42,14 +42,14 @@
         </div>
         
         <div class="row">
-          <div class="col-sm-2">
+          {{-- <div class="col-sm-2">
             <div class="title">
                 <a href="/pegawai/pk/add" class="btn btn-primary btn-sm"> 
                   <i class='fa fa-plus'></i> Buat PK</a> 
                   <a href="/pegawai/pk/update" class="btn btn-primary btn-sm"> 
                     <i class='fa fa-refresh'></i> Update PK</a> 
             </div>
-          </div>
+          </div> --}}
           
           <form method="GET" action="/pegawai/pk/tampilkan">
           <div class="col-sm-3">
@@ -87,24 +87,14 @@
                         </thead>
                         <tbody>
                           
-                          @foreach ($data->sortBy('tahun_id') as $key => $item)        
-                          <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
-                              {{-- <td>{{$key + $data->firstItem()}}</td> --}}
-                              <td>{{$item->tahun->tahun}}</td>
-                              <td>{{$item->indikator_iku->iku->kinerja_utama}}</td>
-                              <td>{{$item->indikator_iku->indikator}}</td>
-                              <td>
-                                  @if ($item->target == null)
-                                    <a href="/pegawai/pk/target/{{$item->id}}" class="btn btn-xs btn-success"><i class="fa fa-edit"></i> Isi Target</a>
-                                      
-                                  @else
-                                  {{$item->target}}
-                                  <a href="/pegawai/pk/target/edit/{{$item->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target" ><i class="fa fa-edit"></i></a>
-                                      
-                                  @endif
-                              </td>
-                          </tr> 
-                          @endforeach
+                          @if (Auth::user()->pegawai->jabatan->tingkat == 1)
+                              @include('pegawai.pk.pk2')
+                          @elseif (Auth::user()->pegawai->jabatan->tingkat == 2)
+                              @include('pegawai.pk.pk3')
+                          @elseif (Auth::user()->pegawai->jabatan->tingkat == 3)
+                              @include('pegawai.pk.pk4')
+                          @endif
+
                         </tbody>
                     </table>
                 </div>

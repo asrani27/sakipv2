@@ -30,15 +30,16 @@
                   <form action="/pegawai/iku/edit/{{$data->id}}" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
                     @csrf
                     <div class="form-group">
-                      <label class="control-label col-sm-2 col-xs-12">Periode</label>
+                      <label class="control-label col-sm-2 col-xs-12">Tahun</label>
                       <div class="col-xs-5 col-md-10">
-                        <select name="periode_id" class="form-control">
-                          @foreach (periode() as $item)
-                              <option value="{{$item->id}}" {{$data->periode_id == $item->id ? 'selected' : ''}}>{{$item->mulai}} - {{$item->sampai}}</option>
+                        <select name="tahun_id" class="form-control" required>
+                          <option value="">-Pilih-</option>
+                          @foreach ($tahun as $item)
+                              <option value="{{$item->id}}" {{$item->id == $data->tahun_id ? 'selected':''}}>Tahun: {{$item->tahun}}, Periode:{{$item->periode->mulai}}/{{$item->periode->sampai}}</option>
                           @endforeach
                         </select>
                       </div>
-                    </div> 
+                    </div>
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">SKPD</label>
                       <div class="col-xs-5 col-md-10">

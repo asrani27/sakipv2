@@ -34,13 +34,14 @@
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Kinerja Utama</label>
                       <div class="col-xs-12 col-md-10">
-                        <input type="text" value="{{$data->iku->kinerja_utama}}" readonly class="form-control">
+                        <input type="text" value="{{$data->iku2->kinerja_utama}}" readonly class="form-control">
+                        <input type="hidden" value="{{$data->tahun_id}}" name="tahun_id" readonly class="form-control">
                       </div>
                     </div> 
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">indikator Kinerja Utama</label>
                       <div class="col-xs-12 col-md-10">
-                        <textarea class="form-control" name="indikator" rows="4">{{$data->indikator}}</textarea>
+                        <textarea class="form-control" name="indikator_kinerja_utama" rows="4">{{$data->indikator}}</textarea>
                       </div>
                     </div>
                     <div class="form-group row">

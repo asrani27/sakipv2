@@ -8,7 +8,7 @@
   <div class='page-header page-header-with-buttons'>
     <h1 class='pull-left'>
         <i class='fa fa-user'></i>
-        <span>Program</span>
+        <span>Rencana Aksi</span>
     </h1>
   </div>
   
@@ -42,10 +42,7 @@
         </div>
         
         <div class="row">          
-          <div class="col-sm-1">
-              <a href="/pegawai/program/add" class="btn btn-primary btn-sm"><i class='fa fa-plus'></i> Tambah</a>
-          </div>
-          <form method="GET" action="/pegawai/program/tampilkan">
+          <form method="GET" action="/pegawai/rencana-aksi/tampilkan">
           <div class="col-sm-3">
             <select name="tahun_id" class="form-control">
               <option value="">-Semua-</option>
@@ -54,23 +51,19 @@
               @endforeach
             </select>
           </div>
-          <div class="col-sm-5">
+          <div class="col-sm-4">
             <button type="submit" value="1" name="button" class="btn btn-warning"><i class='fa fa-eye'></i> Tampilkan</button>
-            <button type="submit" value="2" name="button" class="btn btn-info" formtarget="_blank" ><i class='fa fa-print'></i> Rencana Aksi</button>
-            
+            <button type="submit" formtarget="_blank" value="2" name="button" class="btn btn-info"><i class='fa fa-print'></i> Print</button>
           </div>
           </form>
           <div class="col-sm-3">
-              <form method="GET" action="/pegawai/program/search">
+              <form method="GET" action="/pegawai/rencana-aksi/search">
                 <input class="form-control" name="search" placeholder="Search" type="text">
               </form>
           </div>
         </div>
         
         
-        @if ($data == '0')
-            
-        @else
           <div class="box-content ">
             <div class="responsive-table">
                 <div class="scrollable-area">
@@ -82,8 +75,7 @@
                           <th rowspan="2" class="text-center" style="vertical-align:middle">KINERJA UTAMA</th>
                           <th rowspan="2" class="text-center" style="vertical-align:middle">INDIKATOR</th>
                           <th rowspan="2" class="text-center" style="vertical-align:middle">PROGRAM</th>
-                          <th colspan="4" class="text-center" style="vertical-align:middle">TARGET TRIWULAN</th>
-                          <th rowspan="2" class="text-center" style="vertical-align:middle">AKSI</th>
+                          <th colspan="4" class="text-center" style="vertical-align:middle">TARGET PROGRAM</th>
                         </tr>
                         <tr class="blue-background" style="color: white; font-size:10px; font-family:Arial, Helvetica, sans-serif">
                             <th>TW.I</th>
@@ -96,29 +88,39 @@
                           $no =1;
                         @endphp
                         <tbody>
-                            @foreach ($data as $item)
-                                <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
-                                  <td>{{$no++}}</td>
-                                  <td>{{$item->tahun->tahun}}</td>
-                                  <td>{{$item->indikator_iku3->iku3->kinerja_utama}}</td>
-                                  <td>{{$item->indikator_iku3->indikator}}</td>
-                                  <td>{{$item->nama}}</td>
-                                  <td>{{$item->tw1}}</td>
-                                  <td>{{$item->tw2}}</td>
-                                  <td>{{$item->tw3}}</td>
-                                  <td>{{$item->tw4}}</td>
-                                  <td>
-                                    <a href="/pegawai/program/edit/{{$item->id}}" class="btn btn-xs btn-success">Edit</a> |
-                                    <a href="/pegawai/program/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Yakin ingin di hapus?');">Hapus</a>
-                                  </td>
-                                </tr>
+                            @foreach ($data as $key => $item)
+                              @foreach ($item->indikator3 as $item2)
+                                  <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                                      <td style="text-align:center;">{{$data->firstItem() + $key}}</td>
+                                      <td style="text-align:center;">{{$item2->tahun->tahun}}</td>
+                                      <td>{{$item2->iku3->kinerja_utama}}</td>
+                                      <td>{{$item2->indikator}}</td>
+                                      <td>-</td>
+                                      
+                                      <td style="text-align:center;">
+                                        {{$item2->tw1 == null ? '-' : $item2->tw1}}
+                                        <a href="/pegawai/rencana-aksi/tw1/{{$item2->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                      </td>
+                                      <td style="text-align:center;">
+                                        {{$item2->tw2 == null ? '-' : $item2->tw2}}
+                                        <a href="/pegawai/rencana-aksi/tw2/{{$item2->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                      </td>
+                                      <td style="text-align:center;">
+                                        {{$item2->tw3 == null ? '-' : $item2->tw3}}
+                                        <a href="/pegawai/rencana-aksi/tw3/{{$item2->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                      </td>
+                                      <td style="text-align:center;">
+                                        {{$item2->tw4 == null ? '-' : $item2->tw4}}
+                                        <a href="/pegawai/rencana-aksi/tw4/{{$item2->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                      </td>
+                                  </tr>
+                              @endforeach
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
           </div>
-        @endif
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -134,9 +136,5 @@
 @endsection
 
 @push('js')
-<script>
-  $(document).on('click', '.rencana-aksi', function() {
-    $('#modal-default').modal('show');
-  });
-</script>
+
 @endpush

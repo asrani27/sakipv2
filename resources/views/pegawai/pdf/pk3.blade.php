@@ -58,18 +58,18 @@
         @php
         $rowspanIndikator = true;
         @endphp          
-		@foreach ($item->indikator_kinerja_utama as $item2)     
+		@foreach ($item->indikator3 as $item2)     
         <tr>
             
 			@if($rowspanIndikator)
-			<td class="auto-style3" rowspan="{{count($item->indikator_kinerja_utama)}}" align=center valign="top">{{$key+1}}</td>
-            <td class="auto-style3" rowspan="{{count($item->indikator_kinerja_utama)}}" valign="top">{{$item->kinerja_utama}}</td>
+			<td class="auto-style3" rowspan="{{count($item->indikator3)}}" align=center valign="top">{{$key+1}}</td>
+            <td class="auto-style3" rowspan="{{count($item->indikator3)}}" valign="top">{{$item->kinerja_utama}}</td>
 
             @php
 				$rowspanIndikator = false;
 			@endphp
 			@endif
-            <td class="auto-style3">{{$key+1}}.{{$no++}} &nbsp;&nbsp;{{$item2->indikator_iku->indikator}}</td>
+            <td class="auto-style3">{{$key+1}}.{{$no++}} &nbsp;&nbsp;{{$item2->indikator}}</td>
             <td class="auto-style5">{{$item2->target}}</td>
         </tr>
         @endforeach

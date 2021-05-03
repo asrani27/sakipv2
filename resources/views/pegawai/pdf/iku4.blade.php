@@ -83,12 +83,12 @@
 		@php
 		$rowspanIndikator = true;
 		@endphp          
-		@foreach ($item->indikator as $item2)     
+		@foreach ($item->indikator4 as $item2)     
 		<tr>
 			
 			@if($rowspanIndikator)
-			<td rowspan="{{count($item->indikator)}}" class="auto-style10" align=center valign="top">{{$key + 1}}</td>
-			<td rowspan="{{count($item->indikator)}}" class="auto-style10" valign="top">{{$item->kinerja_utama}}</td>
+			<td rowspan="{{count($item->indikator4)}}" class="auto-style10" align=center valign="top">{{$key + 1}}</td>
+			<td rowspan="{{count($item->indikator4)}}" class="auto-style10" valign="top">{{$item->kinerja_utama}}</td>
 			@php
 				$rowspanIndikator = false;
 			@endphp

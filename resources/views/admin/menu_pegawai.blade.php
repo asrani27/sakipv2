@@ -33,13 +33,14 @@
     </li>
     @endif
 
+    @if (Auth::user()->pegawai->jabatan->tingkat == 1)
     <li class='{{ Request::is('pegawai/rencana-aksi') ? 'active' : '' }}'>
         <a href='/pegawai/rencana-aksi'>
             <i class='fa fa-file-text'></i>
             <span>Rencana Aksi</span>
         </a>
     </li>
-    
+    @endif
     @if (Auth::user()->pegawai->jabatan != null)
         @if (Auth::user()->pegawai->jabatan->tingkat == 4 AND Auth::user()->pegawai->jabatan->skpd_id = 21)
             <li class='{{ Request::is('#') ? 'active' : '' }}'>

@@ -49,10 +49,10 @@
           <form target="_blank" method="post" action="/pegawai/iku/print">
             @csrf
           <div class="col-sm-3">
-              <select name="periode_id" class="form-control" required>
+              <select name="tahun_id" class="form-control" required>
                 <option value="">-Pilih-</option>
-                @foreach (periode() as $item)
-                    <option value="{{$item->id}}">{{$item->mulai}} - {{$item->sampai}}</option>
+                @foreach ($tahun as $item)
+                    <option value="{{$item->id}}">Tahun: {{$item->tahun}}, Periode: {{$item->periode->mulai}}/{{$item->periode->sampai}}</option>
                 @endforeach
               </select>
           </div>
@@ -74,6 +74,7 @@
                         <tr class="blue-background" style="color: white; font-size:10px; font-family:Arial, Helvetica, sans-serif">
                           <th>NO</th>
                           <th>PERIODE</th>
+                          <th>TAHUN</th>
                           <th>KINERJA UTAMA</th>
                           <th>INDIKATOR KINERJA</th>
                           <th>PENJELASAN</th>
@@ -92,41 +93,15 @@
                           <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                               <td>{{$no++}}</td>
                               <td>{{$item->periode->mulai}}-{{$item->periode->sampai}} </td>
+                              <td>{{$item->tahun->tahun}}</td>
                               <td>{{$item->kinerja_utama}}</td>
-                              <td>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($item->indikator as $ind)
-                                   {{$no++}}. {{$ind->indikator}} <a href="/pegawai/iku/edit_indikator/{{$ind->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Indikator"><i class="fa fa-edit"></i></a> |  <a href="/pegawai/iku/hapus_indikator/{{$ind->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Hapus Indikator"  onclick="return confirm('Yakin Ingin Menghapus Indikator ini?');"><i class="fa fa-trash"></i></a> <br/>
-                                @endforeach
-                              </td>
-                              <td>                                
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($item->indikator as $penjelasan)
-                                   {{$no++}}. {{$penjelasan->penjelasan}}<br/>
-                                @endforeach
-                              </td>
-                              
-                              <td>                                
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($item->indikator as $sumber_data)
-                                   {{$no++}}. {{$sumber_data->sumber_data}}<br/>
-                                @endforeach
-                              </td>
-                              
-                              <td>                                
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($item->indikator as $penanggung_jawab)
-                                   {{$no++}}. {{$penanggung_jawab->penanggung_jawab}}<br/>
-                                @endforeach
-                              </td>
+                              @if (Auth::user()->pegawai->jabatan->tingkat == 1)
+                                  @include('pegawai.iku.iku2')
+                              @elseif(Auth::user()->pegawai->jabatan->tingkat == 2)
+                                  @include('pegawai.iku.iku3')
+                              @elseif(Auth::user()->pegawai->jabatan->tingkat == 3)
+                                  @include('pegawai.iku.iku4')    
+                              @endif
                               <td>
                                 @if ($item->verifikasi == 0)
                                   <span class="label label-info">MENUNGGU</span>

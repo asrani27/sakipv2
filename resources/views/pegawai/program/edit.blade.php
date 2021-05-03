@@ -28,7 +28,7 @@
                   </div>
               </div>
               <div class="box-content">
-                  <form action="/pegawai/program/add" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
+                  <form action="/pegawai/program/edit/{{$data->id}}" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
                     @csrf
                     
                     <div class="form-group">
@@ -37,7 +37,7 @@
                         <select name="indikator_iku_id" class="form-control" required>
                             <option value="">-Pilih-</option>
                             @foreach ($indikator_kinerja_utama as $item)
-                            <option value="{{$item->id}}" {{$item->id == $data->pk_id ? 'selected':''}}>{{$item->tahun->tahun}} - {{$item->indikator_iku->indikator}}</option>
+                            <option value="{{$item->id}}" {{$item->id == $data->indikator_iku3_id ? 'selected':''}}>{{$item->tahun->tahun}} - {{$item->indikator}}</option>
                             @endforeach
                         </select>
                       </div>

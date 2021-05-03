@@ -74,6 +74,47 @@
 	@php
 	$itemEs2Line = true;
 	@endphp      
+		@foreach ($item['indikator2'] as $item2)
+			@foreach ($item2['iku3'] as $item3)
+				@foreach ($item3['indikator3'] as $item4)
+					@foreach ($item4['program'] as $item5)
+				
+					<tr>
+					
+						{{-- @if($itemEs2Line)
+						<td class="auto-style3" rowspan="{{count($item->indikator2)}}" align=center valign="top">{{$key+1}}</td>
+						<td class="auto-style3" rowspan="{{count($item->indikator2)}}" valign="top">{{$item2->iku2->kinerja_utama}}</td>
+
+						@php
+							$itemEs2Line = false;
+						@endphp
+						@endif --}}
+						
+						<td class="auto-style5">{{$no++}}</td>
+						<td class="auto-style5">{{$item['kinerja_utama']}}</td>
+						<td class="auto-style5">{{$item2 == null ? '-':$item2['indikator']}}</td>
+						<td class="auto-style3">{{$item2 == null ? '':$item2['tw1']}}</td>
+						<td class="auto-style3">{{$item2 == null ? '':$item2['tw2']}}</td>
+						<td class="auto-style3">{{$item2 == null ? '':$item2['tw3']}}</td>                
+						<td class="auto-style3">{{$item2 == null ? '':$item2['tw4']}}</td>
+						<td class="auto-style5">{{$item3['kinerja_utama']}}</td>
+						<td class="auto-style5">{{$item4['indikator']}}</td>
+						<td class="auto-style5">{{$item5['nama']}}</td>
+						<td class="auto-style3">{{$item5['tw1']}}</td>
+						<td class="auto-style3">{{$item5['tw2']}}</td>
+						<td class="auto-style3">{{$item5['tw3']}}</td>
+						<td class="auto-style3">{{$item5['tw4']}}</td>
+						<td class="auto-style3">&nbsp;</td>
+						<td class="auto-style3">&nbsp;</td>
+						<td class="auto-style3">&nbsp;</td>
+						<td class="auto-style3">&nbsp;</td>
+						<td class="auto-style3">&nbsp;</td>
+						<td class="auto-style3">&nbsp;</td>
+						<td class="auto-style3">&nbsp;</td>
+						<td class="auto-style3">&nbsp;</td>
+					</tr>
+
+		{{-- @endforeach
         @foreach ($item['indikator_ikues2'] as $key2 => $item2)
 		@php
 		$itemEs2indikatorLine = true;
@@ -84,15 +125,6 @@
 			@endphp       
                 @foreach ($item3['indikator_ikues3'] as $item4)   
             <tr>
-                {{-- @if($eselonII)
-                <td class="auto-style3" rowspan="{{count($item->indikator_kinerja_utama)}}" align=center valign="top">{{$key+1}}</td>
-                <td class="auto-style3" rowspan="{{count($item->indikator_kinerja_utama)}}" valign="top">{{$item->kinerja_utama}}</td>
-    
-                @php
-                    $eselonII = false;
-                @endphp
-                @endif --}}
-                
                 <td class="auto-style3">{{$key + 1}}</td>
                 <td class="auto-style5">{{$item['ikues2']}}</td>
                 <td class="auto-style5">{{$item2['indikator_ikues2']}}</td>
@@ -118,7 +150,10 @@
                 <td class="auto-style3">&nbsp;</td>
             </tr>  
             	@endforeach  
-            @endforeach  
+            @endforeach   --}}
+        			@endforeach  
+        		@endforeach  
+        	@endforeach  
         @endforeach  
     @endforeach
 </table>

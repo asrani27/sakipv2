@@ -64,9 +64,6 @@
         </div>
         
         
-        @if ($data == '0')
-            
-        @else
           <div class="box-content ">
             <div class="responsive-table">
                 <div class="scrollable-area">
@@ -77,14 +74,6 @@
                           <th rowspan="2" class="text-center" style="vertical-align:middle">TAHUN</th>
                           <th rowspan="2" class="text-center" style="vertical-align:middle">KINERJA UTAMA</th>
                           <th rowspan="2" class="text-center" style="vertical-align:middle">INDIKATOR</th>
-                          @if (Auth::user()->pegawai->jabatan->tingkat == 2)
-                          <th rowspan="2" class="text-center" style="vertical-align:middle">PROGRAM</th>
-                              
-                          @elseif(Auth::user()->pegawai->jabatan->tingkat == 3)
-                          <th rowspan="2" class="text-center" style="vertical-align:middle">KEGIATAN</th>
-                          <th rowspan="2" class="text-center" style="vertical-align:middle">AKTIVITAS</th>
-                              
-                          @endif
                           <th colspan="4" class="text-center" style="vertical-align:middle">TARGET KINERJA</th>
                         </tr>
                         <tr class="blue-background" style="color: white; font-size:10px; font-family:Arial, Helvetica, sans-serif">
@@ -99,48 +88,37 @@
                         @endphp
                         <tbody>
                             @foreach ($data as $key => $item)
-                                <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
-                                    <td style="text-align:center;">{{$data->firstItem() + $key}}</td>
-                                    <td style="text-align:center;">{{$item->tahun->tahun}}</td>
-                                    <td>{{$item->indikator_iku->iku->kinerja_utama}}</td>
-                                    <td>{{$item->indikator_iku->indikator}}</td>
-                                    @if (Auth::user()->pegawai->jabatan->tingkat == 2)
-                                    <td>
-                                      {{$item->indikator_iku->program}}
-                                    
-                                      <a href="/pegawai/rencana-aksi/program/{{$item->indikator_iku->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Nama Program"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                    @elseif(Auth::user()->pegawai->jabatan->tingkat == 3)
-                                    <td></td>
-                                    <td></td>
-                                        
-                                    @else
-
-                                    <td style="text-align:center;">
-                                      {{$item->tw1 == null ? '-' : $item->tw1}}
-                                      <a href="/pegawai/rencana-aksi/tw1/{{$item->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                    <td style="text-align:center;">
-                                      {{$item->tw2 == null ? '-' : $item->tw2}}
-                                      <a href="/pegawai/rencana-aksi/tw2/{{$item->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                    <td style="text-align:center;">
-                                      {{$item->tw3 == null ? '-' : $item->tw3}}
-                                      <a href="/pegawai/rencana-aksi/tw3/{{$item->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                    <td style="text-align:center;">
-                                      {{$item->tw4 == null ? '-' : $item->tw4}}
-                                      <a href="/pegawai/rencana-aksi/tw4/{{$item->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                    @endif
-                                </tr>
+                              @foreach ($item->indikator2 as $item2)
+                                  <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                                      <td style="text-align:center;">{{$data->firstItem() + $key}}</td>
+                                      <td style="text-align:center;">{{$item2->tahun->tahun}}</td>
+                                      <td>{{$item2->iku2->kinerja_utama}}</td>
+                                      <td>{{$item2->indikator}}</td>
+                                      
+                                      <td style="text-align:center;">
+                                        {{$item2->tw1 == null ? '-' : $item2->tw1}}
+                                        <a href="/pegawai/rencana-aksi/tw1/{{$item2->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                      </td>
+                                      <td style="text-align:center;">
+                                        {{$item2->tw2 == null ? '-' : $item2->tw2}}
+                                        <a href="/pegawai/rencana-aksi/tw2/{{$item2->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                      </td>
+                                      <td style="text-align:center;">
+                                        {{$item2->tw3 == null ? '-' : $item2->tw3}}
+                                        <a href="/pegawai/rencana-aksi/tw3/{{$item2->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                      </td>
+                                      <td style="text-align:center;">
+                                        {{$item2->tw4 == null ? '-' : $item2->tw4}}
+                                        <a href="/pegawai/rencana-aksi/tw4/{{$item2->id}}/{{$tahun_edit == null ? '':$tahun_edit->id}}" class="has-tooltip" data-placement="right" title="" data-original-title="Edit Target"><i class="fa fa-edit"></i></a>
+                                      </td>
+                                  </tr>
+                              @endforeach
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
           </div>
-        @endif
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -156,9 +134,5 @@
 @endsection
 
 @push('js')
-<script>
-  $(document).on('click', '.rencana-aksi', function() {
-    $('#modal-default').modal('show');
-  });
-</script>
+
 @endpush

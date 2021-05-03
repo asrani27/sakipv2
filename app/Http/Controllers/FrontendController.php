@@ -104,9 +104,17 @@ class FrontendController extends Controller
 
     public function searchPk()
     {
-        $tahun = Tahun::find(request()->get('tahun_id'));
+        $tahun   = Tahun::find(request()->get('tahun_id'));
         $jabatan = Jabatan::find(request()->get('jabatan_id'));
-        $data = Pk::where('tahun_id', request()->get('tahun_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
+        
+        $iku     = Iku::with('pk')->where('jabatan_id', $jabatan->id)->get();
+        $data      = $iku->map(function($item)use($tahun){
+            $item->indikator_kinerja_utama = $item->pk->where('tahun_id', $tahun->id);
+            return $item;
+        });
+        
+        //$data = Pk::where('tahun_id', request()->get('tahun_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
+        
         return view('perjanjiankinerja', compact('data', 'tahun', 'jabatan'));
     }
 

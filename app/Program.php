@@ -19,8 +19,8 @@ class Program extends Model
         return $this->belongsTo(Tahun::class,'tahun_id');
     }
 
-    public function indikator_iku()
+    public function indikator_iku3()
     {
-        return $this->belongsTo(IndikatorIku::class, 'indikator_iku_id');
+        return $this->belongsTo(IndikatorIku3::class, 'indikator_iku3_id');
     }
 }

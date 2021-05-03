@@ -32,12 +32,12 @@
                     @csrf
                     
                     <div class="form-group">
-                      <label class="control-label col-sm-2 col-xs-12">Indikator Kinerja </label>
+                      <label class="control-label col-sm-2 col-xs-12">Indikator Kinerja Es. III</label>
                       <div class="col-xs-5 col-md-10">
                         <select name="indikator_iku_id" class="form-control" required>
                             <option value="">-Pilih-</option>
                             @foreach ($indikator_kinerja_utama as $item)
-                            <option value="{{$item->id}}">{{$item->tahun->tahun}} - {{$item->indikator_iku->indikator}}</option>
+                            <option value="{{$item->id}}">{{$item->tahun->tahun}} - {{$item->indikator}}</option>
                             @endforeach
                         </select>
                       </div>

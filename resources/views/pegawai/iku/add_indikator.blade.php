@@ -35,6 +35,7 @@
                       <label class="control-label col-sm-2 col-xs-12">Kinerja Utama</label>
                       <div class="col-xs-12 col-md-10">
                         <input type="text" value="{{$data->kinerja_utama}}" readonly class="form-control">
+                        <input type="hidden" value="{{$data->tahun_id}}" name="tahun_id" readonly class="form-control">
                       </div>
                     </div> 
                     <div class="form-group">

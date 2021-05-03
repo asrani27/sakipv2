@@ -39,13 +39,13 @@
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Kinerja Utama</label>
                       <div class="col-xs-5 col-md-10">
-                        <textarea class="form-control" name="kinerja_utama" readonly>{{$data->indikator_iku->iku->kinerja_utama}}</textarea>
+                        <textarea class="form-control" name="kinerja_utama" readonly>{{$data->iku2->kinerja_utama}}</textarea>
                       </div>
                     </div> 
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Indikator</label>
                       <div class="col-xs-5 col-md-10">
-                        <textarea class="form-control" name="indikator" readonly>{{$data->indikator_iku->indikator}}</textarea>
+                        <textarea class="form-control" name="indikator" readonly>{{$data->indikator}}</textarea>
                       </div>
                     </div> 
                     <div class="form-group row">
