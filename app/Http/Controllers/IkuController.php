@@ -29,14 +29,15 @@ class IkuController extends Controller
     public function add()
     {
         $jabatan = $this->jabatan;
-        if($jabatan->tingkat == '2'){
+        if($jabatan->tingkat == '2' || $jabatan->tingkat == '3'){
             $jabatan_id = $jabatan->atasan->id;
             $indikator_iku_atasan = Iku::where('jabatan_id', $jabatan_id)->where('periode_id', periodeAktif()->id)->get()
             ->map(function($item){
                 return $item->indikator;
             })->collapse();
             return view('pegawai.iku.add', compact('jabatan','indikator_iku_atasan'));
-        }else{
+        }
+        else{
             return view('pegawai.iku.add', compact('jabatan'));
         }
     }

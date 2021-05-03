@@ -9,7 +9,7 @@
     <div class='page-header page-header-with-buttons'>
       <h1 class='pull-left'>
           <i class='fa fa-user'></i>
-          <span>Target Triwulan III</span>
+          <span>Target Triwulan I</span>
       </h1>
     </div>
     
@@ -27,30 +27,30 @@
                   </div>
               </div>
               <div class="box-content">
-                  <form action="/pegawai/rencana-aksi/tw3/{{$id}}" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
+                  <form action="/pegawai/rencana-aksi/program/{{$id}}/{{$tahun}}" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
                     @csrf
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Tahun</label>
                       <div class="col-xs-5 col-md-10">
-                        <input type="text" class="form-control" name="tahun" readonly value="{{$data->tahun->tahun}}">
+                        <input type="text" class="form-control" name="tahun" readonly value="{{\App\Tahun::find($tahun)->tahun}}">
                       </div>
                     </div> 
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Kinerja Utama</label>
                       <div class="col-xs-5 col-md-10">
-                        <textarea class="form-control" name="kinerja_utama" readonly>{{$data->indikator_iku->iku->kinerja_utama}}</textarea>
+                        <textarea class="form-control" name="kinerja_utama" readonly>{{$data->iku->kinerja_utama}}</textarea>
                       </div>
                     </div> 
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Indikator</label>
                       <div class="col-xs-5 col-md-10">
-                        <textarea class="form-control" name="indikator" readonly>{{$data->indikator_iku->indikator}}</textarea>
+                        <textarea class="form-control" name="indikator" readonly>{{$data->indikator}}</textarea>
                       </div>
                     </div> 
                     <div class="form-group row">
-                        <label class="control-label col-sm-2 col-xs-12">Target Triwulan I</label>
+                        <label class="control-label col-sm-2 col-xs-12">Nama Program</label>
                         <div class="col-xs-5 col-md-10">
-                          <input type="text" class="form-control" name="target" required>
+                          <input type="text" class="form-control" name="program" value="{{$data->program == null ? '': $data->program}}" required>
                         </div>
                     </div>
                     

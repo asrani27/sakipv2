@@ -19,6 +19,7 @@ class IndikatorIku extends Model
         return $this->hasMany(Iku::class, 'indikator_iku_id', 'id');
     }
     
+
     public function target()
     {
         return $this->hasMany(Pk::class, 'indikator_iku_id', 'id');

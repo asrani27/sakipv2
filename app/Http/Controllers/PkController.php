@@ -27,8 +27,8 @@ class PkController extends Controller
         $indikator_iku_id = Iku::where('jabatan_id', $this->jabatan->id)->get()->map(function($item, $key){
             return $item->indikator;
         })->collapse()->pluck('id');
-        $tahun_id = null;
         $data = Pk::where('jabatan_id', $this->jabatan->id)->paginate(10);
+        $tahun_id = null;
         $tahun = Tahun::with('periode')->get()->sortBy('tahun');
         return view('pegawai.pk.index', compact('data','tahun','tahun_id'));
     }

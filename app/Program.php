@@ -11,6 +11,16 @@ class Program extends Model
     
     public function indikator()
     {
-        return $this->hasMany(IndikatorSasaran::class, 'program_id');
+        return $this->hasMany(IndikatorProgram::class, 'program_id');
+    }
+
+    public function tahun()
+    {
+        return $this->belongsTo(Tahun::class,'tahun_id');
+    }
+
+    public function indikator_iku()
+    {
+        return $this->belongsTo(IndikatorIku::class, 'indikator_iku_id');
     }
 }

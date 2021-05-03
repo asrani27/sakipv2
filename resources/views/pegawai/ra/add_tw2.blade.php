@@ -18,7 +18,7 @@
           <div class="box bordered-box green-border" style="margin-bottom:0;">
               <div class="box-header">
                   <div class="title">
-                    <a href="/pegawai/rencana-aksi/{{$data->tahun_id}}" class="btn btn-info btn-sm"> 
+                    <a href="/pegawai/rencana-aksi" class="btn btn-info btn-sm"> 
                       <i class='fa fa-arrow-left'></i> Kembali</a> 
                   </div>
                   <div class="actions">

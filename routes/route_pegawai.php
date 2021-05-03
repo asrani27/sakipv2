@@ -54,16 +54,34 @@ Route::get('/pegawai/pk/indikator/edit/{id}', 'PkController@editIndikator');
 Route::post('/pegawai/pk/indikator/edit/{id}', 'PkController@updateIndikator');
 Route::get('/pegawai/pk/indikator/delete/{id}', 'PkController@deleteIndikator');
 
+
+Route::get('/pegawai/program', 'ProgramController@index');
+Route::get('/pegawai/program/add', 'ProgramController@add');
+Route::post('/pegawai/program/add', 'ProgramController@store');
+Route::get('/pegawai/program/edit/{id}', 'ProgramController@edit');
+Route::post('/pegawai/program/edit/{id}', 'ProgramController@update');
+Route::get('/pegawai/program/delete/{id}', 'ProgramController@delete');
+
 Route::get('/pegawai/rencana-aksi', 'RAController@index');
-Route::get('/pegawai/rencana-aksi/{tahun}', 'RAController@tampilTahun');
 Route::get('/pegawai/rencana-aksi/tw1/{id}', 'RAController@add_tw1');
+Route::get('/pegawai/rencana-aksi/tw1/{id}/{tahun}', 'RAController@add_tw1_tahun');
 Route::get('/pegawai/rencana-aksi/tw2/{id}', 'RAController@add_tw2');
+Route::get('/pegawai/rencana-aksi/tw2/{id}/{tahun}', 'RAController@add_tw2_tahun');
 Route::get('/pegawai/rencana-aksi/tw3/{id}', 'RAController@add_tw3');
+Route::get('/pegawai/rencana-aksi/tw3/{id}/{tahun}', 'RAController@add_tw3_tahun');
 Route::get('/pegawai/rencana-aksi/tw4/{id}', 'RAController@add_tw4');
+Route::get('/pegawai/rencana-aksi/tw4/{id}/{tahun}', 'RAController@add_tw4_tahun');
 Route::post('/pegawai/rencana-aksi/tw1/{id}', 'RAController@store_tw1');
+Route::post('/pegawai/rencana-aksi/tw1/{id}/{tahun}', 'RAController@store_tw1_tahun');
 Route::post('/pegawai/rencana-aksi/tw2/{id}', 'RAController@store_tw2');
+Route::post('/pegawai/rencana-aksi/tw2/{id}/{tahun}', 'RAController@store_tw2_tahun');
 Route::post('/pegawai/rencana-aksi/tw3/{id}', 'RAController@store_tw3');
+Route::post('/pegawai/rencana-aksi/tw3/{id}/{tahun}', 'RAController@store_tw3_tahun');
 Route::post('/pegawai/rencana-aksi/tw4/{id}', 'RAController@store_tw4');
+Route::post('/pegawai/rencana-aksi/tw4/{id}/{tahun}', 'RAController@store_tw4_tahun');
+Route::get('/pegawai/rencana-aksi/program/{id}/{tahun}', 'RAController@program');
+Route::post('/pegawai/rencana-aksi/program/{id}/{tahun}', 'RAController@update_program');
+Route::get('/pegawai/rencana-aksi/tampilkan', 'RAController@tampilkan');
 
 Route::get('/pegawai/rencana-aksi/{tahun}/pdf', 'RAController@export_pdf');
 

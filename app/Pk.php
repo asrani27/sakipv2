@@ -20,6 +20,11 @@ class Pk extends Model
         return $this->belongsTo(Tahun::class);
     }
 
+    public function program()
+    {
+        return $this->hasMany(Program::class, 'pk_id', 'id');
+    }
+    
     public function rencana_aksi()
     {
         return $this->hasOne(RencanaAksi::class, 'pk_id');

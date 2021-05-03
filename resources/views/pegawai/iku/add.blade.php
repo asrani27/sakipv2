@@ -53,14 +53,14 @@
                         <input type="hidden" value="{{$jabatan->id}}" name="jabatan_id" readonly class="form-control">
                       </div>
                     </div> 
-                    @if ($jabatan->tingkat == '2')
+                    @if ($jabatan->tingkat == '2' || $jabatan->tingkat == '3')
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">IKU Atasan</label>
                       <div class="col-xs-5 col-md-10">
                         <select name="indikator_iku_id" class="form-control" required>
                             <option value="">-Pilih-</option>
                             @foreach ($indikator_iku_atasan as $item)
-                            <option value="{{$item->id}}">{{$item->iku->periode->kode_periode}} - {{$item->indikator}}</option>
+                            <option value="{{$item->id}}">{{$item->iku->periode->mulai}}/{{$item->iku->periode->sampai}} - {{$item->indikator}}</option>
                             @endforeach
                         </select>
                       </div>

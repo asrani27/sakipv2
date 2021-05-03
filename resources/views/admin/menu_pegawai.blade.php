@@ -23,7 +23,16 @@
             <span>Perjanjian Kinerja</span>
         </a>
     </li>
-    
+    @if (Auth::user()->pegawai->jabatan->tingkat == 2)
+        
+    <li class='{{ Request::is('pegawai/program') ? 'active' : '' }}'>
+        <a href='/pegawai/program'>
+            <i class='fa fa-file-text'></i>
+            <span>Program</span>
+        </a>
+    </li>
+    @endif
+
     <li class='{{ Request::is('pegawai/rencana-aksi') ? 'active' : '' }}'>
         <a href='/pegawai/rencana-aksi'>
             <i class='fa fa-file-text'></i>

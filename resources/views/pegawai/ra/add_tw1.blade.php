@@ -18,7 +18,7 @@
           <div class="box bordered-box green-border" style="margin-bottom:0;">
               <div class="box-header">
                   <div class="title">
-                    <a href="/pegawai/rencana-aksi/{{$data->tahun_id}}" class="btn btn-info btn-sm"> 
+                    <a href="/pegawai/rencana-aksi" class="btn btn-info btn-sm"> 
                       <i class='fa fa-arrow-left'></i> Kembali</a> 
                   </div>
                   <div class="actions">
@@ -50,7 +50,7 @@
                     <div class="form-group row">
                         <label class="control-label col-sm-2 col-xs-12">Target Triwulan I</label>
                         <div class="col-xs-5 col-md-10">
-                          <input type="text" class="form-control" name="target" required>
+                          <input type="text" class="form-control" name="target" value="{{$data->tw1 == null ? '': $data->tw1}}" required>
                         </div>
                     </div>
                     

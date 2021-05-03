@@ -9,7 +9,7 @@
     <div class='page-header page-header-with-buttons'>
       <h1 class='pull-left'>
           <i class='fa fa-user'></i>
-          <span>Target Triwulan III</span>
+          <span>Target Triwulan I</span>
       </h1>
     </div>
     
@@ -27,7 +27,7 @@
                   </div>
               </div>
               <div class="box-content">
-                  <form action="/pegawai/rencana-aksi/tw3/{{$id}}" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
+                  <form action="/pegawai/rencana-aksi/tw4/{{$id}}/{{$tahun}}" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
                     @csrf
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Tahun</label>
@@ -48,9 +48,9 @@
                       </div>
                     </div> 
                     <div class="form-group row">
-                        <label class="control-label col-sm-2 col-xs-12">Target Triwulan I</label>
+                        <label class="control-label col-sm-2 col-xs-12">Target Triwulan IV</label>
                         <div class="col-xs-5 col-md-10">
-                          <input type="text" class="form-control" name="target" required>
+                          <input type="text" class="form-control" name="target" value="{{$data->tw4 == null ? '': $data->tw1}}" required>
                         </div>
                     </div>
                     

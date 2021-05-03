@@ -72,13 +72,6 @@
           </div>
         </div>
         
-        {{-- <div class="row" style="padding-top:4px;padding-bottom:5px;">
-          <div class="col-sm-12">
-            @foreach (tahun() as $item)  
-              <a href="/pegawai/pk/tahun/{{$item->id}}" class="btn btn-success btn-sm">{{$item->tahun}}</a> 
-            @endforeach
-          </div>
-        </div> --}}
         <div class="box-content box-no-padding">
             <div class="responsive-table">
                 <div class="scrollable-area">
