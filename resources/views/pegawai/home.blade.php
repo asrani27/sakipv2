@@ -67,7 +67,7 @@
                                     @foreach ($iku as $item)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$item->jabatan}}</td>
+                                        <td>{{$item->jabatan->nama}}</td>
                                         <td>{{$item->kinerja_utama}}</td>
                                         <td>{{$item->indikator_kinerja_utama}}</td>
                                         <td>
