@@ -10,8 +10,8 @@ class Kegiatan extends Model
     protected $table = 'kegiatan';
     protected $guarded = ['id'];
     
-    public function indikator()
+    public function aktivitas()
     {
-        return $this->hasMany(IndikatorSasaran::class, 'kegiatan_id');
+        return $this->hasMany(Aktivitas::class, 'kegiatan_id');
     }
 }

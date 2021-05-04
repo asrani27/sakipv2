@@ -211,7 +211,7 @@ class RAController extends Controller
                 $tahun_edit   = Tahun::find($tahun_id);
                 
                 request()->flash();
-                return view('pegawai.ra.index', compact('data','tahun_id', 'tahun','tahun_edit'));
+                return view('pegawai.ra.index2', compact('data','tahun_id', 'tahun','tahun_edit'));
             }
             
         }else{

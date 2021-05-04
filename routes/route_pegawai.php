@@ -54,7 +54,6 @@ Route::get('/pegawai/pk/indikator/edit/{id}', 'PkController@editIndikator');
 Route::post('/pegawai/pk/indikator/edit/{id}', 'PkController@updateIndikator');
 Route::get('/pegawai/pk/indikator/delete/{id}', 'PkController@deleteIndikator');
 
-
 Route::get('/pegawai/program', 'ProgramController@index');
 Route::get('/pegawai/program/add', 'ProgramController@add');
 Route::post('/pegawai/program/add', 'ProgramController@store');
@@ -62,6 +61,14 @@ Route::get('/pegawai/program/edit/{id}', 'ProgramController@edit');
 Route::post('/pegawai/program/edit/{id}', 'ProgramController@update');
 Route::get('/pegawai/program/delete/{id}', 'ProgramController@delete');
 Route::get('/pegawai/program/tampilkan', 'ProgramController@tampilkan');
+
+Route::get('/pegawai/kegiatan', 'KegiatanController@index');
+Route::get('/pegawai/kegiatan/add', 'KegiatanController@add');
+Route::post('/pegawai/kegiatan/add', 'KegiatanController@store');
+Route::get('/pegawai/kegiatan/edit/{id}', 'KegiatanController@edit');
+Route::post('/pegawai/kegiatan/edit/{id}', 'KegiatanController@update');
+Route::get('/pegawai/kegiatan/delete/{id}', 'KegiatanController@delete');
+Route::get('/pegawai/kegiatan/tampilkan', 'KegiatanController@tampilkan');
 
 Route::get('/pegawai/rencana-aksi', 'RAController@index');
 Route::get('/pegawai/rencana-aksi/tw1/{id}', 'RAController@add_tw1');

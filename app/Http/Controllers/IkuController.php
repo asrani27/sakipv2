@@ -7,6 +7,7 @@ use App\Iku2;
 use App\Iku3;
 use App\Iku4;
 use App\Tahun;
+use App\Program;
 use App\IndikatorIku;
 use App\IndikatorIku2;
 use App\IndikatorIku3;
@@ -60,16 +61,16 @@ class IkuController extends Controller
             ->map(function($item){
                 return $item->indikator2;
             })->collapse();
+            
             return view('pegawai.iku.add', compact('jabatan','indikator_iku_atasan','tahun'));
         }elseif($jabatan->tingkat == '3'){
             $jabatan_id = $jabatan->atasan->id;
-            $indikator_iku_atasan = Iku3::where('jabatan_id', $jabatan_id)->where('periode_id', periodeAktif()->id)->get()
-            ->map(function($item){
-                return $item->indikator;
-            })->collapse();
+            $indikator_iku_atasan = Program::where('jabatan_id', $jabatan_id)->where('periode_id', periodeAktif()->id)->get();
+            
             return view('pegawai.iku.add', compact('jabatan','indikator_iku_atasan','tahun'));
         }
         elseif($jabatan->tingkat == '1'){
+            
             return view('pegawai.iku.add', compact('jabatan','tahun'));
         }
     }
@@ -89,7 +90,7 @@ class IkuController extends Controller
             Iku3::create($attr);
             toastr()->success('IKU Berhasil Disimpan');
         }elseif($this->jabatan->tingkat == 3){
-            $attr['indikator_iku3_id'] = $req->indikator_iku_id;
+            $attr['program_id'] = $req->indikator_iku_id;
             Iku4::create($attr);
             toastr()->success('IKU Berhasil Disimpan');
         }else{
@@ -205,7 +206,8 @@ class IkuController extends Controller
             $attr['iku3_id']        = $id;   
             IndikatorIku3::create($attr);
         }elseif($this->jabatan->tingkat == 3){
-            $attr['iku4_id']        = $id;   
+            $attr['iku4_id']        = $id;
+            
             IndikatorIku4::create($attr);
         }
 

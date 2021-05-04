@@ -81,7 +81,7 @@ function biodata()
     $user = Auth::user();
     $data['nip'] = $user->pegawai->nip;
     $data['nama'] = $user->pegawai->nama;
-    $data['jabatan'] = 'Kepala '.$user->pegawai->jabatan->nama;
+    $data['jabatan'] = $user->pegawai->jabatan->nama;
     $data['skpd'] = $user->pegawai->skpd->nama;
     return $data;
 }

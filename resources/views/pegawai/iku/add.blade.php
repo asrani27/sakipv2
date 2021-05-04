@@ -69,12 +69,12 @@
                     </div> 
                     @elseif($jabatan->tingkat == '3')
                     <div class="form-group">
-                      <label class="control-label col-sm-2 col-xs-12">IKU Atasan</label>
+                      <label class="control-label col-sm-2 col-xs-12">Program Atasan</label>
                       <div class="col-xs-5 col-md-10">
                         <select name="indikator_iku_id" class="form-control" required>
                             <option value="">-Pilih-</option>
                             @foreach ($indikator_iku_atasan as $item)
-                            <option value="{{$item->id}}">{{$item->iku3->periode->mulai}}/{{$item->iku3->periode->sampai}} - {{$item->indikator}}</option>
+                            <option value="{{$item->id}}">{{$item->tahun->tahun}} - {{$item->nama}}</option>
                             @endforeach
                         </select>
                       </div>

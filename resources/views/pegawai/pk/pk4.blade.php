@@ -1,5 +1,5 @@
 
-@foreach ($data->sortBy('tahun_id') as $key => $item)        
+@foreach ($data->sortBy('tahun_id') as $key => $item)  
 @foreach ($item->indikator4 as $item2)    
 <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
     <td>{{$item2->tahun->tahun}}</td>

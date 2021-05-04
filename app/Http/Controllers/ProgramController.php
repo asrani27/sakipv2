@@ -60,6 +60,7 @@ class ProgramController extends Controller
         $attr['indikator_iku3_id']= $req->indikator_iku_id;
         $attr['tahun_id']         = IndikatorIku3::find($req->indikator_iku_id)->tahun->id;
         $attr['jabatan_id']       = $this->jabatan->id;
+        $attr['periode_id']       = Tahun::find($attr['tahun_id'])->periode->id;
         
         Program::create($attr);
         toastr()->success('Program Disimpan');
@@ -73,6 +74,7 @@ class ProgramController extends Controller
         $attr['indikator_iku3_id']= $req->indikator_iku_id;
         $attr['tahun_id']         = IndikatorIku3::find($req->indikator_iku_id)->tahun->id;
         $attr['jabatan_id']       = $this->jabatan->id;
+        $attr['periode_id']       = Tahun::find($attr['tahun_id'])->periode->id;
         
         $data->update($attr);
         toastr()->success('Program Diupdate');
@@ -169,7 +171,19 @@ class ProgramController extends Controller
                             }else{
                                 $item2->iku3->map(function($item3){
                                     $item3->indikator3->map(function($item4){
-                                        $item4['program'] = $item4->program;
+                                        if(count($item4->program) == 0){
+                                            $data = [
+                                                'id' => null,
+                                                'nama' => null,
+                                                'tw1' => null,
+                                                'tw2' => null,
+                                                'tw3' => null,
+                                                'tw4' => null,
+                                            ];
+                                            $item4['program'][0] = $data;
+                                        }else{
+                                            $item4['program'] = $item4->program;
+                                        }
                                         return $item4;
                                     });
                                     return $item3;
