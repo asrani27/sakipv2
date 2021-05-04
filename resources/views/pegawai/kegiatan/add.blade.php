@@ -30,7 +30,7 @@
               <div class="box-content">
                   <form action="/pegawai/kegiatan/add" accept-charset="UTF-8" class="form form-horizontal" style="margin-bottom: 0;" method="post">
                     @csrf
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Program</label>
                       <div class="col-xs-5 col-md-10">
                         <select name="program_id" class="form-control" required>
@@ -41,7 +41,7 @@
                         </select>
                       </div>
                     </div>
-                    
+                     --}}
                     <div class="form-group">
                       <label class="control-label col-sm-2 col-xs-12">Indikator Es IV</label>
                       <div class="col-xs-5 col-md-10">

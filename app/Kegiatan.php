@@ -14,4 +14,19 @@ class Kegiatan extends Model
     {
         return $this->hasMany(Aktivitas::class, 'kegiatan_id');
     }
+
+    public function tahun()
+    {
+        return $this->belongsTo(Tahun::class, 'tahun_id');
+    }
+    
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'program_id');
+    }
+
+    public function indikator4()
+    {
+        return $this->belongsTo(IndikatorIku4::class, 'indikator_iku4_id');
+    }
 }

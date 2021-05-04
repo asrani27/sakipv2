@@ -75,10 +75,9 @@
                           <th>NO</th>
                           <th>PERIODE</th>
                           <th>TAHUN</th>
+                          <th>PROGRAM</th>
                           <th>INDIKATOR KINERJA</th>
                           <th>KEGIATAN</th>
-                          <th>AKTIVITAS</th>
-                          <th>TARGET KEUANGAN</th>
                           <th></th>
                         </tr>
                         </thead>
@@ -90,7 +89,12 @@
                           @foreach ($data as $item)        
                           <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                               <td>{{$no++}}</td>
-                             
+                              <td>{{$item->tahun->periode->mulai}}/{{$item->tahun->periode->mulai}}</td>
+                              <td>{{$item->tahun->tahun}}</td>
+                              <td>{{$item->program->nama}}</td>
+                              <td>{{$item->indikator4->indikator}}</td>
+                              <td>{{$item->nama}}</td>
+                              <td></td>                            
                               
                           </tr>
                           

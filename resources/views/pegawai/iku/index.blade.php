@@ -75,6 +75,9 @@
                           <th>NO</th>
                           <th>PERIODE</th>
                           <th>TAHUN</th>
+                          @if (Auth::user()->pegawai->jabatan->tingkat == 3)
+                          <th>PROGRAM</th>
+                          @endif
                           <th>KINERJA UTAMA</th>
                           <th>INDIKATOR KINERJA</th>
                           <th>PENJELASAN</th>
@@ -94,6 +97,9 @@
                               <td>{{$no++}}</td>
                               <td>{{$item->periode->mulai}}-{{$item->periode->sampai}} </td>
                               <td>{{$item->tahun->tahun}}</td>
+                              @if (Auth::user()->pegawai->jabatan->tingkat == 3)
+                              <td>{{$item->program->nama}}</td>
+                              @endif
                               <td>{{$item->kinerja_utama}}</td>
                               @if (Auth::user()->pegawai->jabatan->tingkat == 1)
                                   @include('pegawai.iku.iku2')

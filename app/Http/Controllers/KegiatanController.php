@@ -48,11 +48,13 @@ class KegiatanController extends Controller
 
     public function store(Request $req)
     {
-        $attr = $req->all();
-        $attr['indikator_iku4_id'] = $req->indikator_id;
-        $attr['jabatan_id'] = $this->jabatan->id;
-        $attr['tahun_id'] = IndikatorIku4::find($attr['indikator_iku4_id'])->tahun_id;
-
+        $attr                       = $req->all();
+        $attr['indikator_iku4_id']  = $req->indikator_id;
+        $attr['jabatan_id']         = $this->jabatan->id;
+        $attr['tahun_id']           = IndikatorIku4::find($attr['indikator_iku4_id'])->tahun_id;
+        $attr['nama']               = $req->kegiatan;
+        $attr['program_id']         = IndikatorIku4::find($attr['indikator_iku4_id'])->iku4->program_id;
+        
         Kegiatan::create($attr);
         toastr()->success('Kegiatan Disimpan');
         return redirect('/pegawai/kegiatan');

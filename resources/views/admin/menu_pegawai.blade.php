@@ -56,6 +56,12 @@
                     <span>Kegiatan</span>
                 </a>
             </li>
+            <li class='{{ Request::is('#') ? 'active' : '' }}'>
+                <a href='/pegawai/aktivitas'>
+                    <i class='fa fa-file-text'></i>
+                    <span>Aktivitas</span>
+                </a>
+            </li>
         @endif
     @endif
 

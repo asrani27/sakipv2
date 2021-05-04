@@ -23,4 +23,9 @@ class Iku4 extends Model
     {
         return $this->belongsTo(Tahun::class, 'tahun_id', 'id');
     }
+
+    public function program()
+    {
+        return $this->belongsto(Program::class, 'program_id', 'id');
+    }
 }
