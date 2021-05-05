@@ -65,7 +65,7 @@ class IkuController extends Controller
             return view('pegawai.iku.add', compact('jabatan','indikator_iku_atasan','tahun'));
         }elseif($jabatan->tingkat == '3'){
             $jabatan_id = $jabatan->atasan->id;
-            $indikator_iku_atasan = Program::where('jabatan_id', $jabatan_id)->where('periode_id', periodeAktif()->id)->get();
+            $indikator_iku_atasan = Program::where('jabatan_id', $jabatan_id)->get();
             
             return view('pegawai.iku.add', compact('jabatan','indikator_iku_atasan','tahun'));
         }
