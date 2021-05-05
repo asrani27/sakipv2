@@ -46,6 +46,18 @@ class KegiatanController extends Controller
         return view('pegawai.kegiatan.add',compact('program','indikator_kasi'));
     }
 
+    public function edit($id)
+    {
+        $atasan_id = $this->jabatan->atasan->id;
+        $program = Program::with('tahun')->where('jabatan_id', $atasan_id)->get();
+        
+        $indikator_kasi = Iku4::with('tahun')->where('jabatan_id', $this->jabatan->id)->get()->map(function($item){
+            return $item->indikator4;
+        })->collapse();
+        $data = Kegiatan::find($id);
+        return view('pegawai.kegiatan.edit',compact('program','indikator_kasi','data'));
+    }
+
     public function store(Request $req)
     {
         $attr                       = $req->all();
@@ -59,6 +71,13 @@ class KegiatanController extends Controller
         toastr()->success('Kegiatan Disimpan');
         return redirect('/pegawai/kegiatan');
         
+    }
+
+    public function delete($id)
+    {
+        Kegiatan::find($id)->delete();
+        toastr()->success('Kegiatan Dihapus');
+        return back();
     }
 
 }

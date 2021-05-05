@@ -70,6 +70,22 @@ Route::post('/pegawai/kegiatan/edit/{id}', 'KegiatanController@update');
 Route::get('/pegawai/kegiatan/delete/{id}', 'KegiatanController@delete');
 Route::get('/pegawai/kegiatan/tampilkan', 'KegiatanController@tampilkan');
 
+Route::get('/pegawai/aktivitas', 'AktivitasController@index');
+Route::get('/pegawai/aktivitas/add', 'AktivitasController@add');
+Route::post('/pegawai/aktivitas/add', 'AktivitasController@store');
+Route::get('/pegawai/aktivitas/edit/{id}', 'AktivitasController@edit');
+Route::post('/pegawai/aktivitas/edit/{id}', 'AktivitasController@update');
+Route::get('/pegawai/aktivitas/delete/{id}', 'AktivitasController@delete');
+Route::get('/pegawai/aktivitas/tampilkan', 'AktivitasController@tampilkan');
+
+Route::get('/pegawai/realisasi', 'RealisasiController@index');
+Route::get('/pegawai/realisasi/add', 'RealisasiController@add');
+Route::post('/pegawai/realisasi/add', 'RealisasiController@store');
+Route::get('/pegawai/realisasi/edit/{id}', 'RealisasiController@edit');
+Route::post('/pegawai/realisasi/edit/{id}', 'RealisasiController@update');
+Route::get('/pegawai/realisasi/delete/{id}', 'RealisasiController@delete');
+Route::get('/pegawai/realisasi/tampilkan', 'RealisasiController@tampilkan');
+
 Route::get('/pegawai/rencana-aksi', 'RAController@index');
 Route::get('/pegawai/rencana-aksi/tw1/{id}', 'RAController@add_tw1');
 Route::get('/pegawai/rencana-aksi/tw1/{id}/{tahun}', 'RAController@add_tw1_tahun');

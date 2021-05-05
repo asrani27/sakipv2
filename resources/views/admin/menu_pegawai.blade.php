@@ -65,19 +65,23 @@
         @endif
     @endif
 
-    <li class='{{ Request::is('#') ? 'active' : '' }}'>
-        <a href='/pegawai/kinerja-triwulan'>
-            <i class='fa fa-file-text'></i>
-            <span>Realisasi</span>
-        </a>
-    </li>
-
+    @if (Auth::user()->pegawai->jabatan != null)
+        @if (Auth::user()->pegawai->jabatan->tingkat == 1)
+        <li class='{{ Request::is('#') ? 'active' : '' }}'>
+            <a href='/pegawai/realisasi'>
+                <i class='fa fa-file-text'></i>
+                <span>Realisasi</span>
+            </a>
+        </li>
+        @endif
+    @endif
+{{-- 
     <li class='{{ Request::is('pegawai/kinerja-triwulan') ? 'active' : '' }}'>
         <a href='/pegawai/kinerja-triwulan'>
             <i class='fa fa-file-text'></i>
             <span>Kinerja Triwulan</span>
         </a>
-    </li>
+    </li> --}}
 
     <li class='{{ Request::is('ganti-password') ? 'active' : '' }}'>
         <a href='/ganti-password'>

@@ -14,6 +14,11 @@ class Program extends Model
         return $this->hasMany(IndikatorProgram::class, 'program_id');
     }
 
+    public function kegiatan()
+    {
+        return $this->hasMany(Kegiatan::class, 'program_id');
+    }
+
     public function tahun()
     {
         return $this->belongsTo(Tahun::class,'tahun_id');

@@ -18,7 +18,7 @@
 	text-align: center;
 }
 .auto-style5 {
-	border: 1px solid #000000;\
+	border: 1px solid #000000;
 	font-size: xx-small;
 	
 }
