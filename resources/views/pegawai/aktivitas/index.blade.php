@@ -97,7 +97,7 @@
                           @foreach ($data as $item)        
                           <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                               <td>{{$no++}}</td>
-                              <td>{{$item->tahun->periode->mulai}}/{{$item->tahun->periode->mulai}}</td>
+                              <td>{{$item->tahun->periode->mulai}}/{{$item->tahun->periode->sampai}}</td>
                               <td>{{$item->tahun->tahun}}</td>
                               <td>{{$item->kegiatan->nama}}</td>
                               <td>{{$item->nama}}</td>
