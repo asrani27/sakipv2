@@ -72,85 +72,58 @@
     @endphp
     @foreach ($ra as $key => $item)
 	@php
-	$itemEs2Line = true;
+	$merge_no = true;
+	@endphp      
+	@php
+	$merge_kegiatan = true;
 	@endphp      
 		@foreach ($item['indikator2'] as $item2)
 			@foreach ($item2['iku3'] as $item3)
 				@foreach ($item3['indikator3'] as $item4)
 					@foreach ($item4['program'] as $item5)
-				
-					<tr>
-					
-						{{-- @if($itemEs2Line)
-						<td class="auto-style3" rowspan="{{count($item->indikator2)}}" align=center valign="top">{{$key+1}}</td>
-						<td class="auto-style3" rowspan="{{count($item->indikator2)}}" valign="top">{{$item2->iku2->kinerja_utama}}</td>
+						@foreach ($item5['iku4'] as $item6)
+							@foreach ($item6['indikator4'] as $item7)
+								@foreach ($item7['kegiatan'] as $item8)
+									@foreach ($item8['aktivitas'] as $item9)
+									<tr>
+									
+										{{-- @if($merge_no)
+										<td class="auto-style3" rowspan="{{count($item8['aktivitas'])}}" align=center valign="top">{{$key+1}}</td> --}}
+										{{-- <td class="auto-style3" rowspan="{{count($item->indikator2)}}" valign="top">{{$item2->iku2->kinerja_utama}}</td> --}}
 
-						@php
-							$itemEs2Line = false;
-						@endphp
-						@endif --}}
-						
-						<td class="auto-style5">{{$no++}}</td>
-						<td class="auto-style5">{{$item['kinerja_utama']}}</td>
-						<td class="auto-style5">{{$item2 == null ? '-':$item2['indikator']}}</td>
-						<td class="auto-style3">{{$item2 == null ? '':$item2['tw1']}}</td>
-						<td class="auto-style3">{{$item2 == null ? '':$item2['tw2']}}</td>
-						<td class="auto-style3">{{$item2 == null ? '':$item2['tw3']}}</td>                
-						<td class="auto-style3">{{$item2 == null ? '':$item2['tw4']}}</td>
-						<td class="auto-style5">{{$item3['kinerja_utama']}}</td>
-						<td class="auto-style5">{{$item4['indikator']}}</td>
-						<td class="auto-style5">{{$item5['nama']}}</td>
-						<td class="auto-style3">{{$item5['tw1']}}</td>
-						<td class="auto-style3">{{$item5['tw2']}}</td>
-						<td class="auto-style3">{{$item5['tw3']}}</td>
-						<td class="auto-style3">{{$item5['tw4']}}</td>
-						<td class="auto-style3">&nbsp;</td>
-						<td class="auto-style3">&nbsp;</td>
-						<td class="auto-style3">&nbsp;</td>
-						<td class="auto-style3">&nbsp;</td>
-						<td class="auto-style3">&nbsp;</td>
-						<td class="auto-style3">&nbsp;</td>
-						<td class="auto-style3">&nbsp;</td>
-						<td class="auto-style3">&nbsp;</td>
-					</tr>
-
-		{{-- @endforeach
-        @foreach ($item['indikator_ikues2'] as $key2 => $item2)
-		@php
-		$itemEs2indikatorLine = true;
-		@endphp                    
-        @foreach ($item2['kinerjaEs3'] as $key3 => $item3)
-			@php
-			$itemEs3Line = true;
-			@endphp       
-                @foreach ($item3['indikator_ikues3'] as $item4)   
-            <tr>
-                <td class="auto-style3">{{$key + 1}}</td>
-                <td class="auto-style5">{{$item['ikues2']}}</td>
-                <td class="auto-style5">{{$item2['indikator_ikues2']}}</td>
-                <td class="auto-style3">{{$item2['tw1_ikues2']}}</td>
-                <td class="auto-style3">{{$item2['tw2_ikues2']}}</td>
-                <td class="auto-style3">{{$item2['tw3_ikues2']}}</td>
-                
-                <td class="auto-style3">{{$item2['tw4_ikues2']}}</td>
-                <td class="auto-style5">{{$item3['ikues3']}}</td>
-                <td class="auto-style5">{{$item4['indikator_ikues3']}}</td>
-                <td class="auto-style5">{{$item4['program_ikues3']}}</td>
-                <td class="auto-style3">{{$item4['tw1_ikues3']}}</td>
-                <td class="auto-style3">{{$item4['tw2_ikues3']}}</td>
-                <td class="auto-style3">{{$item4['tw3_ikues3']}}</td>
-                <td class="auto-style3">{{$item4['tw4_ikues3']}}</td>
-                <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>  
-            	@endforeach  
-            @endforeach   --}}
+										{{-- @php
+											$merge_no = false;
+										@endphp
+										@endif --}}
+										
+										<td class="auto-style5">{{$no++}}</td>
+										<td class="auto-style5">{{$item['kinerja_utama']}}</td>
+										<td class="auto-style5">{{$item2 == null ? '-':$item2['indikator']}}</td>
+										<td class="auto-style3">{{$item2 == null ? '':$item2['tw1']}}</td>
+										<td class="auto-style3">{{$item2 == null ? '':$item2['tw2']}}</td>
+										<td class="auto-style3">{{$item2 == null ? '':$item2['tw3']}}</td>                
+										<td class="auto-style3">{{$item2 == null ? '':$item2['tw4']}}</td>
+										<td class="auto-style5">{{$item3['kinerja_utama']}}</td>
+										<td class="auto-style5">{{$item4['indikator']}}</td>
+										<td class="auto-style5">{{$item5['nama']}}</td>
+										<td class="auto-style3">{{$item5['tw1']}}</td>
+										<td class="auto-style3">{{$item5['tw2']}}</td>
+										<td class="auto-style3">{{$item5['tw3']}}</td>
+										<td class="auto-style3">{{$item5['tw4']}}</td>
+										<td class="auto-style3">{{$item6['kinerja_utama']}}</td>
+										<td class="auto-style3">{{$item7['indikator']}}</td>
+										
+										<td class="auto-style3">{{$item8['nama']}}</td>
+										<td class="auto-style3">{{$item9['nama']}}</td>
+										<td class="auto-style3">{{$item9['tk1']}}</td>
+										<td class="auto-style3">{{$item9['tk2']}}</td>
+										<td class="auto-style3">{{$item9['tk3']}}</td>
+										<td class="auto-style3">{{$item9['tk4']}}</td>
+									</tr>
+									@endforeach
+        						@endforeach
+        					@endforeach  
+        				@endforeach  
         			@endforeach  
         		@endforeach  
         	@endforeach  

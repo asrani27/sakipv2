@@ -14,6 +14,11 @@ class Program extends Model
         return $this->hasMany(IndikatorProgram::class, 'program_id');
     }
 
+    public function iku4()
+    {
+        return $this->hasMany(Iku4::class, 'program_id');
+    }
+
     public function kegiatan()
     {
         return $this->hasMany(Kegiatan::class, 'program_id');

@@ -124,6 +124,26 @@ class AktivitasController extends Controller
                                                 'tw2' => null,
                                                 'tw3' => null,
                                                 'tw4' => null,
+                                                'iku4' => [[
+                                                    'id' => null,
+                                                    'kinerja_utama' => null,
+                                                    'indikator4' => [[
+                                                        'id' => null,
+                                                        'indikator' => null,
+                                                        'kegiatan' => [[
+                                                            'id' => null,
+                                                            'nama' => null,
+                                                            'aktivitas' => [[
+                                                                'id' => null,
+                                                                'nama' => null,
+                                                                'tk1' => null,
+                                                                'tk2' => null,
+                                                                'tk3' => null,
+                                                                'tk4' => null,
+                                                            ]]
+                                                        ]]
+                                                    ]]
+                                                ]]
                                             ]]
                                         ]]
                                     ]
@@ -146,6 +166,26 @@ class AktivitasController extends Controller
                                             'tw2' => null,
                                             'tw3' => null,
                                             'tw4' => null,
+                                            'iku4' => [[
+                                                'id' => null,
+                                                'kinerja_utama' => null,
+                                                'indikator4' => [[
+                                                    'id' => null,
+                                                    'indikator' => null,
+                                                    'kegiatan' => [[
+                                                        'id' => null,
+                                                        'nama' => null,
+                                                        'aktivitas' => [[
+                                                            'id' => null,
+                                                            'nama' => null,
+                                                            'tk1' => null,
+                                                            'tk2' => null,
+                                                            'tk3' => null,
+                                                            'tk4' => null,
+                                                        ]]
+                                                    ]]
+                                                ]]
+                                            ]]
                                         ]]
                                     ]],
                                 ];
@@ -154,13 +194,41 @@ class AktivitasController extends Controller
                                 $item2->iku3->map(function($item3){
                                     $item3->indikator3->map(function($item4){
                                         $item4->program->map(function($item5){
-                                            if(count($item5->kegiatan) == 0){
+                                            if(count($item5->iku4) == 0){
                                                 $data = [
                                                     'id' => null,
-                                                    'nama_kegiatan' => null,
+                                                    'kinerja_utama' => null,
+                                                    'indikator4' => [[
+                                                        'id' => null,
+                                                        'indikator' => null,
+                                                        'kegiatan' => [[
+                                                            'id' => null,
+                                                            'nama' => null,
+                                                            'aktivitas' => [[
+                                                                'id' => null,
+                                                                'nama' => null,
+                                                                'tk1' => null,
+                                                                'tk2' => null,
+                                                                'tk3' => null,
+                                                                'tk4' => null,
+                                                            ]]
+                                                        ]]
+                                                    ]]
                                                 ];
-                                                $item5['kegiatan'][0] = $data;
+                                                $item5['iku4'][0] = $data;
                                             }else{
+                                                $item5->iku4->map(function($item6){
+                                                    $item6->indikator4->map(function($item7){
+                                                        $item7->kegiatan->map(function($item8){
+                                                            $item8->aktivitas->map(function($item9){
+                                                                return $item9;
+                                                            });
+                                                            return $item8;
+                                                        });
+                                                        return $item7;
+                                                    });
+                                                    return $item6;
+                                                });
                                                 return $item5;
                                             }
                                         });
@@ -174,7 +242,9 @@ class AktivitasController extends Controller
                     }
                     return $item;
                 })->toArray();
-                
+                // dd(collect($ra)->map(function($item){
+                //     return $item['indikator2'];
+                // }));
                 
                 $tahun   = Tahun::find($tahun_id);
                 
