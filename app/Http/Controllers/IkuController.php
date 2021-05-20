@@ -172,7 +172,14 @@ class IkuController extends Controller
 
     public function verifIKU($id)
     {   
-        $u = Iku2::find($id);
+        if($this->jabatan->tingkat == 1){
+            $u = Iku2::find($id);
+        }elseif($this->jabatan->tingkat == 2){
+            $u = Iku3::find($id);
+        }elseif($this->jabatan->tingkat == 3){
+            $u = Iku4::find($id);
+        }
+        dd($u);
         $u->verifikasi = 1;
         $u->save();
         toastr()->success('IKU Disetujui');

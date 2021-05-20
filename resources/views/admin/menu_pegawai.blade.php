@@ -65,7 +65,7 @@
         @endif
     @endif
 
-    @if (Auth::user()->pegawai->jabatan != null)
+    {{-- @if (Auth::user()->pegawai->jabatan != null)
         @if (Auth::user()->pegawai->jabatan->tingkat == 1)
         <li class='{{ Request::is('#') ? 'active' : '' }}'>
             <a href='/pegawai/realisasi'>
@@ -74,7 +74,7 @@
             </a>
         </li>
         @endif
-    @endif
+    @endif --}}
 {{-- 
     <li class='{{ Request::is('pegawai/kinerja-triwulan') ? 'active' : '' }}'>
         <a href='/pegawai/kinerja-triwulan'>
