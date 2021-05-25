@@ -66,6 +66,12 @@ class FrontendController extends Controller
         return view('kinerjatahunan', compact('data'));
     }
 
+    public function searchKinerjaTriwulan()
+    {
+        toastr()->info('Data Tidak Ditemukan');
+        return back();
+    }
+
     public function searchRpjmd()
     {
         $periode = request()->get('periode');

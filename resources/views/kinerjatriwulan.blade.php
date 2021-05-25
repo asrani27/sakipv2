@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <form method="GET" action="/iku/search">
+            <form method="GET" action="/kinerja-triwulan/search">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-2">

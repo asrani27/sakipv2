@@ -13,6 +13,7 @@ Route::get('/iku/search', 'FrontendController@searchIku');
 Route::get('/perjanjian-kinerja', 'FrontendController@perjanjianKinerja');
 Route::get('/perjanjian-kinerja/search', 'FrontendController@searchPk');
 Route::get('/kinerja-triwulan', 'FrontendController@kinerjaTriwulan');
+Route::get('/kinerja-triwulan/search', 'FrontendController@searchKinerjaTriwulan');
 Route::get('/kinerja-tahunan', 'FrontendController@kinerjaTahunan');
 Route::get('/login', 'FrontendController@login');
 Route::post('/login', 'LoginController@login')->name('login');
