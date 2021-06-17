@@ -22,5 +22,11 @@ class Iku2 extends Model
     public function tahun()
     {
         return $this->belongsTo(Tahun::class, 'tahun_id', 'id');
+    }    
+    
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'jabatan_id');
     }
+
 }

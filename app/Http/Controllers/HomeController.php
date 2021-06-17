@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Iku;
+use App\Iku3;
 use App\Skpd;
 use App\Jabatan;
 use App\Pegawai;
@@ -33,7 +34,8 @@ class HomeController extends Controller
             return view('walikota.home',compact('result'));
         }elseif(Auth::user()->hasRole('pegawai')){
             $bawahan = Auth::user()->pegawai->jabatan->bawahan->pluck('id')->toArray();
-            $iku = [];
+            $iku = Iku3::whereIn('jabatan_id', $bawahan)->where('verifikasi', 0)->get();
+            
             return view('pegawai.home',compact('iku'));
         }
     }

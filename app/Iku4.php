@@ -23,6 +23,10 @@ class Iku4 extends Model
     {
         return $this->belongsTo(Tahun::class, 'tahun_id', 'id');
     }
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'jabatan_id');
+    }
 
     public function program()
     {

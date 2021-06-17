@@ -51,9 +51,9 @@
                                     <th>
                                         Kinerja Utama
                                     </th>
-                                    <th>
+                                    {{-- <th>
                                         Indikator
-                                    </th>
+                                    </th> --}}
                                     <th>
                                         Status
                                     </th>
@@ -69,7 +69,7 @@
                                         <td>{{$no++}}</td>
                                         <td>{{$item->jabatan->nama}}</td>
                                         <td>{{$item->kinerja_utama}}</td>
-                                        <td>{{$item->indikator_kinerja_utama}}</td>
+                                        {{-- <td>{{$item->indikator_kinerja_utama}}</td> --}}
                                         <td>
                                             <span class="label label-info">MENUNGGU</span>
                                         </td>
