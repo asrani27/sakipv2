@@ -81,7 +81,7 @@
       <div class="row">
         <div class="col-sm-12">
             <div class="text-center">
-              {{-- {{$data->links()}} --}}
+              {{$data->links()}}
             </div>
         </div>
       </div>

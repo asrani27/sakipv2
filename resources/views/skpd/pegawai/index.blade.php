@@ -37,6 +37,7 @@
                           <th>Eselon</th>
                           <th>Pangkat</th>
                           <th>Jabatan</th>
+                          <th>Akses</th>
                           <th>Aksi</th>
                         </tr>
                         </thead>
@@ -52,6 +53,10 @@
                               <td>{{$item->eselon == null ? '-' : $item->eselon->nama}}</td>
                               <td>{{$item->pangkat == null ? '-' : $item->pangkat->nama}}</td>
                               <td>{{$item->jabatan == null ? '-' : $item->jabatan->nama}}</td>
+                              <td>
+                                <a href="/admin_skpd/pegawai/iku/{{$item->id}}" class="btn btn-xs btn-info">IKU</a>
+                                <a href="/admin_skpd/pegawai/pk/{{$item->id}}" class="btn btn-xs btn-info">PK</a>
+                              </td>
                               <td>
                                   @if ($item->user == null)
                                       <a href="/admin_skpd/pegawai/createuser/{{$item->id}}" class="btn btn-xs btn-success">Buat User</a>

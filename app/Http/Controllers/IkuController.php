@@ -179,7 +179,7 @@ class IkuController extends Controller
         }elseif($this->jabatan->tingkat == 3){
             $u = Iku4::find($id);
         }
-        dd($u);
+        
         $u->verifikasi = 1;
         $u->save();
         toastr()->success('IKU Disetujui');

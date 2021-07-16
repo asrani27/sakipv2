@@ -35,4 +35,15 @@ Route::post('/admin_skpd/pegawai/edit/{id}', 'PegawaiController@update');
 Route::get('/admin_skpd/pegawai/delete/{id}', 'PegawaiController@delete');
 Route::get('/admin_skpd/pegawai/createuser/{id}', 'PegawaiController@createUser');
 
+Route::get('/admin_skpd/pegawai/iku/{id}', 'IkuPegawaiController@ikupegawai');
+Route::get('/admin_skpd/pegawai/iku/{id}/add', 'IkuPegawaiController@addikupegawai');
+Route::post('/admin_skpd/pegawai/iku/{id}/add', 'IkuPegawaiController@storeikupegawai');
+Route::get('/admin_skpd/pegawai/iku/edit/{pegawai_id}/{id}', 'IkuPegawaiController@editikupegawai');
+Route::post('/admin_skpd/pegawai/iku/edit/{pegawai_id}/{id}', 'IkuPegawaiController@updateikupegawai');
+Route::get('/admin_skpd/pegawai/iku/delete/{pegawai_id}/{id}', 'IkuPegawaiController@deleteikupegawai');
+Route::get('/admin_skpd/pegawai/pk/{id}', 'IkuPegawaiController@pkpegawai');
+
 Route::get('/admin_skpd/mutasi', 'MutasiController@index');
+
+
+Route::get('/admin_skpd/iku_pegawai', 'IkuPegawaiController@index');

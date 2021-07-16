@@ -24,6 +24,12 @@
         </a>
     </li>
     
+    <li class='{{ Request::is('admin_skpd/iku_pegawai') ? 'active' : '' }}'>
+        <a href='/admin_skpd/iku_pegawai'>
+            <i class='fa fa-users'></i>
+            <span>IKU Pegawai</span>
+        </a>
+    </li>
     <li class='{{ Request::is('ganti-password') ? 'active' : '' }}'>
         <a href='/ganti-password'>
             <i class='fa fa-key'></i>

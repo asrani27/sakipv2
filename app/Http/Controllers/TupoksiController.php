@@ -30,7 +30,7 @@ class TupoksiController extends Controller
             }
             return view('pegawai.tupoksi.index', compact('data'));
         } else {
-            $data = Jabatan::where('skpd_id', Auth::user()->skpd->id)->get();
+            $data = Jabatan::where('skpd_id', Auth::user()->skpd->id)->paginate(10);
             return view('skpd.tupoksi.index', compact('data'));
         }
     }
