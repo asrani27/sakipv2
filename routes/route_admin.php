@@ -43,6 +43,9 @@ Route::post('/admin_skpd/pegawai/iku/edit/{pegawai_id}/{id}', 'IkuPegawaiControl
 Route::get('/admin_skpd/pegawai/iku/delete/{pegawai_id}/{id}', 'IkuPegawaiController@deleteikupegawai');
 Route::get('/admin_skpd/pegawai/pk/{id}', 'IkuPegawaiController@pkpegawai');
 
+Route::get('/admin_skpd/pegawai/iku/add_indikator/{pegawai_id}/{id}', 'IkuPegawaiController@addIndikator');
+Route::post('/admin_skpd/pegawai/iku/add_indikator/{pegawai_id}/{id}', 'IkuPegawaiController@storeIndikator');
+
 Route::get('/admin_skpd/mutasi', 'MutasiController@index');
 
 

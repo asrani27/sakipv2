@@ -111,5 +111,32 @@ class IkuPegawaiController extends Controller
         }
         return view('skpd.ikupegawai.edit', compact('jabatan', 'data','tahun','pegawai_id'));
     }
+
+    public function updateikupegawai(Request $req, $pegawai_id, $id)
+    {
+        if($this->jabatan($pegawai_id)->tingkat == 1){
+            Iku2::find($id)->update($req->all());
+        }elseif($this->jabatan($pegawai_id)->tingkat == 2){
+            Iku3::find($id)->update($req->all());
+        }elseif($this->jabatan($pegawai_id)->tingkat == 3){
+            Iku4::find($id)->update($req->all());
+        }
+        toastr()->success('IKU Berhasil Diupdate');
+        
+        return redirect('/admin_skpd/pegawai/iku/'.$pegawai_id);
+        
+    }
+    
+    public function add_indikator($pegawai_id, $id)
+    {
+        if($this->jabatan($pegawai_id)->tingkat == 1){
+            $data = Iku2::find($id);
+        }elseif($this->jabatan($pegawai_id)->tingkat == 2){
+            $data = Iku3::find($id);
+        }elseif($this->jabatan($pegawai_id)->tingkat == 3){
+            $data = Iku4::find($id);
+        }
+        return view('skpd.ikupegawai.iku.add_indikator',compact('data'));
+    }
     
 }
