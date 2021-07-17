@@ -21,8 +21,11 @@
                 <i class='fa fa-plus'></i>Tambah Pegawai</a> 
             </div>
             <div class="actions">
-                <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
-                </a>
+              <div class="col-md-12">
+                <form method="GET" action="/admin_skpd/pegawai/search">
+                  <input class="form-control" name="search" placeholder="Cari Nama / NIP" type="text">
+                </form>
+              </div>
             </div>
         </div>
         <div class="box-content box-no-padding">

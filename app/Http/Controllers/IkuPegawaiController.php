@@ -8,7 +8,11 @@ use App\Iku4;
 use App\Tahun;
 use App\Pegawai;
 use App\Program;
+use App\IndikatorIku2;
+use App\IndikatorIku3;
+use App\IndikatorIku4;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class IkuPegawaiController extends Controller
 {
@@ -127,7 +131,7 @@ class IkuPegawaiController extends Controller
         
     }
     
-    public function add_indikator($pegawai_id, $id)
+    public function addIndikator($pegawai_id, $id)
     {
         if($this->jabatan($pegawai_id)->tingkat == 1){
             $data = Iku2::find($id);
@@ -136,7 +140,113 @@ class IkuPegawaiController extends Controller
         }elseif($this->jabatan($pegawai_id)->tingkat == 3){
             $data = Iku4::find($id);
         }
-        return view('skpd.ikupegawai.iku.add_indikator',compact('data'));
+        return view('skpd.ikupegawai.add_indikator',compact('data','pegawai_id'));
     }
     
+    public function storeIndikator(Request $req,$pegawai_id, $id)
+    {
+        $attr['indikator']          = $req->indikator_kinerja_utama;
+        $attr['penjelasan']         = $req->penjelasan;
+        $attr['sumber_data']        = $req->sumber_data;
+        $attr['penanggung_jawab']   = $req->penanggung_jawab;
+        $attr['tahun_id']           = $req->tahun_id;
+     
+        if($this->jabatan($pegawai_id)->tingkat == 1){
+            $attr['iku2_id']        = $id;   
+            IndikatorIku2::create($attr);
+        }elseif($this->jabatan($pegawai_id)->tingkat == 2){
+            $attr['iku3_id']        = $id;   
+            IndikatorIku3::create($attr);
+        }elseif($this->jabatan($pegawai_id)->tingkat == 3){
+            $attr['iku4_id']        = $id;
+            
+            IndikatorIku4::create($attr);
+        }
+
+        toastr()->success('Indikator Disimpan');
+
+        return redirect('/admin_skpd/pegawai/iku/'.$pegawai_id);
+        
+    }
+
+    public function deleteikupegawai($pegawai_id, $id)
+    {
+        if($this->jabatan($pegawai_id)->tingkat == 1){
+            Iku2::find($id)->delete();
+        }elseif($this->jabatan($pegawai_id)->tingkat == 2){
+            Iku3::find($id)->delete();
+        }elseif($this->jabatan($pegawai_id)->tingkat == 3){
+            Iku4::find($id)->delete();
+        }
+        toastr()->success('IKU Berhasil DiHapus');
+        return back();
+    }
+
+    public function editIndikator($pegawai_id, $id)
+    {
+        if($this->jabatan($pegawai_id)->tingkat == 1){
+            $data = IndikatorIku2::find($id);
+        }elseif($this->jabatan($pegawai_id)->tingkat == 2){
+            $data = IndikatorIku3::find($id);
+        }elseif($this->jabatan($pegawai_id)->tingkat == 3){
+            $data = IndikatorIku4::find($id);
+        }
+        
+        return view('skpd.ikupegawai.edit_indikator', compact('data','pegawai_id'));
+    }
+    
+    public function updateIndikator(Request $req, $pegawai_id, $id)
+    {
+        
+        if($this->jabatan($pegawai_id)->tingkat == 1){
+            $data = IndikatorIku2::find($id);
+        }elseif($this->jabatan($pegawai_id)->tingkat == 2){
+            $data = IndikatorIku3::find($id);
+        }elseif($this->jabatan($pegawai_id)->tingkat == 3){
+            $data = IndikatorIku4::find($id);
+        }
+
+        $data->indikator        = $req->indikator_kinerja_utama;
+        $data->sumber_data      = $req->sumber_data;
+        $data->penjelasan       = $req->penjelasan;
+        $data->penanggung_jawab = $req->penanggung_jawab;
+        $data->save();
+        toastr()->success('IKU Indikator Diupdate');
+
+        return redirect('/admin_skpd/pegawai/iku/'.$pegawai_id);
+        
+    }
+    
+    public function hapusIndikator($pegawai_id, $id)
+    {
+        if($this->jabatan($pegawai_id)->tingkat == 1){
+            IndikatorIku2::find($id)->delete();
+        }elseif($this->jabatan($pegawai_id)->tingkat == 2){
+            IndikatorIku3::find($id)->delete();
+        }elseif($this->jabatan($pegawai_id)->tingkat == 3){
+            IndikatorIku4::find($id)->delete();
+        }
+        toastr()->success('Indikator Dihapus');
+        return back();
+    }
+    
+    public function printikupegawai(Request $req)
+    {
+        $jabatan = $this->jabatan($req->pegawai_id);
+        $fungsi  = $jabatan->fungsi;
+        $tugas   = $jabatan->tugas;
+
+        if($this->jabatan($req->pegawai_id)->tingkat == 1){
+            $iku     = Iku2::where('jabatan_id',$jabatan->id)->where('tahun_id', $req->tahun_id)->get();
+            $pdf     = PDF::loadView('pegawai.pdf.iku2', compact('jabatan','fungsi','tugas','iku'))->setPaper('legal','landscape');
+        }elseif($this->jabatan($req->pegawai_id)->tingkat == 2){
+            $iku     = Iku3::where('jabatan_id',$jabatan->id)->where('tahun_id', $req->tahun_id)->get();
+            $pdf     = PDF::loadView('pegawai.pdf.iku3', compact('jabatan','fungsi','tugas','iku'))->setPaper('legal','landscape');
+        }elseif($this->jabatan($req->pegawai_id)->tingkat == 3){
+            $iku     = Iku4::where('jabatan_id',$jabatan->id)->where('tahun_id', $req->tahun_id)->get();
+            $pdf     = PDF::loadView('pegawai.pdf.iku4', compact('jabatan','fungsi','tugas','iku'))->setPaper('legal','landscape');
+        }
+
+        return $pdf->stream();
+    }
 }

@@ -28,6 +28,7 @@ Route::get('/admin_skpd/fungsi/edit/{id}', 'TupoksiController@editFungsi');
 Route::post('/admin_skpd/fungsi/edit/{id}', 'TupoksiController@updateFungsi');
 
 Route::get('/admin_skpd/pegawai', 'PegawaiController@index');
+Route::get('/admin_skpd/pegawai/search', 'PegawaiController@search');
 Route::get('/admin_skpd/pegawai/add', 'PegawaiController@add');
 Route::post('/admin_skpd/pegawai/add', 'PegawaiController@store');
 Route::get('/admin_skpd/pegawai/edit/{id}', 'PegawaiController@edit');
@@ -43,8 +44,13 @@ Route::post('/admin_skpd/pegawai/iku/edit/{pegawai_id}/{id}', 'IkuPegawaiControl
 Route::get('/admin_skpd/pegawai/iku/delete/{pegawai_id}/{id}', 'IkuPegawaiController@deleteikupegawai');
 Route::get('/admin_skpd/pegawai/pk/{id}', 'IkuPegawaiController@pkpegawai');
 
+Route::post('/admin_skpd/pegawai/iku/print', 'IkuPegawaiController@printikupegawai');
 Route::get('/admin_skpd/pegawai/iku/add_indikator/{pegawai_id}/{id}', 'IkuPegawaiController@addIndikator');
 Route::post('/admin_skpd/pegawai/iku/add_indikator/{pegawai_id}/{id}', 'IkuPegawaiController@storeIndikator');
+
+Route::get('/admin_skpd/pegawai/iku/edit_indikator/{pegawai_id}/{id}', 'IkuPegawaiController@editIndikator');
+Route::post('/admin_skpd/pegawai/iku/edit_indikator/{pegawai_id}/{id}', 'IkuPegawaiController@updateIndikator');
+Route::get('/admin_skpd/pegawai/iku/hapus_indikator/{pegawai_id}/{id}', 'IkuPegawaiController@hapusIndikator');
 
 Route::get('/admin_skpd/mutasi', 'MutasiController@index');
 

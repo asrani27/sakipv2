@@ -46,7 +46,7 @@
                 <i class='fa fa-plus'></i>Tambah IKU</a> 
             </div>
           </div>
-          <form target="_blank" method="post" action="/pegawai/iku/print">
+          <form target="_blank" method="post" action="/admin_skpd/pegawai/iku/print">
             @csrf
           <div class="col-sm-3">
               <select name="tahun_id" class="form-control" required>
@@ -55,15 +55,16 @@
                     <option value="{{$item->id}}">Tahun: {{$item->tahun}}, Periode: {{$item->periode->mulai}}/{{$item->periode->sampai}}</option>
                 @endforeach
               </select>
+              <input type="hidden" name="pegawai_id" value="{{$pegawai->id}}">
           </div>
           <div class="col-sm-5">
             <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
           </div>
           </form>
           <div class="col-sm-3">
-              <form method="GET" action="/pegawai/iku/search">
+              {{-- <form method="GET" action="/pegawai/iku/search">
                 <input class="form-control" name="search" placeholder="Search" type="text">
-              </form>
+              </form> --}}
           </div>
         </div>
         <div class="box-content box-no-padding">
@@ -102,11 +103,11 @@
                               @endif
                               <td>{{$item->kinerja_utama}}</td>
                               @if ($pegawai->jabatan->tingkat == 1)
-                                  @include('pegawai.iku.iku2')
+                                  @include('skpd.ikupegawai.iku2')
                               @elseif($pegawai->jabatan->tingkat == 2)
-                                  @include('pegawai.iku.iku3')
+                                  @include('skpd.ikupegawai.iku3')
                               @elseif($pegawai->jabatan->tingkat == 3)
-                                  @include('pegawai.iku.iku4')    
+                                  @include('skpd.ikupegawai.iku4')    
                               @endif
                               <td>
                                 @if ($item->verifikasi == 0)
