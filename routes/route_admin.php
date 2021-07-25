@@ -55,4 +55,3 @@ Route::get('/admin_skpd/pegawai/iku/hapus_indikator/{pegawai_id}/{id}', 'IkuPega
 Route::get('/admin_skpd/mutasi', 'MutasiController@index');
 
 
-Route::get('/admin_skpd/iku_pegawai', 'IkuPegawaiController@index');
