@@ -56,8 +56,8 @@ Route::get('/admin_skpd/pegawai/pk/{id}', 'PkPegawaiController@pkpegawai');
 Route::get('/admin_skpd/pegawai/pk/{pegawai_id}/tampilkan', 'PkPegawaiController@tampilkan');
 Route::get('/admin_skpd/pegawai/pk/{pegawai_id}/target/{id}', 'PkPegawaiController@add_target');
 Route::get('/admin_skpd/pegawai/pk/{pegawai_id}/target/edit/{id}', 'PkPegawaiController@edit_target');
+Route::post('/admin_skpd/pegawai/pk/{pegawai_id}/target/edit/{id}', 'PkPegawaiController@update_target');
 Route::post('/admin_skpd/pegawai/pk/{pegawai_id}/target/{id}', 'PkPegawaiController@store_target');
-Route::post('/admin_skpd/pegawai/pk/{pegawai_id}/target/{id}', 'PkPegawaiController@update_target');
 
 Route::get('/admin_skpd/mutasi', 'MutasiController@index');
 
