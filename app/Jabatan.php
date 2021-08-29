@@ -44,4 +44,19 @@ class Jabatan extends Model
     {
         return $this->hasMany(Iku::class, 'jabatan_id');
     }
+
+    public function ikuEselon2()
+    {
+        return $this->hasMany(Iku2::class, 'jabatan_id');
+    }
+    
+    public function ikuEselon3()
+    {
+        return $this->hasMany(Iku3::class, 'jabatan_id');
+    }
+    
+    public function ikuEselon4()
+    {
+        return $this->hasMany(Iku4::class, 'jabatan_id');
+    }
 }

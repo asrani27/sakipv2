@@ -146,7 +146,30 @@ class FrontendController extends Controller
     public function pohonSearch()
     {
         $data = Skpd::find(request()->get('skpd_id'));
-        return view('pohonkinerja', compact('data'));
+        $periode = Periode::find(request()->get('periode_id'));
+        
+        $jabatan = $data->jabatan;
+        
+        $map = $jabatan->map(function($item){
+            if($item->ikuEselon2 != null){
+                
+                $item->iku = $item->ikuEselon2->first() == null ? '-':$item->ikuEselon2->first()->kinerja_utama;
+            }elseif($item->ikuEselon3 != null){
+                $item->iku = $item->ikuEselon3->first() == null ? '-':$item->ikuEselon3->first()->kinerja_utama;
+            }elseif($item->ikuEselon4 != null){
+                $item->iku = $item->ikuEselon4->first() == null ? '-':$item->ikuEselon4->first()->kinerja_utama;
+            }
+            
+            //item->pegawai = $item->pegawai == null ? '-': $item->pegawai->nama;
+            
+            $item->format = [['v'=>(string)$item->id, 'f'=>'KINERJA UTAMA<br/><br/>'.$item->iku],$item->jabatan_id == null ? '':(string)$item->jabatan_id, ''];
+            return $item->format;
+        });
+        
+        
+        $json = response()->json($map);
+        
+        return view('pohon', compact('json', 'data', 'periode'));
     }
     public function cekUsername($param)
     {
