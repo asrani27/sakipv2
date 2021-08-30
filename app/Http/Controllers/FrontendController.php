@@ -153,19 +153,24 @@ class FrontendController extends Controller
         $map = $jabatan->map(function($item){
             if($item->ikuEselon2 != null){
                 
-                $item->iku = $item->ikuEselon2->first() == null ? '-':$item->ikuEselon2->first()->kinerja_utama;
+                $item->iku = $item->ikuEselon2 == null ? '-':$item->ikuEselon2;
             }elseif($item->ikuEselon3 != null){
-                $item->iku = $item->ikuEselon3->first() == null ? '-':$item->ikuEselon3->first()->kinerja_utama;
+                $item->iku = $item->ikuEselon3 == null ? '-':$item->ikuEselon3;
             }elseif($item->ikuEselon4 != null){
-                $item->iku = $item->ikuEselon4->first() == null ? '-':$item->ikuEselon4->first()->kinerja_utama;
+                $item->iku = $item->ikuEselon4 == null ? '-':$item->ikuEselon4;
             }
             
             //item->pegawai = $item->pegawai == null ? '-': $item->pegawai->nama;
-            
-            $item->format = [['v'=>(string)$item->id, 'f'=>'KINERJA UTAMA<br/><br/>'.$item->iku],$item->jabatan_id == null ? '':(string)$item->jabatan_id, ''];
+            $kinerjautama = [];
+            foreach($item->iku as $ku)
+            {
+                $kinerjautama[] = '- '.$ku->kinerja_utama.'<br/>';
+            }
+            //dd($kinerjautama);
+            $iku = implode(" ",$kinerjautama);
+            $item->format = [['v'=>(string)$item->id, 'f'=>$item->nama.'<br/><br/>'.$iku],$item->jabatan_id == null ? '':(string)$item->jabatan_id, ''];
             return $item->format;
         });
-        
         
         $json = response()->json($map);
         

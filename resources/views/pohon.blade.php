@@ -14,7 +14,7 @@
         <img src="/assets/logo3.png" width="59px"><br/>
         <h4>POHON KINERJA <br>{{strtoupper($data->nama)}}<br>PERIODE {{$periode->mulai}}-{{$periode->sampai}}<br>PEMERINTAH KOTA BANJARMASIN</h4>
     </div><br/>
-    <div id="chart_div"  style="height: 100px; width: 100%; font-size:12px"></div>
+    <div id="chart_div"  style="height: 50px; width: 3000px; font-size:12px"></div>
 </center>
 </body>
 
