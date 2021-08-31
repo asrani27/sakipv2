@@ -151,21 +151,19 @@ class FrontendController extends Controller
         $jabatan = $data->jabatan;
         
         $map = $jabatan->map(function($item){
-            if($item->ikuEselon2 != null){
-                
-                $item->iku = $item->ikuEselon2 == null ? '-':$item->ikuEselon2;
-            }elseif($item->ikuEselon3 != null){
-                $item->iku = $item->ikuEselon3 == null ? '-':$item->ikuEselon3;
-            }elseif($item->ikuEselon4 != null){
-                $item->iku = $item->ikuEselon4 == null ? '-':$item->ikuEselon4;
-            }
+            $iku2 = $item->ikuEselon2;
+            $iku3 = $item->ikuEselon3;
+            $iku4 = $item->ikuEselon4;
+            $iku = $iku2->merge($iku3)->merge($iku4);
             
             //item->pegawai = $item->pegawai == null ? '-': $item->pegawai->nama;
             $kinerjautama = [];
-            foreach($item->iku as $ku)
+            foreach($iku as $ku)
             {
                 $kinerjautama[] = '- '.$ku->kinerja_utama.'<br/>';
             }
+            
+            $item->jabatan_iku = $kinerjautama;
             //dd($kinerjautama);
             $iku = implode(" ",$kinerjautama);
             $item->format = [['v'=>(string)$item->id, 'f'=>$item->nama.'<br/><br/>'.$iku],$item->jabatan_id == null ? '':(string)$item->jabatan_id, ''];
