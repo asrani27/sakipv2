@@ -12,6 +12,7 @@ use App\Skpd;
 use App\User;
 use App\Tahun;
 use App\Jabatan;
+use App\KinerjaTriwulan;
 use App\Periode;
 use App\UnitKerja;
 use Illuminate\Http\Request;
@@ -56,20 +57,17 @@ class FrontendController extends Controller
 
     public function kinerjaTriwulan()
     {
-        $data = 'as';
-        return view('kinerjatriwulan', compact('data'));
+        $data = [];
+        $tahun = null;
+        $triwulan = null;
+        $jb = null;
+        return view('kinerjatriwulan', compact('data', 'tahun', 'triwulan', 'jb'));
     }
 
     public function kinerjaTahunan()
     {
         $data = null;
         return view('kinerjatahunan', compact('data'));
-    }
-
-    public function searchKinerjaTriwulan()
-    {
-        toastr()->info('Data Tidak Ditemukan');
-        return back();
     }
 
     public function searchRpjmd()
@@ -107,15 +105,12 @@ class FrontendController extends Controller
     {
         $periode = Periode::find(request()->get('periode_id'));
         $jabatan = Jabatan::find(request()->get('jabatan_id'));
-        if($jabatan->tingkat == 1){
+        if ($jabatan->tingkat == 1) {
             $data = Iku2::where('periode_id', request()->get('periode_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
-
-        }elseif($jabatan->tingkat == 2){
+        } elseif ($jabatan->tingkat == 2) {
             $data = Iku3::where('periode_id', request()->get('periode_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
-
-        }elseif($jabatan->tingkat == 3){
+        } elseif ($jabatan->tingkat == 3) {
             $data = Iku4::where('periode_id', request()->get('periode_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
-
         }
         return view('iku', compact('data', 'periode', 'jabatan'));
     }
@@ -124,12 +119,12 @@ class FrontendController extends Controller
     {
         $tahun   = Tahun::find(request()->get('tahun_id'));
         $jabatan = Jabatan::find(request()->get('jabatan_id'));
-        
-        if($jabatan->tingkat == 1){
+
+        if ($jabatan->tingkat == 1) {
             $data      = Iku2::with('indikator2')->where('tahun_id', $tahun->id)->where('jabatan_id', $jabatan->id)->get();
-        }elseif($jabatan->tingkat == 2){
+        } elseif ($jabatan->tingkat == 2) {
             $data      = Iku3::with('indikator3')->where('tahun_id', $tahun->id)->where('jabatan_id', $jabatan->id)->get();
-        }elseif($jabatan->tingkat == 3){
+        } elseif ($jabatan->tingkat == 3) {
             $data      = Iku4::with('indikator4')->where('tahun_id', $tahun->id)->where('jabatan_id', $jabatan->id)->get();
         }
         // $iku     = Iku::with('pk')->where('jabatan_id', $jabatan->id)->get();
@@ -137,9 +132,9 @@ class FrontendController extends Controller
         //     $item->indikator_kinerja_utama = $item->pk->where('tahun_id', $tahun->id);
         //     return $item;
         // });
-        
+
         //$data = Pk::where('tahun_id', request()->get('tahun_id'))->where('jabatan_id', request()->get('jabatan_id'))->get();
-        
+
         return view('perjanjiankinerja', compact('data', 'tahun', 'jabatan'));
     }
 
@@ -147,31 +142,30 @@ class FrontendController extends Controller
     {
         $data = Skpd::find(request()->get('skpd_id'));
         $periode = Periode::find(request()->get('periode_id'));
-        
+
         $jabatan = $data->jabatan;
-        
-        $map = $jabatan->map(function($item){
+
+        $map = $jabatan->map(function ($item) {
             $iku2 = $item->ikuEselon2;
             $iku3 = $item->ikuEselon3;
             $iku4 = $item->ikuEselon4;
             $iku = $iku2->merge($iku3)->merge($iku4);
-            
+
             //item->pegawai = $item->pegawai == null ? '-': $item->pegawai->nama;
             $kinerjautama = [];
-            foreach($iku as $ku)
-            {
-                $kinerjautama[] = '- '.$ku->kinerja_utama.'<br/>';
+            foreach ($iku as $ku) {
+                $kinerjautama[] = '- ' . $ku->kinerja_utama . '<br/>';
             }
-            
+
             $item->jabatan_iku = $kinerjautama;
             //dd($kinerjautama);
-            $iku = implode(" ",$kinerjautama);
-            $item->format = [['v'=>(string)$item->id, 'f'=>$item->nama.'<br/><br/>'.$iku],$item->jabatan_id == null ? '':(string)$item->jabatan_id, ''];
+            $iku = implode(" ", $kinerjautama);
+            $item->format = [['v' => (string)$item->id, 'f' => $item->nama . '<br/><br/>' . $iku], $item->jabatan_id == null ? '' : (string)$item->jabatan_id, ''];
             return $item->format;
         });
-        
+
         $json = response()->json($map);
-        
+
         return view('pohon', compact('json', 'data', 'periode'));
     }
     public function cekUsername($param)
@@ -189,5 +183,25 @@ class FrontendController extends Controller
     {
         $data = jabatan::where('skpd_id', $id)->get();
         return json_encode($data);
+    }
+
+    public function searchKinerjaTriwulan()
+    {
+        $tahun = request()->get('tahun');
+        $skpd = request()->get('skpd_id');
+        $jabatan = request()->get('jabatan_id');
+        $triwulan = request()->get('triwulan');
+        $kinerja = KinerjaTriwulan::where('tahun', $tahun)
+            ->where('skpd_id', $skpd)
+            ->where('jabatan_id', $jabatan)
+            ->where('triwulan', $triwulan)->get();
+        if (count($kinerja) == 0) {
+            $data = [];
+        } else {
+            $data = $kinerja;
+        }
+
+        $jb = Jabatan::find($jabatan);
+        return view('kinerjatriwulan', compact('data', 'tahun', 'triwulan', 'jb', 'kinerja'));
     }
 }

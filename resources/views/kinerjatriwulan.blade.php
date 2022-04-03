@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-2">
-                            <select name="tahun_id" class="form-control form-control-sm" required>
+                            <select name="tahun" class="form-control form-control-sm" required>
                                 <option value="">-Tahun-</option>
                                 @foreach (tahun() as $item)
                                 <option value="{{$item->tahun}}">{{$item->tahun}}</option>
@@ -33,7 +33,7 @@
                             </select>
                         </div>
                         <div class="col-sm-2">
-                            <select name="skpd" class="form-control form-control-sm" required>
+                            <select name="triwulan" class="form-control form-control-sm" required>
                                 <option value="" selected>-Triwulan-</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -52,28 +52,34 @@
     </div>
 </div>
 
-@if ($data != null)
+@if (count($data) != 0)
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body table-responsive">
                 <h4 style="font-size:18px" class="text-center">
-                    CAPAIAN KINERJA SKPD DI LINGKUNGAN PEMERINTAH KOTA BANJARMASIN TAHUN <br />
-                    NAMA JABATAN <br />
-                    NAMA DINAS <br /> KOTA BANJARMASIN<br />
+                    CAPAIAN KINERJA SKPD DI LINGKUNGAN PEMERINTAH KOTA BANJARMASIN TAHUN : {{$tahun}}, TRIWULAN
+                    {{$triwulan}}<br />
+                    @if ($jb == null)
+
+                    @else
+                    {{strtoupper($jb->nama)}} <br />
+                    {{strtoupper($jb->skpd->nama)}} <br />
+                    @endif
+                    KOTA BANJARMASIN<br />
                 </h4>
                 <table class="table table-bordered table-sm">
                     <thead>
                         <tr class="bg-gradient-primary"
                             style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
-                            <th class="text-center" rowspan=2 style="vertical-align: middle;">No.</th>
+                            {{-- <th class="text-center" rowspan=2 style="vertical-align: middle;">No.</th> --}}
                             <th class="text-center" rowspan=2 style="vertical-align: middle;">KINERJA UTAMA</th>
-                            <th class="text-center" rowspan=2 style="vertical-align: middle;">INDIKATOR KINERJA</th>
-                            <th class="text-center" rowspan=2 style="vertical-align: middle;">SATUAN</th>
+                            <th class="text-center" rowspan=2 style="vertical-align: middle;">INDIKATOR & CAPAIAN</th>
+                            {{-- <th class="text-center" rowspan=2 style="vertical-align: middle;">SATUAN</th>
                             <th class="text-center" rowspan=2 style="vertical-align: middle;">TARGET</th>
                             <th class="text-center" colspan=4>TARGET TRIWULAN</th>
                             <th class="text-center" rowspan=2 style="vertical-align: middle;">REALISASI</th>
-                            <th class="text-center" rowspan=2 style="vertical-align: middle;">% CAPAIAN</th>
+                            <th class="text-center" rowspan=2 style="vertical-align: middle;">% CAPAIAN</th> --}}
                             {{-- <th class="text-center" rowspan=2 style="vertical-align: middle;">PROGRAM DAN<br />
                                 KEGIATAN
                             </th>
@@ -85,29 +91,52 @@
                             <th class="text-center" rowspan=2 style="vertical-align: middle;">REALISASI</th>
                             <th class="text-center" rowspan=2 style="vertical-align: middle;">% CAPAIAN</th> --}}
                         </tr>
-                        <tr class="bg-gradient-primary"
-                            style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
-
-                            <th class="text-center">1</th>
-                            <th class="text-center">2</th>
-                            <th class="text-center">3</th>
-                            <th class="text-center">4</th>
-                        </tr>
                     </thead>
                     <tbody>
+                        @foreach ($data->first()->kinerja as $item)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$item->isi}}</td>
+
+                            <td>
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr class="bg-gradient-primary"
+                                            style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                                            <th class="text-center" rowspan=2 style="vertical-align: middle;">INDIKATOR
+                                                KINERJA</th>
+                                            <th class="text-center" rowspan=2 style="vertical-align: middle;">SATUAN
+                                            </th>
+                                            <th class="text-center" rowspan=2 style="vertical-align: middle;">TARGET
+                                            </th>
+                                            <th class="text-center">TW.I</th>
+                                            <th class="text-center">TW.II</th>
+                                            <th class="text-center">TW.III</th>
+                                            <th class="text-center">TW.IV</th>
+                                            <th class="text-center" rowspan=2 style="vertical-align: middle;">REALISASI
+                                            </th>
+                                            <th class="text-center" rowspan=2 style="vertical-align: middle;">CAPAIAN %
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($item->indikator as $ind)
+                                        <tr>
+                                            <td>{{$ind->indikator}}</td>
+                                            <td>{{$ind->satuan}}</td>
+                                            <td>{{$ind->target}}</td>
+                                            <td>{{$ind->tw1}}</td>
+                                            <td>{{$ind->tw2}}</td>
+                                            <td>{{$ind->tw3}}</td>
+                                            <td>{{$ind->tw4}}</td>
+                                            <td>{{$ind->realisasi}}</td>
+                                            <td>{{$ind->capaian}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
