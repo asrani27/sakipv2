@@ -41,10 +41,13 @@ class KinerjaTriwulanController extends Controller
 
     public function storeTahun(Request $req, $id)
     {
-        dd($req->all());
         $check = KinerjaTriwulan::where('jabatan_id', $id)->where('tahun', $req->tahun)->where('triwulan', $req->triwulan)->first();
         if ($check == null) {
             $n = new KinerjaTriwulan;
+            $n->tahun = $req->tahun;
+            $n->triwulan = $req->triwulan;
+            $n->save();
+            return redirect('/admin_skpd/kinerjatriwulan/struktur/' . $id);
         } else {
             toastr()->error('Tahun dan Triwulan Sudah Ada');
             return back();
