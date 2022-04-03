@@ -61,4 +61,14 @@ Route::post('/admin_skpd/pegawai/pk/{pegawai_id}/target/{id}', 'PkPegawaiControl
 
 Route::get('/admin_skpd/mutasi', 'MutasiController@index');
 
+Route::get('/admin_skpd/kinerjatriwulan', 'KinerjaTriwulanController@index');
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}', 'KinerjaTriwulanController@kinerja');
 
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/tahun/add', 'KinerjaTriwulanController@addTahun');
+Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/tahun/add', 'KinerjaTriwulanController@storeTahun');
+
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/add', 'KinerjaTriwulanController@addKinerja');
+Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/add', 'KinerjaTriwulanController@storeKinerja');
+
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/indikator/add', 'KinerjaTriwulanController@addIndikator');
+Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/indikator/add', 'KinerjaTriwulanController@storeIndikator');
