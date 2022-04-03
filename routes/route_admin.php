@@ -67,8 +67,21 @@ Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}', 'KinerjaTriwulanControll
 Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/tahun/add', 'KinerjaTriwulanController@addTahun');
 Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/tahun/add', 'KinerjaTriwulanController@storeTahun');
 
-Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/add', 'KinerjaTriwulanController@addKinerja');
-Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/add', 'KinerjaTriwulanController@storeKinerja');
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/{kinerja_id}', 'KinerjaTriwulanController@detailKinerja');
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/{kinerja_id}/add', 'KinerjaTriwulanController@addKinerja');
+Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/{kinerja_id}/add', 'KinerjaTriwulanController@storeKinerja');
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/{kinerja_id}/delete', 'KinerjaTriwulanController@destroyKinerja');
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/{kinerja_id}/edit', 'KinerjaTriwulanController@editKinerja');
+Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/{kinerja_id}/edit', 'KinerjaTriwulanController@updateKinerja');
+
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/{kinerja_id}/indikator/add', 'KinerjaTriwulanController@addIndikator');
+Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/{kinerja_id}/indikator/add', 'KinerjaTriwulanController@storeIndikator');
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/indikator/{indikator_id}/delete', 'KinerjaTriwulanController@destroyIndikator');
+Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/indikator/{indikator_id}/edit', 'KinerjaTriwulanController@editIndikator');
+Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/indikator/{indikator_id}/edit', 'KinerjaTriwulanController@updateIndikator');
+
+// Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/add', 'KinerjaTriwulanController@addKinerja');
+// Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/kinerja/add', 'KinerjaTriwulanController@storeKinerja');
 
 Route::get('/admin_skpd/kinerjatriwulan/struktur/{id}/indikator/add', 'KinerjaTriwulanController@addIndikator');
 Route::post('/admin_skpd/kinerjatriwulan/struktur/{id}/indikator/add', 'KinerjaTriwulanController@storeIndikator');

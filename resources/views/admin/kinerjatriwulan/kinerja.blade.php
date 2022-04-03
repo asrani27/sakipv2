@@ -15,10 +15,6 @@
                 <a class="btn btn-white" href="/admin_skpd/kinerjatriwulan"><i class="fa fa-arrow-left"></i> Kembali</a>
                 <a class="btn btn-white" href="/admin_skpd/kinerjatriwulan/struktur/{{$id}}/tahun/add"><i
                         class="fa fa-plus"></i> Tahun</a>
-                <a class="btn btn-white" href="/admin_skpd/kinerjatriwulan/struktur/{{$id}}/kinerja/add"><i
-                        class="fa fa-plus"></i> Kinerja</a>
-                <a class="btn btn-white" href="/admin_skpd/kinerjatriwulan/struktur/{{$id}}/indikator/add"><i
-                        class="fa fa-plus"></i> Indikator</a>
             </div>
         </div>
     </div>
@@ -32,29 +28,28 @@
                             <table class="table table-bordered table-hover table-striped" style="margin-bottom:0;">
                                 <thead>
                                     <tr class="blue-background"
-                                        style="color: white; font-size:10px; font-family:Arial, Helvetica, sans-serif">
+                                        style="color: white; font-family:Arial, Helvetica, sans-serif">
                                         <th>No</th>
                                         <th>Tahun</th>
                                         <th>Triwulan</th>
                                         <th>Kinerja</th>
-                                        <th>Indikator</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 @php
                                 $no =1;
                                 @endphp
                                 <tbody>
-                                    {{-- @foreach ($data as $item)
+                                    @foreach ($data as $item)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$item->nama}}</td>
-                                        <td>
-                                            <a href="/admin_skpd/kinerjatriwulan/struktur/{{$item->id}}"
-                                                class="btn btn-xs btn-success"><i class="fa fa-list"></i> Kinerja</a>
+                                        <td>{{$item->tahun}}</td>
+                                        <td>{{$item->triwulan}}</td>
+                                        <td><a href="/admin_skpd/kinerjatriwulan/struktur/{{$id}}/kinerja/{{$item->id}}"
+                                                class="btn btn-xs btn-primary"><i class="fa fa-list"></i>
+                                                Kinerja</a>
                                         </td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
 
